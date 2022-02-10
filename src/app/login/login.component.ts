@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
+import { UserAccountDto } from '../user';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -7,24 +9,33 @@ import { LoginService } from '../login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  username = "dummy";
-  password = "password";
-
-  constructor(
-    private loginService: LoginService
-  ) {  }
+   currentUser: UserAccountDto| null = null;
+   loginUsername: any;
+   loginPassword: any;
+   
+   formdata = new FormGroup({
+    loginUsername: new FormControl(),
+    loginPassword: new FormControl()
+ });
+  constructor( private loginServ: LoginService) { }
 
   ngOnInit(): void {
   }
-
-  onSubmit() { 
-    console.log("before");
-    this.loginService.login(this.username,this.password).subscribe((data)=>{
-      console.log(data);
-    });
-    console.log("after");
-   
+  onClickSubmit(data: { loginUsername: any,loginPassword:any }) {
+    this.loginUsername = data.loginUsername;
+    this.loginPassword = data.loginPassword;
+    this.retreiveLoginUserButton(this.loginUsername,this.loginPassword);
   }
-
+    
+  retreiveLoginUserButton(username: any,password: any){
+    this.loginServ.retreiveLoginUser(username,password).subscribe(
+      //subscriber's callback function goes here
+      data=>{
+        this.currentUser= data;
+        console.log(data);
+     
+       // this.currentUser= data;
+      }
+    );
+  }
 }

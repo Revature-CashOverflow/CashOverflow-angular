@@ -1,24 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { UserAccountDto } from './user';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpCli: HttpClient) { }
 
-    public login(username:string, password:string){
-      let httpHeaders = new HttpHeaders()
-                         .set('Accept', 'application/json');
-      let httpParams = new HttpParams()
-                            .set('loginUsername', username)
-                            .set('loginPassword', password);
-      return this.httpClient.get('http://localhost:1901/login', {
-          headers: httpHeaders,
-          params: httpParams,
-          responseType:'json'
-      });
-    }
-   
+  retreiveLoginUser(loginUsername: any, loginPassword: any): Observable<UserAccountDto> {
+    const loginUrl = `http://localhost:9001/login?loginUsername=${loginUsername}&loginPassword=${loginPassword}`;
+
+    return this.httpCli.get<UserAccountDto>(loginUrl);
+  }
 }
