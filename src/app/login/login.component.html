@@ -1,12 +1,12 @@
 <h2>Login</h2>
 <form class="form-control">
   <label for="loginUsername">username</label>
-  <!-- <input id="loginUsername" class="loginUsername" (input)='loginUsername' placeholder="username"> -->
-  <input id="loginUsername" class="loginUsername" [(ngModel)]='loginUsername' [ngModelOptions]="{standalone: true}"
-    placeholder="username">
+  <input id="loginUsername" class="loginUsername" (input)='loginUsername' placeholder="username">
+  <!-- <input id="loginUsername" class="loginUsername" [(ngModel)]='loginUsername' [ngModelOptions]="{standalone: true}" -->
+    <!-- placeholder="username"> -->
   <label for="loginPassword">password</label>
-  <!-- <input id="loginPassword" class="loginPassword" (input)='loginPassword' placeholder="password"> -->
-  <input id="loginPassword" class="loginPassword" [(ngModel)]='loginPassword' [ngModelOptions]="{standalone: true}"
-    placeholder="password">
+  <input id="loginPassword" class="loginPassword" (input)='loginPassword' placeholder="password">
+  <!-- <input id="loginPassword" class="loginPassword" [(ngModel)]='loginPassword' [ngModelOptions]="{standalone: true}" -->
+    <!-- placeholder="password"> -->
   <button type="submit" (click)="login()">Submit</button>
 </form>
