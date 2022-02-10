@@ -1,0 +1,19 @@
+<button routerLink="/feed">Back to "main page"</button>
+<p>This is our create bank account form!</p>
+
+<div class="mb-3">
+    <label for="nameId" class="form-label">Name</label>
+    <input [(ngModel)]="name" class="form-control" id="nameId" name="nameField">
+</div>
+<div class="mb-3">
+    <label for="descriptionId" class="form-label">Description</label>
+    <input [(ngModel)]="description" class="form-control" id="descriptionId" name="descriptionField">
+</div>
+<div class="mb-3">
+    <label for="accountType" class="form-label">Account Type</label>
+    <select [(ngModel)]="accountType" name="accountType">
+        <option value="1">Checking</option>
+        <option value="2">Savings</option>
+    </select>
+</div>
+<button (click)="createBankAccount()">Create Account</button>
