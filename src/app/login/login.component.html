@@ -1,25 +1,14 @@
-<p>login works!</p>
-<!-- <button class="btn btn-success" (click)='retreiveLoginUserButton()'>
-   Login Button
-</button> -->
-<!-- <h4>User ID: {{currentUser ? currentUser.id : 'no user found'}}</h4>
-<h4>User Name: {{currentUser ? currentUser.username : 'no user found'}}</h4> -->
 
-<div>
-   <form [formGroup] = "formdata" (ngSubmit) = "onClickSubmit(formdata.value)" >
-      <input type = "text" class = "fortextbox" name = "loginUsername" placeholder = "user name" 
-         formControlName="loginUsername">
-      <br/>
-      
-      <input type = "password" class = "fortextbox" name="loginPassword" 
-         placeholder = "password" formControlName = "loginPassword">
-      <br/>
-      
-      <input type = "submit" class = "forsubmit" value = "Log In">
-   </form>
-</div>
-<p>
-   User entered is : {{loginUsername}} <br>
-   password entered is : {{loginPassword}}
-
-</p>
+<form [formGroup] = "formdata" (ngSubmit) = "onClickSubmit(formdata.value)" >
+   <div class="mb-3">
+     <label for="exampleInputEmail1" class="form-label">User Name</label>
+     <input type = "text"  name = "loginUsername" placeholder = "user name" formControlName="loginUsername" 
+     class="form-control" id="exampleInputEmail1" >
+   </div>  
+   <div class="mb-3">
+     <label for="exampleInputPassword1" class="form-label">Password</label>
+     <input  type = "password" class = "fortextbox" name="loginPassword" 
+     placeholder = "password" formControlName = "loginPassword" class="form-control" id="exampleInputPassword1">
+   </div>
+   <input type = "submit" class = "forsubmit" value = "Log In">
+</form>
