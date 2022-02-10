@@ -1,9 +1,6 @@
-export interface User {
-    id: number;
-    name: string;
-    email: string;
-firstName: string;
-lastName: string;
-password: string;
-username: string;
-  }
+export interface UserAccountDto {
+  id: number;
+  firstName: string;
+  lastName: string;
+  userName: string;
+}

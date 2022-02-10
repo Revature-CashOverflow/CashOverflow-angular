@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
-import { User } from '../user';
+import { UserAccountDto } from '../user';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -9,10 +9,10 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  // currentUser: User| null = null;
+   currentUser: UserAccountDto| null = null;
    loginUsername: any;
    loginPassword: any;
-   //formdata: any;
+   
    formdata = new FormGroup({
     loginUsername: new FormControl(),
     loginPassword: new FormControl()
@@ -31,8 +31,9 @@ export class LoginComponent implements OnInit {
     this.loginServ.retreiveLoginUser(username,password).subscribe(
       //subscriber's callback function goes here
       data=>{
+        this.currentUser= data;
         console.log(data);
-        console.log(data.username);
+     
        // this.currentUser= data;
       }
     );
