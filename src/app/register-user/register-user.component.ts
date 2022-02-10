@@ -10,29 +10,22 @@ import { Observable, ObservedValueOf } from 'rxjs';
   styleUrls: ['./register-user.component.css']
 })
 export class RegisterUserComponent implements OnInit {
-  // registerForm: FormGroup;
+  registerForm = new FormGroup({
+    username: new FormControl(''),
+    password: new FormControl(''),
+    password2: new FormControl(''),
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    email: new FormControl(''),
+
+  });
 
   constructor(
-    public registerForm: FormGroup,
     private regServ: RegisterService
 
   ) {}
 
   ngOnInit(): void {
-    this.createForm();
-  }
-
-  private createForm() {
-    this.registerForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
-    password2: new FormControl(''),
-    firstname: new FormControl(''),
-    lastname: new FormControl(''),
-    email: new FormControl(''),
-    email2: new FormControl('')
-    })
-
   }
 
   register() {
