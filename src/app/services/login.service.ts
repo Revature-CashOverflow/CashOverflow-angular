@@ -14,6 +14,6 @@ export class LoginService {
   doLogin(loginUsername: string, loginPassword: string): Observable<string> {
     console.log("in service")
     console.log("loginUsername===>", loginUsername);
-    return this.httpCli.get<string>(`http://localhost:4200/login`);
+    return this.httpCli.get<string>(`http://localhost:9001/login?loginUsername=${loginUsername}&loginPassword=${loginPassword}`);
   }
 }
