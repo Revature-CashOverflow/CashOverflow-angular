@@ -15,6 +15,9 @@ export class LoginService {
   retreiveLoginUser(loginUsername: any, loginPassword: any): Observable<UserAccountDto> {
     const loginUrl = `http://localhost:9001/login?loginUsername=${loginUsername}&loginPassword=${loginPassword}`;
 
-    return this.httpCli.get<UserAccountDto>(loginUrl);
+    // return this.httpCli.get<UserAccountDto>(loginUrl);
+    return this.httpCli.post<UserAccountDto>(loginUrl, {
+     
+    });
   }
 }
