@@ -1,22 +1,24 @@
 
 <div class="card" style="width: 20rem;">
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
 
-    <input type="text" placeholder="Username" required>
-    <br>
-    <input type="password" placeholder="Password" required>
-    <br>
-    <input type="password" placeholder="Confirm password" required>
-    <br><br>
-    <input type="text" placeholder="Firstname" required>
-    <br>
-    <input type="text" placeholder="Lastname" required>
-    <br><br>
-    <input type="email" placeholder="Email" required>
-    <br>
-    <input type="email" placeholder="Confirm email" required>
-    <br><br>
-    <button>Create New User</button>
-    
+        <input type="text" placeholder="Username"  formControlName="username" required>
+        <br>
+        <input type="password" placeholder="Password" formControlName="password" required>
+        <br>
+        <input type="password" placeholder="Confirm password" formControlName="password2"required>
+        <br><br>
+        <input type="text" placeholder="Firstname" formControlName="firstname" required>
+        <br>
+        <input type="text" placeholder="Lastname" formControlName="lastname" required>
+        <br><br>
+        <input type="email" placeholder="Email" formControlName="email" required>
+        <br>
+        <input type="email" placeholder="Confirm email" formControlName="email2" required>
+        <br><br>
+        <button type="submit">Create New User</button>
+        
+    </form>
 </div>
 
 
