@@ -18,12 +18,22 @@ export class LoginService {
       password: loginPassword,
     };
 
-    console.log("user===>", user);
+  retreiveLoginUser(loginUsername: any, loginPassword: any): Observable<UserAccountDto> {
+    const loginUrl = `http://localhost:1901/login`;
+    let httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    let user = {
+      id: null,
+      email: null,
+      username: loginUsername,
+      firstName: null,
+      lastName: null,
+      password: loginPassword,
+      creationDate: null
+    }
 
-    const loginUrl = `http://localhost:9001/login`;
 
-    console.log(loginUrl);
-
-    return this.httpCli.post<UserAccountDto>(loginUrl, user);
+    return this.httpCli.post<UserAccountDto>(loginUrl, user, { headers: httpHeaders });
   }
 }
