@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-<h2>Login</h2>
-<form class="form-control">
-  <label for="loginUsername">username</label>
-  <input id="loginUsername" class="loginUsername" (input)='loginUsername' placeholder="username">
-  <!-- <input id="loginUsername" class="loginUsername" [(ngModel)]='loginUsername' [ngModelOptions]="{standalone: true}" -->
-    <!-- placeholder="username"> -->
-  <label for="loginPassword">password</label>
-  <input id="loginPassword" class="loginPassword" (input)='loginPassword' placeholder="password">
-  <!-- <input id="loginPassword" class="loginPassword" [(ngModel)]='loginPassword' [ngModelOptions]="{standalone: true}" -->
-    <!-- placeholder="password"> -->
-  <button type="submit" (click)="login()">Submit</button>
-</form>
-=======
 <div class="position-absolute top-50 start-50 translate-middle container">
 <form  [formGroup] = "formdata" (ngSubmit) = "onClickSubmit(formdata.value)" >
    <div class="mb-3">
@@ -27,4 +13,3 @@
    <input type = "submit" class="btn btn-primary" value = "Log In">
 </form>
 </div>
->>>>>>> c1a634a048b3b4fc8d85d9c2115b5e3321f71e93
