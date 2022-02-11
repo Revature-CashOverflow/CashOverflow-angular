@@ -13,7 +13,7 @@ export class RegisterUserComponent implements OnInit {
   registerForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
-    password2: new FormControl(''),
+    // password2: new FormControl(''),
     firstName: new FormControl(''),
     lastName: new FormControl(''),
     email: new FormControl(''),
