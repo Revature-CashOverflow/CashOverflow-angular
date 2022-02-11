@@ -3,20 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserAccountDto } from './user';
 
+
+
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class LoginService {
-  constructor(private httpCli: HttpClient) {}
 
-  retreiveLoginUser(
-    loginUsername: any,
-    loginPassword: any
-  ): Observable<UserAccountDto> {
-    let user: UserAccountDto = {
-      username: loginUsername,
-      password: loginPassword,
-    };
+  constructor(private httpCli: HttpClient) { }
 
   retreiveLoginUser(loginUsername: any, loginPassword: any): Observable<UserAccountDto> {
     const loginUrl = `http://localhost:1901/login`;
