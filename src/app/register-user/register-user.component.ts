@@ -11,9 +11,9 @@ import { Observable, ObservedValueOf } from 'rxjs';
 })
 export class RegisterUserComponent implements OnInit {
 
-  regSuccess: number = 0;
-  passwordMismatch: number = 0;
-  
+  regSuccess: number = 0
+  password: string = ""
+  password2: string = ""
   
   registerForm = new FormGroup({
     username: new FormControl(''),
@@ -39,12 +39,14 @@ export class RegisterUserComponent implements OnInit {
     
 
     register() {
-      if (this.registerForm.value.password != this.passwordValidate.value.password2) {
-        this.passwordMismatch = 1;
-        console.log(this.registerForm.value.password);
-        console.log(this.registerForm.value.password2);
-        console.log(this.passwordMismatch);
+
+      document.getElementById("mismatchNotification")?.classList.add("d-none")  
+
+      if (this.password != this.password2) {
+        document.getElementById("mismatchNotification")?.classList.remove("d-none")     
+        return   
       }
+
       this.regServ.sendRegisterData(this.registerForm.value).subscribe(
         (data) => {
           console.log('Form submitted successfully');
