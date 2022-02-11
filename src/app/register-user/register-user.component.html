@@ -1,5 +1,15 @@
-<br><br><br><br>
 <div class="card" style="width: 20rem; margin: auto; border: auto;">
+
+    <div *ngIf="regSuccess == 2" class="alert alert-danger my-2">
+        Registration Failed
+    </div>
+
+    <div *ngIf="regSuccess == 1" class="alert alert-primary my-2">
+        Registration Success
+    </div>
+    
+
+
     <form [formGroup]="registerForm" (ngSubmit)="register()">
 
         <input type="text" placeholder="Username"  formControlName="username" required>

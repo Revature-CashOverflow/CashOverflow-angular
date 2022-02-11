@@ -16,6 +16,7 @@ export class RegisterService {
 
   sendRegisterData(registerForm) {
     return this.http.post('http://localhost:9001/register', registerForm);
+    
   }
 
 }

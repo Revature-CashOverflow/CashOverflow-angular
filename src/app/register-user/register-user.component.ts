@@ -10,6 +10,12 @@ import { Observable, ObservedValueOf } from 'rxjs';
   styleUrls: ['./register-user.component.css']
 })
 export class RegisterUserComponent implements OnInit {
+
+  regSuccess: number = 0;
+  // errStatus: boolean = false;
+
+  
+
   registerForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
@@ -32,9 +38,10 @@ export class RegisterUserComponent implements OnInit {
     this.regServ.sendRegisterData(this.registerForm.value).subscribe(
       (data) => {
         console.log('Form submitted successfully');
+        this.regSuccess = 1;
       },
       (error: HttpErrorResponse) => {
-        console.log(error);
+        this.regSuccess = 2;
       }
     )
   }
