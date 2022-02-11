@@ -18,13 +18,8 @@ export class LoginService {
       'Content-Type': 'application/json',
     });
     let user = {
-      id: null,
-      email: null,
       username: loginUsername,
-      firstName: null,
-      lastName: null,
       password: loginPassword,
-      creationDate: null
     }
 
 
