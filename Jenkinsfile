@@ -18,15 +18,22 @@ pipeline {
 
     stages {
         stage('Clean workspace') {
-            cleanWs()
-            checkout scm
-            echo "Building ${env.BRANCH_NAME}..."
+            steps {
+                cleanWs()
+                checkout scm
+                echo "Building ${env.BRANCH_NAME}..."
+            }
         }
         stage('Building Dependencies') {
-            sh 'npm install'
+            steps {
+                sh 'npm install'
+            }
         }
         stage('Building Application') {
-            sh 'npm run build --production'
+            steps {
+                sh 'npm run build --production'
+            }
+            
         }
         stage('Docker Build') {
             steps {
