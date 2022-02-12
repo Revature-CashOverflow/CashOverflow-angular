@@ -39,7 +39,7 @@ pipeline {
                 script {
                     step ([$class: 'CopyArtifact',
                         projectName: 'cashoverflow-angular/main',
-                        filter: "dist/*",
+                        filter: "dist/cash-overflow/*",
                         target: 's3-angular-publish']);
                 }
             }
