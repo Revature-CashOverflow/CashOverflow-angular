@@ -33,16 +33,15 @@ pipeline {
             steps {
                 sh 'npm run build --production'
             }
-            
         }
-        stage('Deploy to S3') {
-            steps {
-                script {
-                    if (env.BRANCH_NAME == 'main') {
-                        sh "aws s3 cp ./dist/ --recursive s3://revature-cashoverflow/ --acl public-read"
-                    }
-                }
-            }
-        }
+        // stage('Copy Artifacts for Deployment') {
+        //     steps {
+        //         script {
+        //             if (env.BRANCH_NAME == 'main') {
+        //                 copyArtifacts()
+        //             }
+        //         }
+        //     }
+        // }
     }
 }
