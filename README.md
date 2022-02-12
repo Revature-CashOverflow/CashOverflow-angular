@@ -1,3 +1,5 @@
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Revature-CashOverflow_CashOverflow-angular&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Revature-CashOverflow_CashOverflow-angular)
+
 # CashOverflow
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.4.
