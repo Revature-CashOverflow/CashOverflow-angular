@@ -35,34 +35,11 @@ pipeline {
             }
             
         }
-        stage('Docker Build') {
-            steps {
-                script {
-                    if (env.BRANCH_NAME  == 'main') {
-                        docker.build("${DOCKER_USER}/${DOCKER_REPO}:${env.BRANCH_NAME}-${TAG}")
-                    }
-                }
-            }
-        }
-        stage('Pushing Docker Image') {
+        stage('Deploy to S3') {
             steps {
                 script {
                     if (env.BRANCH_NAME == 'main') {
-                        docker.withRegistry('https://registry.hub.docker.com', 'docker-creds') {
-                            docker.image("${DOCKER_USER}/${DOCKER_REPO}:${env.BRANCH_NAME}-${TAG}").push()
-                            docker.image("${DOCKER_USER}/${DOCKER_REPO}:${env.BRANCH_NAME}-${TAG}").push('latest')
-                        }
-                    }
-                }
-            }
-        }
-        stage('Deploy') {
-            steps {
-                script {
-                    if (env.BRANCH_NAME == 'main') {
-                        sh "docker stop ${env.BRANCH_NAME}-${DOCKER_REPO} | true"
-                        sh "docker rm ${env.BRANCH_NAME}-${DOCKER_REPO} | true"
-                        sh "docker run --name ${env.BRANCH_NAME}-${DOCKER_REPO} -d -p 80:4200 ${DOCKER_USER}/${DOCKER_REPO}:${env.BRANCH_NAME}-${TAG}"
+                        sh "aws s3 cp ./dist/ --recursive s3://revature-cashoverflow/ --acl public-read"
                     }
                 }
             }
