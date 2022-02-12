@@ -34,14 +34,15 @@ pipeline {
                 sh 'npm run build --production'
             }
         }
-        // stage('Copy Artifacts for Deployment') {
-        //     steps {
-        //         script {
-        //             if (env.BRANCH_NAME == 'main') {
-        //                 copyArtifacts()
-        //             }
-        //         }
-        //     }
-        // }
+        stage('Copy Artifacts for Deployment') {
+            steps {
+                script {
+                    step ([$class: 'CopyArtifact',
+                        projectName: 'cashoverflow-angular/main',
+                        filter: "dist/*",
+                        target: 's3-angular-publish']);
+                }
+            }
+        }
     }
 }
