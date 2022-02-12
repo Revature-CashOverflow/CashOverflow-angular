@@ -34,15 +34,11 @@ pipeline {
                 sh 'npm run build --production'
             }
         }
-        stage('Copy Artifacts for Deployment') {
-            steps {
-                script {
-                    step ([$class: 'CopyArtifact',
-                        projectName: 'cashoverflow-angular/main',
-                        filter: "dist/cash-overflow/*",
-                        target: 's3-angular-publish']);
-                }
-            }
+    }
+
+    post {
+        success {
+            archiveArtifacts artifacts: 'dist/cash-overflow/*'
         }
     }
 }
