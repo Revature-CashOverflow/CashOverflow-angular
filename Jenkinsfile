@@ -28,8 +28,9 @@ pipeline {
                 sh 'npm install'
             }
         }
-        stage('Sonar Scan') {
+        stage('Install and Run Sonar Scan') {
             steps {
+                sh "npm install -g sonarqube-scanner"
                 sh "sonar-scanner -Dsonar.projectKey=Revature-CashOverflow_CashOverflow-angular -Dsonar.branch.name=${env.BRANCH_NAME}"
             }
         }
