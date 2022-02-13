@@ -7,7 +7,7 @@ pipeline {
 
     tools {
         nodejs 'node'
-        sonar-scanner 'sonar-scanner'
+        scannerHome 'sonar-scanner'
     }
 
     environment {
