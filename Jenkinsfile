@@ -27,6 +27,11 @@ pipeline {
                 sh 'npm install'
             }
         }
+        stage('Sonar Scan') {
+            steps {
+                sh 'sonar-scanner'
+            }
+        }
         stage('Building Application') {
             steps {
                 sh 'npm run build-prod'
