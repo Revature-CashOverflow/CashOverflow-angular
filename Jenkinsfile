@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Building Application') {
             steps {
-                sh 'npm run build --production'
+                sh 'npm run build-prod'
             }
         }
     }
