@@ -12,8 +12,6 @@ pipeline {
     environment {
         DATE = new Date().format('yy.M')
         TAG = "${DATE}.${BUILD_NUMBER}"
-        DOCKER_REPO = 'cashoverflow-angular'
-        DOCKER_USER = 'rasc0l'
     }
 
     stages {
