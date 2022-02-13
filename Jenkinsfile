@@ -12,6 +12,7 @@ pipeline {
     environment {
         DATE = new Date().format('yy.M')
         TAG = "${DATE}.${BUILD_NUMBER}"
+        SONAR_TOKEN = credentials('SONAR_TOKEN')
     }
 
     stages {
@@ -29,7 +30,7 @@ pipeline {
         }
         stage('Sonar Scan') {
             steps {
-                sh 'sonar-scanner'
+                sh "sonar-scanner -Dsonar.projectKey=Revature-CashOverflow_CashOverflow-angular -Dsonar.branch.name=${env.BRANCH_NAME}"
             }
         }
         stage('Building Application') {
