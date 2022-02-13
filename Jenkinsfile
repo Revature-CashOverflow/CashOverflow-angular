@@ -7,7 +7,7 @@ pipeline {
 
     tools {
         nodejs 'node'
-        scannerHome 'sonar-scanner'
+        hudson.plugins.sonar.SonarRunnerInstallation 'sonar-scanner'
     }
 
     environment {
