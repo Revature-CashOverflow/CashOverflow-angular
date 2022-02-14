@@ -13,18 +13,13 @@ export class LoginService {
   constructor(private httpCli: HttpClient) { }
 
   retreiveLoginUser(loginUsername: any, loginPassword: any): Observable<UserAccountDto> {
-    const loginUrl = `http://localhost:1901/login`;
+    const loginUrl = `http://localhost:9001/login`;
     let httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
     });
     let user = {
-      id: null,
-      email: null,
       username: loginUsername,
-      firstName: null,
-      lastName: null,
       password: loginPassword,
-      creationDate: null
     }
 
 
