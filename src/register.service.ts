@@ -14,6 +14,10 @@ export class RegisterService {
 
   ) { }
 
+  /**
+   * Added headers to cope with CORS errors
+   * @author Cameron, Amir, Chandra
+   */
   sendRegisterData(registerForm) {
     
     const headers= new HttpHeaders()

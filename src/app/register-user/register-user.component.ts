@@ -6,7 +6,9 @@ import { Observable, ObservedValueOf } from 'rxjs';
 
 
 /**
- * 
+ * This component currently contains a bootstrap section and multitude of divs to 
+ * display a registration form and success/failure/mismatch states.
+ * @author Cameron, Amir, Chandra
  */
 @Component({
   selector: 'app-register-user',
@@ -41,8 +43,9 @@ export class RegisterUserComponent implements OnInit {
     }
     
     /**
-     * 
-     * @returns 
+     * Logic checks for password mismatch then calls the service method to send form data to the Java backend.
+     * Also, handles errors thrown by Java and displays either success or failure states
+     * @author Cameron, Amir, Chandra
      */
     register() {
 
