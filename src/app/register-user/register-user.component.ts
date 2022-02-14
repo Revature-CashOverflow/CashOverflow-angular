@@ -4,6 +4,10 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { RegisterService } from '../../register.service';
 import { Observable, ObservedValueOf } from 'rxjs';
 
+
+/**
+ * 
+ */
 @Component({
   selector: 'app-register-user',
   templateUrl: './register-user.component.html',
@@ -18,7 +22,6 @@ export class RegisterUserComponent implements OnInit {
   registerForm = new FormGroup({
     username: new FormControl(''),
     password: new FormControl(''),
-    // password2: new FormControl(''),
     firstName: new FormControl(''),
     lastName: new FormControl(''),
     email: new FormControl(''),
@@ -37,13 +40,17 @@ export class RegisterUserComponent implements OnInit {
     ngOnInit(): void {
     }
     
-
+    /**
+     * 
+     * @returns 
+     */
     register() {
 
-      document.getElementById("mismatchNotification")?.classList.add("d-none")  
+      document.getElementById("password2")?.classList.remove("is-invalid")  
 
       if (this.password != this.password2) {
-        document.getElementById("mismatchNotification")?.classList.remove("d-none")     
+        document.getElementById("password2")?.classList.add("is-invalid");  
+        this.regSuccess = 0;
         return   
       }
 
