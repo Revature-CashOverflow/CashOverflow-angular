@@ -24,7 +24,10 @@ export class BankAccountService {
    */
   async getUserBankAccounts(): Promise<BankAccount[]> {
     try {
-      const responsePayload = await fetch(this.getBankAccountsUrl + `?id=1`);
+      const responsePayload = await fetch(this.getBankAccountsUrl + `?id=1`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Access-Control-Allow-Origin': '*', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkdW1teSIsImV4cCI6MTY0NDU0ODUwNSwiaWF0IjoxNjQ0NTMwNTA1fQ.Wa6ol126cRtB-_GBmrsOYJo1dypZWFzXtfd8WiGtprtyfp322Ump8_1NkaExwhEnFU_Erhzt41Us4kSMsUGP5g' }
+      });
       const ourJSON = await responsePayload.json();
       return ourJSON;
     }catch(stuff){
