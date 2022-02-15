@@ -1,0 +1,67 @@
+<section class="vh-100 bg-image" style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="card-body p-5">
+                            <h2 class="text-uppercase text-center mb-5">Register New Account</h2>
+                            
+                            <form [formGroup]="registerForm" (ngSubmit)="register()">
+                                
+                    <div class="form-outline mb-4">
+                        <input type="text" id="username" class="form-control" formControlName="username" required/>
+                        <label class="form-label" for="username">Username</label>
+                    </div>
+                    
+                    <div class="form-outline mb-4">
+                        <input type="text" id="firstname" class="form-control" formControlName="firstName" required/>
+                        <label class="form-label" for="email">Firstname</label>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <input type="test" id="lastname" class="form-control" formControlName="lastName" required/>
+                        <label class="form-label" for="lastname">Lastname</label>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <input type="email" id="email" class="form-control" formControlName="email" required/>
+                        <label class="form-label" for="email">Email</label>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <input type="password" id="password" class="form-control" formControlName="password" [(ngModel)]="password" required/>
+                        <label class="form-label" for="password">Password</label>
+                    </div>
+                    
+                    <div class="form-outline mb-4">
+                        <input type="password" id="password2" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="password2" required/>
+                        <label class="form-label" for="password2">Confirm password</label>
+                    </div>
+
+                    <div *ngIf="regSuccess == 2" class="alert alert-danger my-2">
+                        Registration Failed
+                    </div>
+                    
+                    <div *ngIf="regSuccess == 1" class="alert alert-primary my-2">
+                        Registration Success
+                    </div>
+                    
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                    </div>
+                    
+                    <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="#!" class="fw-bold text-body"><u>Login here</u></a></p>
+                    
+                </form>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
