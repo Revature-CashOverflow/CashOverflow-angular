@@ -25,9 +25,10 @@ export class BankAccountService {
    */
   async getUserBankAccounts(): Promise<BankAccount[]> {
     try {
-      const responsePayload = await fetch(this.getBankAccountsUrl + `?id=1`, {
+      console.log(this.cookieServ.get("Authorization"));
+      const responsePayload = await fetch(this.getBankAccountsUrl, {
         method: 'GET',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Access-Control-Allow-Origin': '*', 'Authorization': this.cookieServ.get("Authorization") }
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': this.cookieServ.get("Authorization") }
       });
       const ourJSON = await responsePayload.json();
       return ourJSON;
