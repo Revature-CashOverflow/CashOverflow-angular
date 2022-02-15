@@ -25,7 +25,7 @@ export class FeedComponent implements OnInit {
       "id": 4,
       "name": "another account",
       "balance": 2.0,
-      "description": "I'm rich, money b*tch",
+      "description": "I'm rich",
       "creationDate": "2022-05-09T21:34:37.626999355Z",
       "accountTypeId": 1,
       "user": null,

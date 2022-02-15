@@ -24,7 +24,7 @@ export class BankAccountService {
    * @returns BankAccount[] - an array of json objects of the BankAccount type.
    */
   getUserBankAccounts(): Observable<BankAccount[]> {
-    let httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json', 'Access-Control-Allow-Origin': '*', 'Authorization': this.cookieServ.get("Authorization") });
+    let httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': this.cookieServ.get("Authorization") });
     
     return this.myHttpClient.get<BankAccount[]>(this.getBankAccountsUrl, { headers: httpHeaders});
     
