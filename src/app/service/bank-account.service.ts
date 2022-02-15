@@ -3,6 +3,7 @@ import { BankAccount } from '../model/bank-account';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class BankAccountService {
   private getBankAccountsUrl = 'http://localhost:9001/api/account/getBankAccounts';
   private setBankAccountsUrl = 'http://localhost:9001/api/account/createBankAccount';
 
-  constructor(private myHttpClient: HttpClient) { }
+  constructor(private myHttpClient: HttpClient, private cookieServ: CookieService) { }
 
   /**
    * This method access the endpoint in the server and requests a
@@ -26,7 +27,7 @@ export class BankAccountService {
     try {
       const responsePayload = await fetch(this.getBankAccountsUrl + `?id=1`, {
         method: 'GET',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Access-Control-Allow-Origin': '*', 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkdW1teSIsImV4cCI6MTY0NDU0ODUwNSwiaWF0IjoxNjQ0NTMwNTA1fQ.Wa6ol126cRtB-_GBmrsOYJo1dypZWFzXtfd8WiGtprtyfp322Ump8_1NkaExwhEnFU_Erhzt41Us4kSMsUGP5g' }
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Access-Control-Allow-Origin': '*', 'Authorization': this.cookieServ.get("Authorization") }
       });
       const ourJSON = await responsePayload.json();
       return ourJSON;

@@ -7,7 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/feed', pathMatch: 'full' },
-  {path:'login', component:LoginComponent},
+  { path: 'login', component:LoginComponent },
   { path: 'feed', component: FeedComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'createBankAccountForm', component: CreateBankAccountFormComponent }
