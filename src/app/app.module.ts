@@ -8,6 +8,10 @@ import { AppComponent } from './app.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { RegisterService } from 'src/register.service';
 import { IncomeExpenseComponent } from './income-expense/income-expense.component';
+import { LoginComponent } from './components/login/login.component';
+import { LoginService } from './service/login/login.service'; 
+import { IncomeExpenseService } from './income-expense.service';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +26,8 @@ import { IncomeExpenseComponent } from './income-expense/income-expense.componen
     HttpClientModule,
     FormsModule
   ],
-  providers: [RegisterService],
+  providers: [RegisterService, IncomeExpenseService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
