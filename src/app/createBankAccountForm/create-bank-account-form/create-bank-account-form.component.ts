@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UserAccount } from '../../model/user-account';
 import { BankAccount } from '../../model/bank-account';
-import { BankAccountService } from 'src/app/service/bank-account.service';
+import { BankAccountService } from 'src/app/service/bankAccount/bank-account.service';
 
 @Component({
   selector: 'app-create-bank-account-form',
@@ -61,7 +61,13 @@ export class CreateBankAccountFormComponent implements OnInit {
     this.bankAccount.name = this.name;
     this.bankAccount.description = this.description;
     this.bankAccount.accountTypeId = this.accountType;
-    console.log("This is the result:",this.bankAccountService.setUserBankAccounts(this.bankAccount));
+    // this.bankAccountService.setUserBankAccounts(this.bankAccount);
+    this.bankAccountService.setUserBankAccounts(this.bankAccount).subscribe(
+      data=>{
+        console.log(data);
+        
+      }
+    );
     
   }
 

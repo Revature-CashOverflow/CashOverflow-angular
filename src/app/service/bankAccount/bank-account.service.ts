@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BankAccount } from '../model/bank-account';
+import { BankAccount } from '../../model/bank-account';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -51,7 +51,7 @@ export class BankAccountService {
    * @param bankAccount - BankAccount object without all parameters of BankAccount.
    * @returns 
    */
-  async setUserBankAccounts(bankAccount: object): Promise<BankAccount[]> {
+   setUserBankAccounts(bankAccount: object): Promise<BankAccount[]> {
     try {
       const responsePayload = await fetch(this.setBankAccountsUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(bankAccount) });
       const ourJSON = await responsePayload.json();
@@ -61,6 +61,17 @@ export class BankAccountService {
       return [];
     }
   }
+
+  // async setUserBankAccounts(bankAccount: object): Promise<BankAccount[]> {
+  //   try {
+  //     const responsePayload = await fetch(this.setBankAccountsUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(bankAccount) });
+  //     const ourJSON = await responsePayload.json();
+  //     return ourJSON;
+  //   } catch (stuff) {
+  //     console.log("Something went wrong!", stuff);
+  //     return [];
+  //   }
+  // }
 
   // setUserBankAccounts2(bankAccount: object): object {
   //   const httpPost = {

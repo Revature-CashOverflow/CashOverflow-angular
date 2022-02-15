@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BankAccount } from '../model/bank-account';
-import { BankAccountService } from '../service/bank-account.service';
+import { BankAccountService } from '../service/bankAccount/bank-account.service';
 
 @Component({
   selector: 'app-feed',
@@ -58,7 +58,7 @@ export class FeedComponent implements OnInit {
         this.bankAccounts = data;
         console.log(this.bankAccounts);
       }
-    )
+    );
   }
 
   // async populateBackAccountsArray() {
