@@ -1,7 +1,7 @@
 import { Component, OnInit, ɵNOT_FOUND_CHECK_ONLY_ELEMENT_INJECTOR } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { RegisterService } from '../../register.service';
+import { RegisterService } from '../../service/register.service';
 import { Observable, ObservedValueOf } from 'rxjs';
 
 
@@ -15,6 +15,7 @@ import { Observable, ObservedValueOf } from 'rxjs';
   templateUrl: './register-user.component.html',
   styleUrls: ['./register-user.component.css']
 })
+
 export class RegisterUserComponent implements OnInit {
 
   regSuccess: number = 0

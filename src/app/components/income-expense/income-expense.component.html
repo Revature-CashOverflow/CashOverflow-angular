@@ -11,6 +11,13 @@
 
                     <form [formGroup]="transactionForm" (ngSubmit)="transaction()">
                         <div form="form-outline mb-4">
+                            <label for="accounts">Accounts</label>
+                            <select id="accounts" formControlName="accounts" class="form-select" aria-label="Choose a transaction type" required>
+                                <option selected disabled>Select an account for a transaction</option>
+                                <option *ngFor="let account of accounts" value="account.id">{{account.name}} {{account.balance}}</option>
+                            </select>
+                        </div>
+                        <div form="form-outline mb-4">
                             <label for="type">Type</label>
                             <select id="type" formControlName="type" class="form-select" aria-label="Choose a transaction type" required>
                                 <option selected disabled>Choose a transaction type</option>

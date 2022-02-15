@@ -1,8 +1,10 @@
 import { Component, OnInit, ɵNOT_FOUND_CHECK_ONLY_ELEMENT_INJECTOR } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Observable, ObservedValueOf } from 'rxjs';
-import { IncomeExpenseService } from '../income-expense.service';
+import { observable, Observable, ObservedValueOf } from 'rxjs';
+import { IncomeExpenseService } from '../../service/income-expense.service';
+import { BankAccount } from 'src/app/model/BankAccount';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-income-expense',
@@ -11,7 +13,13 @@ import { IncomeExpenseService } from '../income-expense.service';
 })
 export class IncomeExpenseComponent implements OnInit {
 
+  accounts?: BankAccount[]
+
   transactionSuccess: number = 0;
+
+  getCookie(key: string, value: string) {
+    this.cookieServ.set(key, value);
+  }
 
   transactionForm = new FormGroup({
     type: new FormControl(''),
@@ -21,10 +29,14 @@ export class IncomeExpenseComponent implements OnInit {
   });
 
   constructor(
-    private incomeExpenseServ: IncomeExpenseService
+    private incomeExpenseServ: IncomeExpenseService,
+    private cookieServ: CookieService
   ) { }
 
+
+
   ngOnInit(): void {
+    this.grabAccounts();
   }
 
   /**
@@ -38,10 +50,26 @@ export class IncomeExpenseComponent implements OnInit {
       (data) => {
         console.log('Form submitted successfully');
         this.transactionSuccess = 1;
-    },
-    (error: HttpErrorResponse) => {
-      document.getElementById("amount")?.classList.add("is-invalid");
-    }
+      },
+      (error: HttpErrorResponse) => {
+        document.getElementById("amount")?.classList.add("is-invalid");
+      }
+    )
+  }
+
+  grabAccounts() {
+    let username = this.cookieServ.get("Authorization")
+
+
+    this.incomeExpenseServ.getAccounts(username).subscribe(
+      (data) => {
+        this.accounts = [] 
+        console.log('Accounts acquired');
+
+      },
+      (error: HttpErrorResponse) => {
+        console.log("something went wrong")
+      }
     )
   }
 }
