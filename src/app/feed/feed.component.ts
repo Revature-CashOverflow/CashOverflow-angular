@@ -10,7 +10,7 @@ import { BankAccountService } from '../service/bank-account.service';
 export class FeedComponent implements OnInit {
 
   bankAccounts: BankAccount[] = [
-    
+
     {
       "id": 3,
       "name": "first account",
@@ -31,11 +31,12 @@ export class FeedComponent implements OnInit {
       "user": null,
       "transactionList": null
     }
-  
+
   ];
 
-  constructor(private bankAccountService: BankAccountService) { console.log("here in constructor for componnet feed");
-   }
+  constructor(private bankAccountService: BankAccountService) {
+    console.log("here in constructor for componnet feed");
+  }
 
   /**
    * This method executes populateBackAccountsArray when this component is loaded
@@ -43,17 +44,26 @@ export class FeedComponent implements OnInit {
   ngOnInit(): void {
     console.log("Inside ngOnInit()");
     this.populateBackAccountsArray();
-    console.log("Inside ngOnInit(), showing bankAccount: "+this.bankAccounts);
-    
+    console.log("Inside ngOnInit(), showing bankAccount: " + this.bankAccounts);
+
   }
 
   /**
    * This method updates the bankAccount array with the response from the endpoint
    * getBankAccounts in the server.
    */
-  async populateBackAccountsArray(){
-    console.log("Inside populateBankAccountsArray()");
-    this.bankAccounts = await this.bankAccountService.getUserBankAccounts();
-    console.log(this.bankAccounts);
+   populateBackAccountsArray() {
+    this.bankAccountService.getUserBankAccounts().subscribe(
+      data=>{
+        this.bankAccounts = data;
+        console.log(this.bankAccounts);
+      }
+    )
   }
+
+  // async populateBackAccountsArray() {
+  //   console.log("Inside populateBankAccountsArray()");
+  //   this.bankAccounts = await this.bankAccountService.getUserBankAccounts();
+  //   console.log(this.bankAccounts);
+  // }
 }
