@@ -10,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginService } from './service/login/login.service'; 
 import { ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [

@@ -51,7 +51,14 @@ export class BankAccountService {
    * @param bankAccount - BankAccount object without all parameters of BankAccount.
    * @returns 
    */
-   setUserBankAccounts(bankAccount: object): Promise<BankAccount[]> {
+  //  setUserBankAccounts(bankAccount: object): Observable<BankAccount[]> {
+  //   try {
+  //     const responsePayload = await fetch(this.setBankAccountsUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(bankAccount) });
+  //     return this.myHttpClient.get<BankAccount[]>(this.getBankAccountsUrl, { headers: httpHeaders});
+  //   }
+  // }
+
+  async setUserBankAccounts(bankAccount: object): Promise<BankAccount[]> {
     try {
       const responsePayload = await fetch(this.setBankAccountsUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(bankAccount) });
       const ourJSON = await responsePayload.json();
@@ -61,17 +68,6 @@ export class BankAccountService {
       return [];
     }
   }
-
-  // async setUserBankAccounts(bankAccount: object): Promise<BankAccount[]> {
-  //   try {
-  //     const responsePayload = await fetch(this.setBankAccountsUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(bankAccount) });
-  //     const ourJSON = await responsePayload.json();
-  //     return ourJSON;
-  //   } catch (stuff) {
-  //     console.log("Something went wrong!", stuff);
-  //     return [];
-  //   }
-  // }
 
   // setUserBankAccounts2(bankAccount: object): object {
   //   const httpPost = {

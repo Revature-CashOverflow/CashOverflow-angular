@@ -61,13 +61,13 @@ export class CreateBankAccountFormComponent implements OnInit {
     this.bankAccount.name = this.name;
     this.bankAccount.description = this.description;
     this.bankAccount.accountTypeId = this.accountType;
-    // this.bankAccountService.setUserBankAccounts(this.bankAccount);
-    this.bankAccountService.setUserBankAccounts(this.bankAccount).subscribe(
-      data=>{
-        console.log(data);
+    this.bankAccountService.setUserBankAccounts(this.bankAccount);
+    // this.bankAccountService.setUserBankAccounts(this.bankAccount).subscribe(
+    //   data=>{
+    //     console.log(data);
         
-      }
-    );
+    //   }
+    // );
     
   }
 
