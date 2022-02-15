@@ -1,7 +1,6 @@
 <div class="formBox">
     <button routerLink="/createBankAccountForm" class="btn btn-primary">Create Bank Account</button>
-    <h4>This is our Bank Account Feed.</h4>
-    <p>Currently displaying accounts for userId=1</p>
+    <h4>All user accounts:</h4>
     <ul>
         <li *ngFor="let currentBankAccount of bankAccounts">
             <div>Bank Account Name: {{currentBankAccount.name}}</div>

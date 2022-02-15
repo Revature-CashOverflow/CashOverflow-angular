@@ -11,7 +11,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class BankAccountService {
 
   private getBankAccountsUrl = 'http://localhost:9001/api/account/getBankAccounts';
-  private setBankAccountsUrl = 'http://localhost:9001/api/account/createBankAccount';
+  private createBankAccountsUrl = 'http://localhost:9001/api/account/createBankAccount';
 
   constructor(private myHttpClient: HttpClient, private cookieServ: CookieService) { }
 
@@ -25,7 +25,6 @@ export class BankAccountService {
    */
   async getUserBankAccounts(): Promise<BankAccount[]> {
     try {
-      console.log(this.cookieServ.get("Authorization"));
       const responsePayload = await fetch(this.getBankAccountsUrl, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': this.cookieServ.get("Authorization") }
@@ -47,7 +46,7 @@ export class BankAccountService {
    */
   async setUserBankAccounts(bankAccount: object): Promise<BankAccount[]> {
     try {
-      const responsePayload = await fetch(this.setBankAccountsUrl, {method: 'POST',headers:{'Content-Type': 'application/json'}, body: JSON.stringify(bankAccount)});
+      const responsePayload = await fetch(this.createBankAccountsUrl, { method: 'POST',headers:{'Content-Type': 'application/json', 'Authorization': this.cookieServ.get("Authorization") }, body: JSON.stringify(bankAccount)});
       const ourJSON = await responsePayload.json();
       return ourJSON;
     }catch(stuff){
