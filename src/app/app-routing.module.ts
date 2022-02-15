@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { CreateBankAccountFormComponent } from './createBankAccountForm/create-bank-account-form/create-bank-account-form.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { FeedComponent } from './feed/feed.component';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-  {path:'login', component:LoginComponent},
-  {path:'register', component:RegisterComponent},
-  {path:'home', component:HomeComponent}
+  { path: '', redirectTo: '/feed', pathMatch: 'full' },
+  { path: 'login', component:LoginComponent },
+  { path: 'feed', component: FeedComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'createBankAccountForm', component: CreateBankAccountFormComponent }
 ];
 
 @NgModule({

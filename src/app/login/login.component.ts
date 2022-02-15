@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../login.service';
-import { UserAccountDto } from '../user';
+import { LoginService } from '../service/login/login.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+import { jwtDto } from 'src/app/model/jwt';
 
 @Component({
   selector: 'app-login',
@@ -9,18 +10,23 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-   currentUser: UserAccountDto| null = null;
    loginUsername: any;
    loginPassword: any;
+   jwt: jwtDto | null = null;
+
+  setCookie(key:string, value:string){
+    this.cookieServ.set(key, value);
+  }
    
    formdata = new FormGroup({
     loginUsername: new FormControl(),
     loginPassword: new FormControl()
  });
-  constructor( private loginServ: LoginService) { }
+  constructor( private loginServ: LoginService, private cookieServ: CookieService) { }
 
   ngOnInit(): void {
   }
+
   onClickSubmit(data: { loginUsername: any,loginPassword:any }) {
     this.loginUsername = data.loginUsername;
     this.loginPassword = data.loginPassword;
@@ -31,10 +37,9 @@ export class LoginComponent implements OnInit {
     this.loginServ.retreiveLoginUser(username,password).subscribe(
       //subscriber's callback function goes here
       data=>{
-        this.currentUser= data;
-        console.log(data);
-     
-       // this.currentUser= data;
+        this.jwt = data;
+        this.setCookie('Authorization','Bearer ' + this.jwt.jwt)
+        console.log(this.cookieServ.get('Authorization'))
       }
     );
   }

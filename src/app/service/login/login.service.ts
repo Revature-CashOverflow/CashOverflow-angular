@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { UserAccountDto } from './user';
+import { jwtDto } from 'src/app/model/jwt';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -12,8 +13,8 @@ export class LoginService {
 
   constructor(private httpCli: HttpClient) { }
 
-  retreiveLoginUser(loginUsername: any, loginPassword: any): Observable<UserAccountDto> {
-    const loginUrl = `http://localhost:9001/login`;
+  retreiveLoginUser(loginUsername: any, loginPassword: any): Observable<jwtDto> {
+    const loginUrl = `${environment.apiURL}/login`;
     let httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
     });
@@ -23,6 +24,6 @@ export class LoginService {
     }
 
 
-    return this.httpCli.post<UserAccountDto>(loginUrl, user, { headers: httpHeaders });
+    return this.httpCli.post<jwtDto>(loginUrl, user, { headers: httpHeaders });
   }
 }
