@@ -3,6 +3,7 @@ import { LoginService } from '../service/login/login.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { jwtDto } from 'src/app/model/jwt';
+import { Router, RouterLink, RouterModule, Routes } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
     loginUsername: new FormControl(),
     loginPassword: new FormControl()
  });
-  constructor( private loginServ: LoginService, private cookieServ: CookieService) { }
+  constructor( private loginServ: LoginService, private cookieServ: CookieService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -39,7 +40,8 @@ export class LoginComponent implements OnInit {
       data=>{
         this.jwt = data;
         this.setCookie('Authorization','Bearer ' + this.jwt.jwt)
-        console.log(this.cookieServ.get('Authorization'))
+        console.log(this.cookieServ.get('Authorization'));
+        this.router.navigate(['/feed']);
       }
     );
   }

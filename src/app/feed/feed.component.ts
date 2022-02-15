@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { BankAccount } from '../model/bank-account';
 import { BankAccountService } from '../service/bank-account.service';
 
@@ -34,7 +35,7 @@ export class FeedComponent implements OnInit {
 
   ];
 
-  constructor(private bankAccountService: BankAccountService) {
+  constructor(private bankAccountService: BankAccountService, private cookieServ: CookieService) {
     console.log("here in constructor for componnet feed");
   }
 
@@ -45,7 +46,7 @@ export class FeedComponent implements OnInit {
     console.log("Inside ngOnInit()");
     this.populateBackAccountsArray();
     console.log("Inside ngOnInit(), showing bankAccount: " + this.bankAccounts);
-
+    console.log("inside cookie serv===>",  this.cookieServ.get("Authorization"));
   }
 
   /**
