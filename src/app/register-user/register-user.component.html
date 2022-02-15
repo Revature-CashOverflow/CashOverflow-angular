@@ -10,32 +10,32 @@
                             <form [formGroup]="registerForm" (ngSubmit)="register()">
                                 
                     <div class="form-outline mb-4">
-                        <input type="text" id="username" class="form-control form-control" formControlName="username" required/>
+                        <input type="text" id="username" class="form-control" formControlName="username" required/>
                         <label class="form-label" for="username">Username</label>
                     </div>
                     
                     <div class="form-outline mb-4">
-                        <input type="text" id="firstname" class="form-control form-control" formControlName="firstName" required/>
+                        <input type="text" id="firstname" class="form-control" formControlName="firstName" required/>
                         <label class="form-label" for="email">Firstname</label>
                     </div>
 
                     <div class="form-outline mb-4">
-                        <input type="test" id="lastname" class="form-control form-control" formControlName="lastName" required/>
+                        <input type="test" id="lastname" class="form-control" formControlName="lastName" required/>
                         <label class="form-label" for="lastname">Lastname</label>
                     </div>
 
                     <div class="form-outline mb-4">
-                        <input type="email" id="email" class="form-control form-control" formControlName="email" required/>
+                        <input type="email" id="email" class="form-control" formControlName="email" required/>
                         <label class="form-label" for="email">Email</label>
                     </div>
 
                     <div class="form-outline mb-4">
-                        <input type="password" id="password" class="form-control form-control" formControlName="password" [(ngModel)]="password" required/>
+                        <input type="password" id="password" class="form-control" formControlName="password" [(ngModel)]="password" required/>
                         <label class="form-label" for="password">Password</label>
                     </div>
                     
                     <div class="form-outline mb-4">
-                        <input type="password" id="password2" class="form-control form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="password2" required/>
+                        <input type="password" id="password2" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="password2" required/>
                         <label class="form-label" for="password2">Confirm password</label>
                     </div>
 
@@ -45,10 +45,6 @@
                     
                     <div *ngIf="regSuccess == 1" class="alert alert-primary my-2">
                         Registration Success
-                    </div>
-                    
-                    <div id="mismatchNotification" class="alert alert-secondary d-none my-2">
-                        Password Mismatch
                     </div>
                     
                     <div class="d-flex justify-content-center">

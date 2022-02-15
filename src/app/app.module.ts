@@ -7,11 +7,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { RegisterService } from 'src/register.service';
+import { IncomeExpenseComponent } from './income-expense/income-expense.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    IncomeExpenseComponent
   ],
   imports: [
     BrowserModule,

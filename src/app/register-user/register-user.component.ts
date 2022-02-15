@@ -30,10 +30,6 @@ export class RegisterUserComponent implements OnInit {
     
   });
 
-  passwordValidate = new FormGroup({
-    password2: new FormControl('')
-  })
-  
   constructor(
     private regServ: RegisterService
     
