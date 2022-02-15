@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { BankAccount } from '../model/bank-account';
 import { BankAccountService } from '../service/bankAccount/bank-account.service';
@@ -35,7 +36,7 @@ export class FeedComponent implements OnInit {
 
   ];
 
-  constructor(private bankAccountService: BankAccountService, private cookieServ: CookieService) {
+  constructor(private bankAccountService: BankAccountService, private cookieServ: CookieService, private router: Router) {
     console.log("here in constructor for componnet feed");
   }
 
@@ -43,6 +44,7 @@ export class FeedComponent implements OnInit {
    * This method executes populateBackAccountsArray when this component is loaded
    */
   ngOnInit(): void {
+    if(!this.cookieServ.get("Authorization")) this.router.navigate(['/login']);
     console.log("Inside ngOnInit()");
     this.populateBackAccountsArray();
     console.log("Inside ngOnInit(), showing bankAccount: " + this.bankAccounts);

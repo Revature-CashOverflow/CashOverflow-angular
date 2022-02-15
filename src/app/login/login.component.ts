@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
    loginUsername: any;
    loginPassword: any;
    jwt: jwtDto | null = null;
+   showErrorMessage: boolean = false;
 
   setCookie(key:string, value:string){
     this.cookieServ.set(key, value);
@@ -42,6 +43,10 @@ export class LoginComponent implements OnInit {
         this.setCookie('Authorization','Bearer ' + this.jwt.jwt)
         console.log(this.cookieServ.get('Authorization'));
         this.router.navigate(['/feed']);
+      },
+      msg=>{
+        console.log("Issue occured",msg);
+        this.showErrorMessage =true;
       }
     );
   }

@@ -30,20 +30,6 @@ export class BankAccountService {
     
   }
 
-  // async getUserBankAccounts(): Promise<BankAccount[]> {
-  //   try {
-  //     const responsePayload = await fetch(this.getBankAccountsUrl + `?id=1`, {
-  //       method: 'GET',
-  //       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Access-Control-Allow-Origin': '*', 'Authorization': this.cookieServ.get("Authorization") }
-  //     });
-  //     const ourJSON = await responsePayload.json();
-  //     return ourJSON;
-  //   }catch(stuff){
-  //     console.log("Something went wrong!",stuff);
-  //     return [];
-  //   }
-  // }
-
   /**
    * This method access the endpoint in the server and sends a
    * bankAccount object so that it can be saved in the satabase.
@@ -58,16 +44,22 @@ export class BankAccountService {
   //   }
   // }
 
-  async setUserBankAccounts(bankAccount: object): Promise<BankAccount[]> {
-    try {
-      const responsePayload = await fetch(this.setBankAccountsUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(bankAccount) });
-      const ourJSON = await responsePayload.json();
-      return ourJSON;
-    } catch (stuff) {
-      console.log("Something went wrong!", stuff);
-      return [];
-    }
+  setUserBankAccounts(bankAccount: object): Observable<BankAccount[]> {
+    let httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': this.cookieServ.get("Authorization") });
+
+    return this.myHttpClient.post<BankAccount[]>(this.setBankAccountsUrl, JSON.stringify(bankAccount), { headers: httpHeaders});
+      
   }
+  // async setUserBankAccounts(bankAccount: object): Promise<BankAccount[]> {
+  //   try {
+  //     const responsePayload = await fetch(this.setBankAccountsUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(bankAccount) });
+  //     const ourJSON = await responsePayload.json();
+  //     return ourJSON;
+  //   } catch (stuff) {
+  //     console.log("Something went wrong!", stuff);
+  //     return [];
+  //   }
+  // }
 
   // setUserBankAccounts2(bankAccount: object): object {
   //   const httpPost = {

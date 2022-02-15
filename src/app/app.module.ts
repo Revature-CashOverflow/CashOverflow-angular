@@ -11,6 +11,7 @@ import { LoginService } from './service/login/login.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { LoginComponent } from './login/login.component';
+import { DashboardLoggedComponent } from './dashboard-logged/dashboard-logged.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LoginComponent } from './login/login.component';
     DashboardComponent,
     FeedComponent,
     CreateBankAccountFormComponent,
-    LoginComponent  
+    LoginComponent,
+    DashboardLoggedComponent  
   ],
   imports: [
     BrowserModule,
