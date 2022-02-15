@@ -37,6 +37,9 @@ export class FeedComponent implements OnInit {
   constructor(private bankAccountService: BankAccountService) { console.log("here in constructor for componnet feed");
    }
 
+  /**
+   * This method executes populateBackAccountsArray when this component is loaded
+   */
   ngOnInit(): void {
     console.log("Inside ngOnInit()");
     this.populateBackAccountsArray();
@@ -44,16 +47,13 @@ export class FeedComponent implements OnInit {
     
   }
 
+  /**
+   * This method updates the bankAccount array with the response from the endpoint
+   * getBankAccounts in the server.
+   */
   async populateBackAccountsArray(){
     console.log("Inside populateBankAccountsArray()");
     this.bankAccounts = await this.bankAccountService.getUserBankAccounts();
     console.log(this.bankAccounts);
   }
-
-  goToForm(){
-    
-  }
-
-
-
 }

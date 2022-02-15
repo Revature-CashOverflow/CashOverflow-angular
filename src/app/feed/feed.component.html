@@ -1,11 +1,13 @@
-<button routerLink="/createBankAccountForm">Create Bank Account</button>
-<p>This is our Bank Account Feed.</p>
-<p>Currently displaying accounts for userId=1</p>
-<ul>
-    <li *ngFor="let currentBankAccount of bankAccounts">
-        <div>Bank Account Name: {{currentBankAccount.name}}</div>
-        <div>Bank Account Balance: ${{currentBankAccount.balance}}</div>
-        <div>Bank Account Description: {{currentBankAccount.description}}</div>
-        <br/>
-    </li>
-</ul>
+<div class="formBox">
+    <button routerLink="/createBankAccountForm" class="btn btn-primary">Create Bank Account</button>
+    <h4>This is our Bank Account Feed.</h4>
+    <p>Currently displaying accounts for userId=1</p>
+    <ul>
+        <li *ngFor="let currentBankAccount of bankAccounts">
+            <div>Bank Account Name: {{currentBankAccount.name}}</div>
+            <div>Bank Account Balance: ${{currentBankAccount.balance}}</div>
+            <div>Bank Account Description: {{currentBankAccount.description}}</div>
+            <br/>
+        </li>
+    </ul>
+</div>

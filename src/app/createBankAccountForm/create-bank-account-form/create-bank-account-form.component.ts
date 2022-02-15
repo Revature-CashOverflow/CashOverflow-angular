@@ -47,6 +47,10 @@ export class CreateBankAccountFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * This method populate our bankAccount object to be sent
+   * to the server in order to created in the database
+   */
   createBankAccount() {
     console.log(
       "Acount name:", this.name,

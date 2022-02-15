@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+/**
+ * Currently not using a dashboard in the project.
+ */
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
