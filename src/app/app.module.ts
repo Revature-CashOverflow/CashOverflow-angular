@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,7 +16,8 @@ import { IncomeExpenseComponent } from './income-expense/income-expense.componen
 import { IncomeExpenseService } from './income-expense.service';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
-
+import { AuthService } from './service/auth/auth-service.service';
+import { CanActivateRouteGuard } from './guard/can-activate-route.guard';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,7 @@ import { LogoutComponent } from './logout/logout.component';
     DashboardLoggedComponent,
     RegisterUserComponent,
     IncomeExpenseComponent,
-    LogoutComponent
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,10 +37,16 @@ import { LogoutComponent } from './logout/logout.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    JwtModule,
   ],
-  providers: [RegisterService, IncomeExpenseService],
+  providers: [
+    RegisterService,
+    IncomeExpenseService,
+    AuthService,
+    CanActivateRouteGuard,
+  ],
 
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

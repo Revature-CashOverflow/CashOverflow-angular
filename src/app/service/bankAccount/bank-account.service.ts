@@ -9,10 +9,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class BankAccountService {
-  private getBankAccountsUrl =
-    `${environment.apiURL}/api/account/getBankAccounts`;
-  private setBankAccountsUrl =
-    `${environment.apiURL}/api/account/createBankAccount`;
+  private getBankAccountsUrl = `${environment.apiURL}/api/account/getBankAccounts`;
+  private setBankAccountsUrl = `${environment.apiURL}/api/account/createBankAccount`;
 
   constructor(
     private myHttpClient: HttpClient,
@@ -30,8 +28,8 @@ export class BankAccountService {
   getUserBankAccounts(): Observable<BankAccount[]> {
     let httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': this.cookieServ.get('Authorization'),
+      Accept: 'application/json',
+      Authorization: this.cookieServ.get('Authorization'),
     });
 
     return this.myHttpClient.get<BankAccount[]>(this.getBankAccountsUrl, {
