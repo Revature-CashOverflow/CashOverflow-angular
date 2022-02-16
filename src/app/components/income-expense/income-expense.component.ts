@@ -63,7 +63,7 @@ export class IncomeExpenseComponent implements OnInit {
 
     this.incomeExpenseServ.getAccounts(username).subscribe(
       (data) => {
-        this.accounts = [] 
+        this.accounts = []
         console.log('Accounts acquired');
 
       },
