@@ -45,5 +45,12 @@ pipeline {
         success {
             archiveArtifacts artifacts: 'dist/cash-overflow/*'
         }
+        always {
+            cleanWs(cleanWhenNotBuilt: false,
+                    deleteDirs: true,
+                    disableDeferredWipeout: true,
+                    notFailBuild: true,
+                    patterns: [[pattern: '.gitignore', type: 'INCLUDE']])
+        }
     }
 }
