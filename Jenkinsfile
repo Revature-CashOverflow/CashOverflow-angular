@@ -43,7 +43,7 @@ pipeline {
 
     post {
         success {
-            archiveArtifacts artifacts: 'dist/cash-overflow/*'
+            archiveArtifacts artifacts: 'dist/cash-overflow/**'
         }
     }
 }
