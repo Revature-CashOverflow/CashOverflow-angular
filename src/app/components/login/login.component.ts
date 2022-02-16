@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../service/login/login.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
-import { jwtDto } from 'src/app/model/jwt';
+import { JwtDto } from 'src/app/model/jwt';
 
 @Component({
   selector: 'app-login',

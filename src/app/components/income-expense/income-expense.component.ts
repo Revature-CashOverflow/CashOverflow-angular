@@ -9,7 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-income-expense',
   templateUrl: './income-expense.component.html',
-  styleUrls: ['./income-expense.component.css']
+  styleUrls: ['./income-expense.component.css'],
 })
 export class IncomeExpenseComponent implements OnInit {
 
@@ -25,7 +25,7 @@ export class IncomeExpenseComponent implements OnInit {
     type: new FormControl(''),
     amount: new FormControl(''),
     name: new FormControl(''),
-    description: new FormControl('')
+    description: new FormControl(''),
   });
 
   constructor(
@@ -44,7 +44,7 @@ export class IncomeExpenseComponent implements OnInit {
    */
   transaction() {
     this.transactionSuccess = 0;
-    document.getElementById("amount")?.classList.remove("is-invalid");
+    document.getElementById('amount')?.classList.remove('is-invalid');
 
     this.incomeExpenseServ.sendTransactionData(this.transactionForm.value).subscribe(
       (data) => {
