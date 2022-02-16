@@ -42,8 +42,8 @@ pipeline {
     }
 
     post {
-        success {
-            s3Upload(bucket: "revature-cashoverflow", sourceFile: "dist/cash-overflow/**")
+        always {
+            archiveArtifacts artifacts: 'dist/cash-overflow/**', fingerprint: true
         }
     }
 }
