@@ -36,14 +36,14 @@ pipeline {
         }
         stage('Building Application') {
             steps {
-                sh 'npm run build-prod'
+                sh 'npm run build'
             }
         }
     }
 
     post {
-        success {
-            archiveArtifacts artifacts: 'dist/cash-overflow/*'
+        always {
+            archiveArtifacts artifacts: 'dist/cash-overflow/**', fingerprint: true
         }
     }
 }

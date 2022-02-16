@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from './environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -12,15 +13,12 @@ export class RegisterService {
    * @author Cameron, Amir, Chandra
    */
   sendRegisterData(registerForm) {
-    const headers = new HttpHeaders()
-      .set('content-type', 'application/json')
-      .set('Access-Control-Allow-Origin', 'http://localhost:4200/register');
-    let options = { headers: headers };
+    let httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
 
-    return this.http.post(
-      'http://localhost:9001/register',
-      registerForm,
-      options
-    );
+    return this.http.post(`${environment.apiURL}/register`, registerForm, {
+      headers: httpHeaders,
+    });
   }
 }

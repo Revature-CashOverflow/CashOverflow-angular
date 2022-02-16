@@ -4,6 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { JwtDto } from 'src/app/model/jwt';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   showErrorMessage: boolean = false;
 
   setCookie(key: string, value: string) {
-    this.cookieServ.set(key, value);
+    this.cookieServ.set(key, value, undefined, "/");
   }
 
   formdata = new FormGroup({
@@ -43,8 +44,8 @@ export class LoginComponent implements OnInit {
       //subscriber's callback function goes here
       (data) => {
         this.jwt = data;
-        this.setCookie('Authorization', 'Bearer ' + this.jwt.jwt);
-        console.log(this.cookieServ.get('Authorization'));
+        this.setCookie('token', 'Bearer ' + this.jwt.jwt);
+        console.log(this.cookieServ.get('token'));
         this.router.navigate(['/feed']);
       },
       (msg) => {
