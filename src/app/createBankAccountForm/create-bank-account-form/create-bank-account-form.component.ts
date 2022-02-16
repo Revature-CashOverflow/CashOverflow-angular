@@ -24,9 +24,7 @@ export class CreateBankAccountFormComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-    if (!this.cookieServ.get('Authorization')) this.router.navigate(['/login']);
-  }
+  ngOnInit(): void {}
 
   /**
    * This method populate our bankAccount object to be sent

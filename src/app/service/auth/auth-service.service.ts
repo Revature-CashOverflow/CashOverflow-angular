@@ -8,7 +8,7 @@ export class AuthService {
   constructor(private cookieServ: CookieService) {}
 
   public isAuthenticated(): boolean {
-    const token = this.cookieServ.get('Authorization');
+    const token = this.cookieServ.get('token');
     return !this.authHelper.isTokenExpired(token);
   }
 }
