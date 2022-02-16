@@ -43,7 +43,7 @@ pipeline {
 
     post {
         success {
-            archiveArtifacts artifacts: 'dist/cash-overflow/**'
+            s3Upload(bucket: "revature-cashoverflow", sourceFile: "dist/cash-overflow/**")
         }
     }
 }
