@@ -44,6 +44,7 @@ pipeline {
     post {
         always {
             archiveArtifacts artifacts: 'dist/cash-overflow/**', fingerprint: true
+            cleanWs()
         }
     }
 }
