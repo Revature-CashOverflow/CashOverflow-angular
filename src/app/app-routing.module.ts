@@ -4,6 +4,7 @@ import { CreateBankAccountFormComponent } from './createBankAccountForm/create-b
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FeedComponent } from './feed/feed.component';
 import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'createBankAccountForm', component: CreateBankAccountFormComponent },
   { path: 'register', component: RegisterUserComponent },
+  { path: 'logout', component: LogoutComponent }
 ];
 
 @NgModule({

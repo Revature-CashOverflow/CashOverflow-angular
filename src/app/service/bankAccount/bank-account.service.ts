@@ -3,15 +3,16 @@ import { BankAccount } from '../../model/bank-account';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BankAccountService {
   private getBankAccountsUrl =
-    'http://localhost:9001/api/account/getBankAccounts';
+    `${environment.apiURL}/api/account/getBankAccounts`;
   private setBankAccountsUrl =
-    'http://localhost:9001/api/account/createBankAccount';
+    `${environment.apiURL}/api/account/createBankAccount`;
 
   constructor(
     private myHttpClient: HttpClient,
@@ -29,8 +30,8 @@ export class BankAccountService {
   getUserBankAccounts(): Observable<BankAccount[]> {
     let httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
-      Accept: 'application/json',
-      Authorization: this.cookieServ.get('Authorization'),
+      'Accept': 'application/json',
+      'Authorization': this.cookieServ.get('Authorization'),
     });
 
     return this.myHttpClient.get<BankAccount[]>(this.getBankAccountsUrl, {

@@ -14,6 +14,7 @@ import { RegisterService } from 'src/register.service';
 import { IncomeExpenseComponent } from './income-expense/income-expense.component';
 import { IncomeExpenseService } from './income-expense.service';
 import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { LoginComponent } from './login/login.component';
     LoginComponent,
     DashboardLoggedComponent,
     RegisterUserComponent,
-    IncomeExpenseComponent
+    IncomeExpenseComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
