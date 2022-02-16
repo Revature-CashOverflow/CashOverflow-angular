@@ -3,15 +3,14 @@ import { BankAccount } from '../../model/bank-account';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BankAccountService {
-  private getBankAccountsUrl =
-    'http://localhost:9001/api/account/getBankAccounts';
-  private setBankAccountsUrl =
-    'http://localhost:9001/api/account/createBankAccount';
+  private getBankAccountsUrl = `${environment.apiURL}/api/account/getBankAccounts`;
+  private setBankAccountsUrl = `${environment.apiURL}/api/account/createBankAccount`;
 
   constructor(
     private myHttpClient: HttpClient,
@@ -30,7 +29,7 @@ export class BankAccountService {
     let httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      Authorization: this.cookieServ.get('Authorization'),
+      Authorization: this.cookieServ.get('token'),
     });
 
     return this.myHttpClient.get<BankAccount[]>(this.getBankAccountsUrl, {
@@ -45,18 +44,11 @@ export class BankAccountService {
    * @param bankAccount - BankAccount object without all parameters of BankAccount.
    * @returns
    */
-  //  setUserBankAccounts(bankAccount: object): Observable<BankAccount[]> {
-  //   try {
-  //     const responsePayload = await fetch(this.setBankAccountsUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(bankAccount) });
-  //     return this.myHttpClient.get<BankAccount[]>(this.getBankAccountsUrl, { headers: httpHeaders});
-  //   }
-  // }
-
   setUserBankAccounts(bankAccount: object): Observable<BankAccount[]> {
     let httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      Authorization: this.cookieServ.get('Authorization'),
+      Authorization: this.cookieServ.get('token'),
     });
 
     return this.myHttpClient.post<BankAccount[]>(
@@ -65,24 +57,4 @@ export class BankAccountService {
       { headers: httpHeaders }
     );
   }
-  // async setUserBankAccounts(bankAccount: object): Promise<BankAccount[]> {
-  //   try {
-  //     const responsePayload = await fetch(this.setBankAccountsUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(bankAccount) });
-  //     const ourJSON = await responsePayload.json();
-  //     return ourJSON;
-  //   } catch (stuff) {
-  //     console.log("Something went wrong!", stuff);
-  //     return [];
-  //   }
-  // }
-
-  // setUserBankAccounts2(bankAccount: object): object {
-  //   const httpPost = {
-  //     headers: new HttpHeaders({
-  //       'Content-Type':  'application/json'
-  //     })
-  //   };
-  //   console.log("inside set user bank account, this is our object:", bankAccount);
-  //   return this.myHttpClient.post<BankAccount>(this.setBankAccountsUrl, bankAccount, httpPost);
-  // }
 }
