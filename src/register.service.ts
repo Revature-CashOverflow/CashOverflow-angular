@@ -13,14 +13,12 @@ export class RegisterService {
    * @author Cameron, Amir, Chandra
    */
   sendRegisterData(registerForm) {
-    const headers = new HttpHeaders()
-      .set('content-type', 'application/json');
-    let options = { headers: headers };
+    let httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
 
-    return this.http.post(
-      `${environment.apiURL}/register`,
-      registerForm,
-      options
-    );
+    return this.http.post(`${environment.apiURL}/register`, registerForm, {
+      headers: httpHeaders,
+    });
   }
 }
