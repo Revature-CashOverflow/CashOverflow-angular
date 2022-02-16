@@ -29,7 +29,7 @@ export class BankAccountService {
     let httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      Authorization: this.cookieServ.get('Authorization'),
+      Authorization: this.cookieServ.get('token'),
     });
 
     return this.myHttpClient.get<BankAccount[]>(this.getBankAccountsUrl, {
@@ -55,7 +55,7 @@ export class BankAccountService {
     let httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
       Accept: 'application/json',
-      Authorization: this.cookieServ.get('Authorization'),
+      Authorization: this.cookieServ.get('token'),
     });
 
     return this.myHttpClient.post<BankAccount[]>(
