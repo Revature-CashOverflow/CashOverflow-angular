@@ -45,11 +45,11 @@ export class FeedComponent implements OnInit {
    * This method executes populateBackAccountsArray when this component is loaded
    */
   ngOnInit(): void {
-    if (!this.cookieServ.get('Authorization')) this.router.navigate(['/login']);
+    if (!this.cookieServ.get('token')) this.router.navigate(['/login']);
     console.log('Inside ngOnInit()');
     this.populateBackAccountsArray();
     console.log('Inside ngOnInit(), showing bankAccount: ' + this.bankAccounts);
-    console.log('inside cookie serv===>', this.cookieServ.get('Authorization'));
+    console.log('inside cookie serv===>', this.cookieServ.get('token'));
   }
 
   /**
