@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   showErrorMessage: boolean = false;
 
   setCookie(key: string, value: string) {
-    this.cookieServ.set(key, value, undefined, '/', environment.domain);
+    this.cookieServ.set(key, value, undefined, "/");
   }
 
   formdata = new FormGroup({

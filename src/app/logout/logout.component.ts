@@ -12,7 +12,7 @@ export class LogoutComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("deleting cookie");
-    this.cookieServ.delete('token', '/', environment.domain);
+    this.cookieServ.delete('token', '/');
     console.log(this.cookieServ.get('token'));
     this.router.navigate(['/login']);
   }

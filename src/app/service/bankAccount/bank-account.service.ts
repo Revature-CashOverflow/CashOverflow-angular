@@ -44,14 +44,14 @@ export class BankAccountService {
    * @param bankAccount - BankAccount object without all parameters of BankAccount.
    * @returns
    */
-  setUserBankAccounts(bankAccount: object): Observable<BankAccount[]> {
+  setUserBankAccounts(bankAccount: object): Observable<BankAccount> {
     let httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
       Accept: 'application/json',
       Authorization: this.cookieServ.get('token'),
     });
 
-    return this.myHttpClient.post<BankAccount[]>(
+    return this.myHttpClient.post<BankAccount>(
       this.setBankAccountsUrl,
       JSON.stringify(bankAccount),
       { headers: httpHeaders }
