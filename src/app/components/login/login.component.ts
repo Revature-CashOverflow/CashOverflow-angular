@@ -12,7 +12,7 @@ import { JwtDto } from 'src/app/model/jwt';
 export class LoginComponent implements OnInit {
    loginUsername: any;
    loginPassword: any;
-   jwt: jwtDto | null = null;
+   jwt: JwtDto | null = null;
 
   setCookie(key:string, value:string){
     this.cookieServ.set(key, value);
