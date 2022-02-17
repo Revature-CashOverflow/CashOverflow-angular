@@ -3,7 +3,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { observable, Observable, ObservedValueOf } from 'rxjs';
 import { IncomeExpenseService } from '../../service/income-expense.service';
-import { BankAccount } from 'src/app/model/BankAccount';
+import { BankAccount } from 'src/app/model/bank-account';
+import { BankAccountService } from 'src/app/service/bankAccount/bank-account.service';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
@@ -22,6 +23,7 @@ export class IncomeExpenseComponent implements OnInit {
   }
 
   transactionForm = new FormGroup({
+    accountId: new FormControl(' '),
     type: new FormControl(''),
     amount: new FormControl(''),
     name: new FormControl(''),
@@ -30,7 +32,8 @@ export class IncomeExpenseComponent implements OnInit {
 
   constructor(
     private incomeExpenseServ: IncomeExpenseService,
-    private cookieServ: CookieService
+    private cookieServ: CookieService,
+    private bankServ: BankAccountService
   ) { }
 
 
@@ -57,18 +60,16 @@ export class IncomeExpenseComponent implements OnInit {
     )
   }
 
+
   grabAccounts() {
-    let username = this.cookieServ.get("Authorization")
-
-
-    this.incomeExpenseServ.getAccounts(username).subscribe(
-      (data) => {
-        this.accounts = []
-        console.log('Accounts acquired');
+    this.bankServ.getUserBankAccounts().subscribe(
+       (data: BankAccount[]) => {
+        this.accounts = data;
+        console.log("Successfully retrieved BankAccounts");
 
       },
       (error: HttpErrorResponse) => {
-        console.log("something went wrong")
+        console.log("Failed to retrieve BankAccounts")
       }
     )
   }

@@ -13,7 +13,7 @@ import { DashboardLoggedComponent } from './dashboard-logged/dashboard-logged.co
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { RegisterService } from './service/register.service';
 import { IncomeExpenseComponent } from './components/income-expense/income-expense.component';
-import { IncomeExpenseService } from './income-expense.service';
+import { IncomeExpenseService } from './service/income-expense.service';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthService } from './service/auth/auth-service.service';

@@ -6,7 +6,7 @@ import { FeedComponent } from './feed/feed.component';
 import { CanActivateRouteGuard } from './guard/can-activate-route.guard';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
-import { RegisterUserComponent } from './register-user/register-user.component';
+import { RegisterUserComponent } from './components/register-user/register-user.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
