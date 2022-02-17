@@ -28,7 +28,7 @@ pipeline {
                 sh 'npm install'
             }
         }
-        stage('Install and Run Sonar Scan') {
+        stage('Run Sonar Scan') {
             steps {
                 sh "sonar-scanner -Dsonar.branch.name=${env.BRANCH_NAME}"
             }
@@ -36,13 +36,15 @@ pipeline {
         stage('Building Application') {
             steps {
                 sh 'npm run build'
+                if (env.BRANCH_NAME == 'main') {
+                    archiveArtifacts artifacts: 'dist/cash-overflow/**', fingerprint: true
+                }
             }
         }
     }
 
     post {
         always {
-            archiveArtifacts artifacts: 'dist/cash-overflow/**', fingerprint: true
             cleanWs()
         }
     }
