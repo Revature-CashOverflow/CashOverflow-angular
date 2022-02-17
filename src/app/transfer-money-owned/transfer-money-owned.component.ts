@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BankAccount } from '../model/bank-account';
+import { FundTransfer } from '../model/fund-transfer';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BankAccountService } from '../service/bankAccount/bank-account.service';
@@ -13,15 +14,19 @@ export class TransferMoneyOwnedComponent implements OnInit {
   bankAccounts: BankAccount[] = [];
 
   transferForm = new FormGroup({
-    account1: new FormControl(),
-    account2: new FormControl(),
-    amount: new FormControl()
+    transferFromAccount:new FormControl,
+	  transferToAccount:new FormControl,
+	  transferAmount:new FormControl
   });
 
   constructor(
     private bankAccountService: BankAccountService
   ) { }
-
+  
+  onSubmit(){
+    console.log(this.transferForm.value);
+    // this.bankAccountService.transferFundsOwned();
+  }
 
   ngOnInit(): void {
     this.populateBackAccountsArray();
