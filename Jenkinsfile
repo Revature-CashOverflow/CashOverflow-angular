@@ -30,7 +30,6 @@ pipeline {
         }
         stage('Install and Run Sonar Scan') {
             steps {
-                sh "npm install -g sonarqube-scanner"
                 sh "sonar-scanner -Dsonar.branch.name=${env.BRANCH_NAME}"
             }
         }
