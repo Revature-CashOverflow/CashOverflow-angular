@@ -18,6 +18,8 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthService } from './service/auth/auth-service.service';
 import { CanActivateRouteGuard } from './guard/can-activate-route.guard';
+import { LoginPageComponent } from './components/page-layouts/login-page/login-page.component';
+import { UserPageComponent } from './components/page-layouts/user-page/user-page.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { CanActivateRouteGuard } from './guard/can-activate-route.guard';
     RegisterUserComponent,
     IncomeExpenseComponent,
     LogoutComponent,
+    LoginPageComponent,
+    UserPageComponent,
   ],
   imports: [
     BrowserModule,

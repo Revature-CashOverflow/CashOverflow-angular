@@ -1,36 +1,30 @@
-<section class="vh-100 bg-image" style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
-    <app-dashboard-logged></app-dashboard-logged>
-
 <div class="col-md-10 ">
-  <div class="row "> 
-    <div class="col-xl-6 col-lg-6" *ngFor="let currentBankAccount of bankAccounts;index as i">
-        <div class="card "  [ngClass]="cardBackG[i]" >
-            <div class="card-statistic-3 p-4">
-                <div class="card-icon card-icon-large"><i class="fas fa-shopping-cart"></i></div>
-                <div class="mb-4">
-                  <h5 class="card-title mb-0">Bank Account Name: {{currentBankAccount.name}}</h5>
-              </div>
-                <div class="mb-4">
-                    <h5 class="card-title mb-0" *ngIf='currentBankAccount.accountTypeId==2;else other_content'>Saving</h5>
-                    <ng-template #other_content>
-                         <h5 class="card-title mb-0">Checking</h5>
-                    </ng-template>
-                </div>
-                <div class="row align-items-center mb-2 d-flex">
-                    <div class="col-8">
-                        <h2 class="d-flex align-items-center mb-0">
-                            ${{currentBankAccount.balance}}
-                        </h2>
+    <div class="row ">
+        <div class="col-xl-6 col-lg-6" *ngFor="let currentBankAccount of bankAccounts;index as i">
+            <div class="card " [ngClass]="cardBackG[i]">
+                <div class="card-statistic-3 p-4">
+                    <div class="card-icon card-icon-large"><i class="fas fa-shopping-cart"></i></div>
+                    <div class="mb-4">
+                        <h5 class="card-title mb-0">Bank Account Name: {{currentBankAccount.name}}</h5>
                     </div>
-                    <div class="col-4 text-right">
-                        <span>Balance <i class="fa fa-arrow-up"></i></span>
+                    <div class="mb-4">
+                        <h5 class="card-title mb-0" *ngIf='currentBankAccount.accountTypeId==2;else other_content'>Saving</h5>
+                        <ng-template #other_content>
+                            <h5 class="card-title mb-0">Checking</h5>
+                        </ng-template>
+                    </div>
+                    <div class="row align-items-center mb-2 d-flex">
+                        <div class="col-8">
+                            <h2 class="d-flex align-items-center mb-0">
+                                ${{currentBankAccount.balance}}
+                            </h2>
+                        </div>
+                        <div class="col-4 text-right">
+                            <span>Balance <i class="fa fa-arrow-up"></i></span>
+                        </div>
                     </div>
                 </div>
-               
             </div>
         </div>
     </div>
-    
-     </div>
 </div>
-</section>
