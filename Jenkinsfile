@@ -28,22 +28,26 @@ pipeline {
                 sh 'npm install'
             }
         }
-        stage('Install and Run Sonar Scan') {
+        stage('Run Sonar Scan') {
             steps {
-                sh "npm install -g sonarqube-scanner"
                 sh "sonar-scanner -Dsonar.branch.name=${env.BRANCH_NAME}"
             }
         }
         stage('Building Application') {
             steps {
                 sh 'npm run build'
+                script {
+                    if (env.BRANCH_NAME == 'main') {
+                        archiveArtifacts artifacts: 'dist/cash-overflow/**', fingerprint: true
+                    }
+                }
             }
         }
     }
 
     post {
         always {
-            archiveArtifacts artifacts: 'dist/cash-overflow/**', fingerprint: true
+            cleanWs()
         }
     }
 }
