@@ -1,0 +1,12 @@
+<p>transfer-money-owned works!</p>
+
+<div class="form-group">
+    <label for="account1">From: </label>
+    <select class="form-control" id="account1" required>
+        <option *ngFor="let account of bankAccounts" [value]="account.name">{{account.name}}</option>
+    </select>
+    <label for="account2">To: </label>
+    <select class="form-control" id="account2" required>
+        <option *ngFor="let account of bankAccounts" [value]="account.name">{{account.name}}</option>
+    </select>
+</div>
