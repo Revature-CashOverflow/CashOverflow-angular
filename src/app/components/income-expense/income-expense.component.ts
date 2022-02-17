@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
-import { IncomeExpenseService } from '../income-expense.service';
+import { IncomeExpenseService } from '../../service/incomeExpense/income-expense.service';
 
 @Component({
   selector: 'app-income-expense',

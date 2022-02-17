@@ -1,0 +1,22 @@
+<div class="formBox">
+    <h4>Create Bank Account Form</h4>
+
+    <div class="form-group">
+        <label for="nameId" class="form-label">Name: </label>
+        <input [(ngModel)]="formName" class="form-control" id="nameId" name="nameField">
+    </div>
+    <div class="form-group">
+        <label for="descriptionId" class="form-label">Description: </label>
+        <input [(ngModel)]="formDescription" class="form-control" id="descriptionId" name="descriptionField">
+    </div>
+    <div class="form-group">
+        <label for="accountType" class="form-label">Account Type: </label>
+        <select [(ngModel)]="formAccountType" name="accountType" class="form-select">
+                <option value="1">Checking</option>
+                <option value="2">Savings</option>
+            </select>
+    </div>
+
+    <br/>
+    <button (click)="createBankAccount()" class="btn btn-primary">Create Account</button>
+</div>

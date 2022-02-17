@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
-import { BankAccount } from '../model/bank-account';
-import { BankAccountService } from '../service/bankAccount/bank-account.service';
+import { BankAccount } from '../../model/bank-account';
+import { BankAccountService } from '../../service/bankAccount/bank-account.service';
 
 @Component({
   selector: 'app-feed',

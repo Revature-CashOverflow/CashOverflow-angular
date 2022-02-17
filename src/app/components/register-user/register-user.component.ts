@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
-import { RegisterService } from '../../register.service';
+import { RegisterService } from '../../service/register/register.service';
 
 /**
  * This component currently contains a bootstrap section and multitude of divs to
