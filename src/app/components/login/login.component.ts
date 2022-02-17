@@ -40,8 +40,6 @@ export class LoginComponent implements OnInit {
   }
 
   retreiveLoginUserButton(username: any, password: any) {
-    console.log("BUTTON WAS PRESSED");
-    
     this.loginServ.retreiveLoginUser(username, password).subscribe(
       //subscriber's callback function goes here
       (data) => {

@@ -21,6 +21,7 @@ import { UserPageComponent } from './page-layouts/user-page/user-page.component'
 import { RegisterPageComponent } from './page-layouts/register-page/register-page.component';
 import { NavbarLoginComponent } from './components/navbar-login/navbar-login.component';
 import { NavbarGeneralComponent } from './components/navbar-general/navbar-general.component';
+import { BankAccountRegisterPageComponent } from './page-layouts/bank-account-register-page/bank-account-register-page.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { NavbarGeneralComponent } from './components/navbar-general/navbar-gener
     RegisterPageComponent,
     NavbarLoginComponent,
     NavbarGeneralComponent,
+    BankAccountRegisterPageComponent,
   ],
   imports: [
     BrowserModule,
