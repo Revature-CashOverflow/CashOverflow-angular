@@ -36,8 +36,10 @@ pipeline {
         stage('Building Application') {
             steps {
                 sh 'npm run build'
-                if (env.BRANCH_NAME == 'main') {
-                    archiveArtifacts artifacts: 'dist/cash-overflow/**', fingerprint: true
+                script {
+                    if (env.BRANCH_NAME == 'main') {
+                        archiveArtifacts artifacts: 'dist/cash-overflow/**', fingerprint: true
+                    }
                 }
             }
         }
