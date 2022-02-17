@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 export class BankAccountService {
   private getBankAccountsUrl = `${environment.apiURL}/api/account/getBankAccounts`;
   private setBankAccountsUrl = `${environment.apiURL}/api/account/createBankAccount`;
+  private fundTransferUrl = `${environment.apiURL}/api/account/transferFunds`
 
   constructor(
     private myHttpClient: HttpClient,
@@ -67,13 +68,14 @@ export class BankAccountService {
   transferFundsOwned(fundTransfer:FundTransfer){
     let httpHeaders = new HttpHeaders({
       'Content-Type':'application/json',
+      Accept: 'application/json',
       Authorization: this.cookieServ.get('token')
     });
 
-    return this.myHttpClient.post<FundTransfer>(
-      this.setBankAccountsUrl,
+    return this.myHttpClient.post(
+      this.fundTransferUrl,
       JSON.stringify(fundTransfer),
-      {headers: httpHeaders}
+      {headers: httpHeaders},
     );
   }
 

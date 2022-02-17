@@ -14,9 +14,9 @@ export class TransferMoneyOwnedComponent implements OnInit {
   bankAccounts: BankAccount[] = [];
 
   transferForm = new FormGroup({
-    transferFromAccount:new FormControl,
-	  transferToAccount:new FormControl,
-	  transferAmount:new FormControl
+    transferFromAccount:new FormControl(''),
+	  transferToAccount:new FormControl(''),
+	  transferAmount:new FormControl()
   });
 
   constructor(
@@ -25,7 +25,8 @@ export class TransferMoneyOwnedComponent implements OnInit {
   
   onSubmit(){
     console.log(this.transferForm.value);
-    // this.bankAccountService.transferFundsOwned();
+    this.bankAccountService.transferFundsOwned(this.transferForm.value)
+      .subscribe(resp =>{console.log(resp.toString)})
   }
 
   ngOnInit(): void {
