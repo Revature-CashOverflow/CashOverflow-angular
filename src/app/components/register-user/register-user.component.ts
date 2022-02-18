@@ -44,6 +44,16 @@ export class RegisterUserComponent implements OnInit {
       return;
     }
 
+    
+
+    for(let item in this.registerForm){
+      if(item){
+        console.log(item);
+        
+      }
+    }
+
+    
     this.regServ.sendRegisterData(this.registerForm.value).subscribe(
       (data) => {
         console.log('Form submitted successfully');
