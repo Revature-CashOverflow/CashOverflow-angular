@@ -7,6 +7,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FeedComponent } from './components/feed/feed.component';
+import { TransferMoneyOwnedComponent } from './components/transfer-money-owned/transfer-money-owned.component';
 import { CreateBankAccountFormComponent } from './components/create-bank-account-form/create-bank-account-form.component';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { RegisterService } from 'src/app/service/register/register.service';
@@ -32,6 +33,7 @@ import { BankAccountRegisterPageComponent } from './page-layouts/bank-account-re
     RegisterUserComponent,
     IncomeExpenseComponent,
     LogoutComponent,
+    TransferMoneyOwnedComponent,
     LoginPageComponent,
     UserPageComponent,
     RegisterPageComponent,

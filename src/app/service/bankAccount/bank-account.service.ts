@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BankAccount } from '../../model/bank-account';
+import { FundTransfer } from 'src/app/model/fund-transfer';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
@@ -11,6 +12,7 @@ import { environment } from 'src/environments/environment';
 export class BankAccountService {
   private getBankAccountsUrl = `${environment.apiURL}/api/account/getBankAccounts`;
   private setBankAccountsUrl = `${environment.apiURL}/api/account/createBankAccount`;
+  private fundTransferUrl = `${environment.apiURL}/api/account/transferFunds`
 
   constructor(
     private myHttpClient: HttpClient,
@@ -57,4 +59,24 @@ export class BankAccountService {
       { headers: httpHeaders }
     );
   }
+
+  /**
+   * This method accesses the endpoint of the server to 
+   * transfer funds between accounts
+   * @params string,string,number
+   */
+  transferFundsOwned(fundTransfer:FundTransfer){
+    let httpHeaders = new HttpHeaders({
+      'Content-Type':'application/json',
+      Accept: 'application/json',
+      Authorization: this.cookieServ.get('token')
+    });
+
+    return this.myHttpClient.post(
+      this.fundTransferUrl,
+      JSON.stringify(fundTransfer),
+      {headers: httpHeaders},
+    );
+  }
+
 }
