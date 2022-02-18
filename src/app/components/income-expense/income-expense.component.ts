@@ -25,7 +25,6 @@ export class IncomeExpenseComponent implements OnInit {
   newTransaction = {
     id: 0,
     amount: 0,
-    name: '',
     description: '',
     creationDate: 0,
     txType: 0,
@@ -58,19 +57,18 @@ export class IncomeExpenseComponent implements OnInit {
     this.newTransaction.accountId = this.formAccountId;
     this.newTransaction.txType = this.formTransactionType;
     this.newTransaction.amount = this.formAmount;
-    this.newTransaction.name = this.formName;
     this.newTransaction.description = this.formDescription;
     console.log(this.newTransaction);
     
     this.incomeExpenseServ.sendTransactionData(this.newTransaction).subscribe(
       (data) => {
         document.getElementById('amount')?.classList.remove('is-invalid');
+        this.transactionSuccess == 1;
         this.router.navigate(['/feed']);
       },
       (error: HttpErrorResponse) => {
         document.getElementById('amount')?.classList.add('is-invalid');
         console.log("Sending transaction failed");
-
       }
     )
   }
