@@ -13,7 +13,6 @@ export class IncomeExpenseService {
   constructor(
     private http: HttpClient,
     private cookieServ: CookieService
-
   ) { }
 
   /**
@@ -28,7 +27,7 @@ export class IncomeExpenseService {
       "Authorization": this.cookieServ.get("token")
     });
     let options = { headers: httpHeaders };
-    
+
     return this.http.post(`${environment.apiURL}/transaction`, transactionForm, options);
 
   }
