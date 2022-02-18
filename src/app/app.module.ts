@@ -23,6 +23,7 @@ import { RegisterPageComponent } from './page-layouts/register-page/register-pag
 import { NavbarLoginComponent } from './components/navbar-login/navbar-login.component';
 import { NavbarGeneralComponent } from './components/navbar-general/navbar-general.component';
 import { BankAccountRegisterPageComponent } from './page-layouts/bank-account-register-page/bank-account-register-page.component';
+import { BankAccountPageComponent } from './page-layouts/bank-account-page/bank-account-page.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { BankAccountRegisterPageComponent } from './page-layouts/bank-account-re
     NavbarLoginComponent,
     NavbarGeneralComponent,
     BankAccountRegisterPageComponent,
+    BankAccountPageComponent,
   ],
   imports: [
     BrowserModule,
