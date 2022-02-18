@@ -10,10 +10,22 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class BankAccountService {
+  
+  
   private getBankAccountsUrl = `${environment.apiURL}/api/account/getBankAccounts`;
   private setBankAccountsUrl = `${environment.apiURL}/api/account/createBankAccount`;
   private fundTransferUrl = `${environment.apiURL}/api/account/transferFunds`
-
+  bankAccounts: BankAccount[] = [];
+  currentBankAccounts: BankAccount = {
+    id: 0,
+    name: '',
+    balance: 0,
+    description: '',
+    creationDate: '',
+    accountTypeId: 0,
+    user: null,
+    transactionList: null
+  };
   constructor(
     private myHttpClient: HttpClient,
     private cookieServ: CookieService
@@ -33,7 +45,7 @@ export class BankAccountService {
       Accept: 'application/json',
       Authorization: this.cookieServ.get('token'),
     });
-
+    // this.bankAccounts = 
     return this.myHttpClient.get<BankAccount[]>(this.getBankAccountsUrl, {
       headers: httpHeaders,
     });
@@ -77,6 +89,22 @@ export class BankAccountService {
       JSON.stringify(fundTransfer),
       {headers: httpHeaders},
     );
+  }
+
+  setBankAccounts(data: BankAccount[]) {
+    this.bankAccounts = data;
+  }
+
+  getBankAccounts() {
+    return this.bankAccounts;
+  }
+
+  setCurrentBankAccount(currentBankAccount: BankAccount) {
+    this.currentBankAccounts = currentBankAccount;
+  }
+
+  getCurrentBankAccount() {
+    return this.currentBankAccounts;
   }
 
 }

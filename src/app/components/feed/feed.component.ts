@@ -1,4 +1,5 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { BankAccount } from '../../model/bank-account';
 import { BankAccountService } from '../../service/bankAccount/bank-account.service';
 
@@ -11,8 +12,8 @@ export class FeedComponent implements OnInit {
   bankAccounts: BankAccount[] = [];
 
   cardBackG= ['l-bg-blue-dark','l-bg-cherry ','l-bg-orange-dark','l-bg-cyan'];
-  constructor(private bankAccountService: BankAccountService) {
-    console.log('here in constructor for componnet feed');
+  constructor(private bankAccountService: BankAccountService, private router: Router) {
+    
   }
 
   /**
@@ -29,8 +30,14 @@ export class FeedComponent implements OnInit {
   populateBackAccountsArray() {
     this.bankAccountService.getUserBankAccounts().subscribe((data) => {
       this.bankAccounts = data;
+      console.log("This is what's in the feed BankAccountArray");
       console.log(this.bankAccounts);
-
+      this.bankAccountService.setBankAccounts(data);
     });
+  }
+
+  transferingToBankAccountPage(currentBankAccount: BankAccount){
+    this.bankAccountService.setCurrentBankAccount(currentBankAccount);
+    this.router.navigate(['/bankAccount']);
   }
 }

@@ -1,10 +1,11 @@
-<div class="formBox">
+<div *ngIf="bankAccounts.length >= 2" class="formBox">
     <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                 <div class="card" style="border-radius: 15px;">
                     <div class="card-body p-5">
-                        <div [formGroup]="transferForm" class="form-group">
+                        <h3 class="text-center mb-5">Transfer Money Between Accounts</h3>
+                        <form ngNativeValidate [formGroup]="transferForm" class="form-group" (ngSubmit)="onSubmit()">
 
                             <label for="account1">From: </label>
                             <select class="form-control" id="account1" formControlName="transferFromAccount" required>
@@ -19,11 +20,25 @@
                             <label for="ammount">Amount: </label>
                             <input type="number" min="0" step="any" formControlName="transferAmount" required/>
 
-                            <button type="button" class="btn btn-primary" (click)="onSubmit()">submit</button>
+                            <button type="submit" class="btn btn-primary">submit</button>
 
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<div *ngIf="bankAccounts.length < 2" class="formBox">
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                <div class="card" style="border-radius: 15px;">
+                    <div class="card-body p-5">
+                        <h3 class="text-center mb-5">Add more accounts to use this feature.</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -12,6 +12,7 @@ import { BankAccountService } from '../../service/bankAccount/bank-account.servi
 })
 export class TransferMoneyOwnedComponent implements OnInit {
   bankAccounts: BankAccount[] = [];
+  currentBankAccount: BankAccount | undefined;
 
   transferForm = new FormGroup({
     transferFromAccount:new FormControl(''),
@@ -30,14 +31,10 @@ export class TransferMoneyOwnedComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.populateBackAccountsArray();
-  }
-
-  populateBackAccountsArray() {
-    this.bankAccountService.getUserBankAccounts().subscribe((data) => {
-      this.bankAccounts = data;
-      console.log(this.bankAccounts);
-    });
+    this.bankAccounts = this.bankAccountService.getBankAccounts();
+    console.log("This is the bankAccount array inside of transfermoneybetweenaccountsForm");
+    console.log(this.bankAccounts);
+    
   }
 
 }
