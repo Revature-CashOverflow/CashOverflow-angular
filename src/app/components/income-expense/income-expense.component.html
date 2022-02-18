@@ -27,8 +27,8 @@
                             <select [(ngModel)]="formTransactionType" id="type" type="number" class="form-select"
                                 aria-label="Choose a transaction type" required>
                                 <option selected disabled>Choose a transaction type</option>
-                                <option value=2>Income</option>
-                                <option value=1>Expense</option>
+                                <option [ngValue]=2>Income</option>
+                                <option [ngValue]=1>Expense</option>
                             </select>
                         </div>
                         <div form="form-outline mb-4">

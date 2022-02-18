@@ -19,7 +19,7 @@ export class IncomeExpenseService {
    * Added headers to cope with CORS errors
    * @author Cameron, Amir, Chandra
    */
-  sendTransactionData(transactionForm) {
+  sendTransactionData(newTransaction) {
 
     let httpHeaders = new HttpHeaders({
       "Content-Type": "application/json",
@@ -28,7 +28,7 @@ export class IncomeExpenseService {
     });
     let options = { headers: httpHeaders };
 
-    return this.http.post(`${environment.apiURL}/transaction`, transactionForm, options);
+    return this.http.post(`${environment.apiURL}/transaction`, newTransaction, options);
 
   }
 }

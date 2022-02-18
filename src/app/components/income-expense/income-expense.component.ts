@@ -13,8 +13,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./income-expense.component.css'],
 })
 export class IncomeExpenseComponent implements OnInit {
-  accounts?: BankAccount[]
+  accounts: BankAccount[] = [];
   currentBalance: number = 0;
+
 
   @Input() formAccountId: number = 0;
   @Input() formTransactionType: number = 0;
@@ -27,8 +28,12 @@ export class IncomeExpenseComponent implements OnInit {
     amount: 0,
     description: '',
     creationDate: 0,
-    txType: 0,
     accountId: 0,
+    txType: 0
+    // transactionType: {
+    //   id: 0,
+    //   type: ''
+    // }
   }
 
   transactionSuccess: number = 0;
@@ -53,12 +58,14 @@ export class IncomeExpenseComponent implements OnInit {
   /**
    * @author Cameron, Amir, Chandra
    */
-  transaction() {
+  transaction() {    
+    
     this.newTransaction.accountId = this.formAccountId;
     this.newTransaction.txType = this.formTransactionType;
     this.newTransaction.amount = this.formAmount;
     this.newTransaction.description = this.formDescription;
     console.log(this.newTransaction);
+    
     
     this.incomeExpenseServ.sendTransactionData(this.newTransaction).subscribe(
       (data) => {
