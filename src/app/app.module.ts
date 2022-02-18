@@ -24,6 +24,8 @@ import { NavbarLoginComponent } from './components/navbar-login/navbar-login.com
 import { NavbarGeneralComponent } from './components/navbar-general/navbar-general.component';
 import { BankAccountRegisterPageComponent } from './page-layouts/bank-account-register-page/bank-account-register-page.component';
 import { BankAccountPageComponent } from './page-layouts/bank-account-page/bank-account-page.component';
+import { BankAccountInfoComponent } from './components/bank-account-info/bank-account-info.component';
+import { BankAccountMoneyTransferComponent } from './page-layouts/bank-account-money-transfer/bank-account-money-transfer.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { BankAccountPageComponent } from './page-layouts/bank-account-page/bank-
     NavbarGeneralComponent,
     BankAccountRegisterPageComponent,
     BankAccountPageComponent,
+    BankAccountInfoComponent,
+    BankAccountMoneyTransferComponent,
   ],
   imports: [
     BrowserModule,
