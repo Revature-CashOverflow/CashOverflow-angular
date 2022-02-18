@@ -6,41 +6,48 @@
                     <div class="card-body p-5">
                         <h3 class="text-center mb-5">Register New Account</h3>
 
-                        <form [formGroup]="registerForm" (ngSubmit)="register()">
+                        <form ngNativeValidate [formGroup]="registerForm" (ngSubmit)="register() ">
 
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="username">Username</label>
-                                <input type="text" id="username" class="form-control" formControlName="username" placeholder="Username" required/>
+                                <input type="text" id="username" class="form-control" formControlName="username"
+                                    placeholder="Username" required />
 
                             </div>
 
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="email">First Name</label>
-                                <input type="text" id="firstname" class="form-control" formControlName="firstName" placeholder="First Name" required/>
+                                <input type="text" id="firstname" class="form-control" formControlName="firstName"
+                                    placeholder="First Name" required />
 
                             </div>
 
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="lastname">Last Name</label>
-                                <input type="test" id="lastname" class="form-control" formControlName="lastName" placeholder="Last Name" required/>
+                                <input type="test" id="lastname" class="form-control" formControlName="lastName"
+                                    placeholder="Last Name" required />
 
                             </div>
 
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="email">Email</label>
-                                <input type="email" id="email" class="form-control" formControlName="email" placeholder="Email" required/>
+                                <input type="email" id="email" class="form-control" formControlName="email"
+                                    placeholder="Email" required />
 
                             </div>
 
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="password">Password</label>
-                                <input type="password" id="password" class="form-control" formControlName="password" placeholder="Password" [(ngModel)]="password" required/>
+                                <input type="password" id="password" class="form-control" formControlName="password"
+                                    placeholder="Password" [(ngModel)]="password" required />
 
                             </div>
 
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="password2">Confirm password</label>
-                                <input type="password" id="password2" class="form-control" placeholder="Confirm Password" [ngModelOptions]="{standalone: true}" [(ngModel)]="password2" required/>
+                                <input type="password" id="password2" class="form-control"
+                                    placeholder="Confirm Password" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="password2" required />
 
                             </div>
 
@@ -53,7 +60,8 @@
                             </div>
 
                             <div class="d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                                <button type="submit"
+                                    class="btn btn-primary btn-block btn-lg gradient-custom-4 text-body">Register</button>
                             </div>
 
                             <!-- <p class="text-center text-muted mt-5 mb-0">Have an account already? <a href="#!" class="fw-bold text-body"><u>Login here</u></a></p> -->
