@@ -1,11 +1,11 @@
-import { Component, OnInit, ɵNOT_FOUND_CHECK_ONLY_ELEMENT_INJECTOR } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { observable, Observable, ObservedValueOf } from 'rxjs';
-import { IncomeExpenseService } from '../../service/income-expense.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 import { BankAccount } from 'src/app/model/bank-account';
 import { BankAccountService } from 'src/app/service/bankAccount/bank-account.service';
-import { CookieService } from 'ngx-cookie-service';
+import { IncomeExpenseService } from '../../service/income-expense.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-income-expense',
@@ -13,13 +13,24 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./income-expense.component.css'],
 })
 export class IncomeExpenseComponent implements OnInit {
-
-
   accounts?: BankAccount[]
-  amountCheck: number = 0;
   currentBalance: number = 0;
 
-  transactionType: number = 0;
+  @Input() formAccountId: number = 0;
+  @Input() formTransactionType: number = 0;
+  @Input() formAmount: number = 0;
+  @Input() formName: string = '';
+  @Input() formDescription: string = '';
+
+  newTransaction = {
+    id: 0,
+    amount: 0,
+    name: '',
+    description: '',
+    creationDate: 0,
+    txType: 0,
+    accountId: 0,
+  }
 
   transactionSuccess: number = 0;
 
@@ -27,18 +38,11 @@ export class IncomeExpenseComponent implements OnInit {
     this.cookieServ.set(key, value);
   }
 
-  transactionForm = new FormGroup({
-    accountId: new FormControl(''),
-    type: new FormControl(''),
-    amount: new FormControl(''),
-    name: new FormControl(''),
-    description: new FormControl(''),
-  });
-
   constructor(
     private incomeExpenseServ: IncomeExpenseService,
     private cookieServ: CookieService,
-    private bankServ: BankAccountService
+    private bankServ: BankAccountService,
+    private router: Router
   ) { }
 
 
@@ -51,25 +55,22 @@ export class IncomeExpenseComponent implements OnInit {
    * @author Cameron, Amir, Chandra
    */
   transaction() {
-
-    // if (this.transactionType == 1) {
-    //   console.log("here");
-    //     if (this.amountCheck < this.currentBalance) {
-    //       document.getElementById("amount")?.classList.add("is-invalid");
-    //       return
-    //     }
-    // }
-
-    this.transactionSuccess = 0;
-    document.getElementById('amount')?.classList.remove('is-invalid');
-
-    this.incomeExpenseServ.sendTransactionData(this.transactionForm.value).subscribe(
+    this.newTransaction.accountId = this.formAccountId;
+    this.newTransaction.txType = this.formTransactionType;
+    this.newTransaction.amount = this.formAmount;
+    this.newTransaction.name = this.formName;
+    this.newTransaction.description = this.formDescription;
+    console.log(this.newTransaction);
+    
+    this.incomeExpenseServ.sendTransactionData(this.newTransaction).subscribe(
       (data) => {
-        console.log('Form submitted successfully');
-        this.transactionSuccess = 1;
+        document.getElementById('amount')?.classList.remove('is-invalid');
+        this.router.navigate(['/feed']);
       },
       (error: HttpErrorResponse) => {
-        
+        document.getElementById('amount')?.classList.add('is-invalid');
+        console.log("Sending transaction failed");
+
       }
     )
   }
@@ -77,7 +78,7 @@ export class IncomeExpenseComponent implements OnInit {
 
   grabAccounts() {
     this.bankServ.getUserBankAccounts().subscribe(
-       (data: BankAccount[]) => {
+      (data: BankAccount[]) => {
         this.accounts = data;
         console.log("Successfully retrieved BankAccounts");
 
