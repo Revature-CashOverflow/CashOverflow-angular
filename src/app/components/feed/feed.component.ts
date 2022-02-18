@@ -33,6 +33,7 @@ export class FeedComponent implements OnInit {
       console.log("This is what's in the feed BankAccountArray");
       console.log(this.bankAccounts);
       this.bankAccountService.setBankAccounts(data);
+      if(this.bankAccounts.length == 0) this.router.navigate(['/createBankAccountForm']);
     });
   }
 
