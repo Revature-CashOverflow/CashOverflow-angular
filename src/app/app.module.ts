@@ -18,6 +18,7 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { AuthService } from './service/auth/auth-service.service';
 import { CanActivateRouteGuard } from './guard/can-activate-route.guard';
+// import { CreateBankAccountFormComponent } from './createBankAccountForm/create-bank-account-form/create-bank-account-form.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CanActivateRouteGuard } from './guard/can-activate-route.guard';
     RegisterUserComponent,
     IncomeExpenseComponent,
     LogoutComponent,
+    
   ],
   imports: [
     BrowserModule,

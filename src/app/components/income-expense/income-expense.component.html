@@ -12,16 +12,17 @@
                     <form [formGroup]="transactionForm" (ngSubmit)="transaction()">
                         <div form="form-outline mb-4">
                             <label for="accounts">Accounts</label>
-                            <select id="accounts" formControlName="accounts" class="form-select"
-                                aria-label="Choose a transaction type" required>
+
+                            <!-- <select id="accounts" class="form-select" aria-label="Choose a transaction type"  required>
                                 <option selected disabled>Select an account for a transaction</option>
-                                <option *ngFor="let account of accounts" value="account.id" formControlName="accountId">{{account.name}} {{"$" + account.balance}}</option>
-                            </select>
+                                <option *ngFor="let account of accounts" formControlName="accountId" value="account.id" [(ngModel)]="account.balance" [ngModelOptions]="{standalone: true}">{{account.name}} {{"$" + account.balance}}</option>
+                            </select> -->
+
                         </div>
                         <div form="form-outline mb-4">
                             <label for="type">Type</label>
                             <select id="type" formControlName="type" class="form-select"
-                                aria-label="Choose a transaction type" required>
+                                aria-label="Choose a transaction type" [(ngModel)]="transactionType"required>
                                 <option selected disabled>Choose a transaction type</option>
                                 <option value="2">Income</option>
                                 <option value="1">Expense</option>
@@ -30,7 +31,7 @@
                         <div form="form-outline mb-4">
                             <label for="amount">Amount</label>
                             <input class="form-control" id="amount" type="number" step="0.01" min="0.01"
-                                formControlName="amount" required>
+                                formControlName="amount" [(ngModel)]="amountCheck" required>
                         </div>
                         <div form="form-outline mb-4">
                             <label for="name">Name</label>

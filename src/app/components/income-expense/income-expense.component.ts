@@ -14,7 +14,12 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class IncomeExpenseComponent implements OnInit {
 
+
   accounts?: BankAccount[]
+  amountCheck: number = 0;
+  currentBalance: number = 0;
+
+  transactionType: number = 0;
 
   transactionSuccess: number = 0;
 
@@ -23,7 +28,7 @@ export class IncomeExpenseComponent implements OnInit {
   }
 
   transactionForm = new FormGroup({
-    accountId: new FormControl(' '),
+    accountId: new FormControl(''),
     type: new FormControl(''),
     amount: new FormControl(''),
     name: new FormControl(''),
@@ -46,6 +51,15 @@ export class IncomeExpenseComponent implements OnInit {
    * @author Cameron, Amir, Chandra
    */
   transaction() {
+
+    // if (this.transactionType == 1) {
+    //   console.log("here");
+    //     if (this.amountCheck < this.currentBalance) {
+    //       document.getElementById("amount")?.classList.add("is-invalid");
+    //       return
+    //     }
+    // }
+
     this.transactionSuccess = 0;
     document.getElementById('amount')?.classList.remove('is-invalid');
 
@@ -55,7 +69,7 @@ export class IncomeExpenseComponent implements OnInit {
         this.transactionSuccess = 1;
       },
       (error: HttpErrorResponse) => {
-        document.getElementById("amount")?.classList.add("is-invalid");
+        
       }
     )
   }
