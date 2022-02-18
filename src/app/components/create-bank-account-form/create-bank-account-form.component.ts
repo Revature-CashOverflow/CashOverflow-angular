@@ -39,6 +39,8 @@ export class CreateBankAccountFormComponent implements OnInit {
     this.bankAccount.name = data.formName;
     this.bankAccount.description = data.formDescription;
     this.bankAccount.accountTypeId = data.formAccountType;
+    console.log(data);
+    
     this.bankAccountService.setUserBankAccounts(this.bankAccount).subscribe((data) => {
       this.router.navigate(['/feed'])
     });

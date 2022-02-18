@@ -8,22 +8,22 @@
                         <form [formGroup]="formdata" (ngSubmit)="createBankAccount(formdata.value)">
                             <div class="form-group">
                                 <label for="nameId" class="form-label">Name </label>
-                                <input class="form-control" id="nameId" name="nameField" placeholder="Name">
+                                <input formControlName="formName" class="form-control" id="nameId" name="nameField" placeholder="Name">
                             </div>
                             <div class="form-group">
                                 <label for="descriptionId" class="form-label">Description </label>
-                                <input class="form-control" id="descriptionId" name="descriptionField" placeholder="Description">
+                                <input formControlName="formDescription" class="form-control" id="descriptionId" name="descriptionField" placeholder="Description">
                             </div>
                             <div class="form-group">
                                 <label for="accountType" class="form-label">Account Type </label>
 
-                                <select name="accountType" class="form-select">
+                                <select formControlName="formAccountType" name="accountType" class="form-select">
                                 <option selected value="1">Checking</option>
                                 <option value="2">Savings</option>
                             </select>
                             </div>
                             <br/>
-                            <button class="btn btn-primary">Create Account</button>
+                            <button type="submit" class="btn btn-primary">Create Account</button>
                         </form>
                     </div>
                 </div>
