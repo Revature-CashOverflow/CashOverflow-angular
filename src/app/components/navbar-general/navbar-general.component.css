@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@600&family=Moon+Dance&display=swap');
+.ml-auto,
+.mx-auto {
+    margin-left: auto!important;
+}
+
+.navbar .navbar-brand {
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-family: 'Moon Dance', cursive;
+    font-size: 30px;
+}
+
+nav {
+    margin-bottom: 100px;
+}
+
+
+/* -------------------------------------------- */
