@@ -61,3 +61,7 @@
     background: linear-gradient(to right, #f9900e, #ffba56) !important;
     color: #fff;
 }
+
+.col-md-10 {
+    margin:auto;
+}
