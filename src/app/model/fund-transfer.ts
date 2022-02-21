@@ -1,5 +1,5 @@
 export interface FundTransfer {
-    transferFromAccount:string,
-	transferToAccount:string,
+    transferFromAccount:number,
+	transferToAccount:number,
 	transferAmount:number
 }

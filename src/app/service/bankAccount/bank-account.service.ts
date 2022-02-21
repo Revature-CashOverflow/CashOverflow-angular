@@ -5,14 +5,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
+import { Transaction } from 'src/app/model/transaction';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BankAccountService {
   
-  
   private getBankAccountsUrl = `${environment.apiURL}/api/account/getBankAccounts`;
+  private getTransactionsUrl = `${environment.apiURL}/getTransactions`;
   private setBankAccountsUrl = `${environment.apiURL}/api/account/createBankAccount`;
   private fundTransferUrl = `${environment.apiURL}/api/account/transferFunds`
   bankAccounts: BankAccount[] = [];
@@ -28,7 +30,8 @@ export class BankAccountService {
   };
   constructor(
     private myHttpClient: HttpClient,
-    private cookieServ: CookieService
+    private cookieServ: CookieService,
+    private router: Router
   ) {}
 
   /**
@@ -72,23 +75,93 @@ export class BankAccountService {
     );
   }
 
-  /**
-   * This method accesses the endpoint of the server to 
-   * transfer funds between accounts
-   * @params string,string,number
-   */
-  transferFundsOwned(fundTransfer:FundTransfer){
+  
+
+  getTransactionArray(): Observable<Transaction[]>{
     let httpHeaders = new HttpHeaders({
       'Content-Type':'application/json',
       Accept: 'application/json',
       Authorization: this.cookieServ.get('token')
     });
 
-    return this.myHttpClient.post(
-      this.fundTransferUrl,
-      JSON.stringify(fundTransfer),
-      {headers: httpHeaders},
+    return this.myHttpClient.get<Transaction[]>(this.getTransactionsUrl+`/${this.currentBankAccounts.id}`, {
+      headers: httpHeaders,
+    });
+
+  }
+
+  /**
+   * This method accesses the endpoint of the server to 
+   * transfer funds between accounts
+   * @params string,string,number
+   */
+   transferFundsOwned(fundTransfer:FundTransfer){
+    let tranToAccountName: string = "";
+    let tranFromAccountName: string = "";
+
+    for(let item of this.bankAccounts){
+      if(item.id == fundTransfer.transferToAccount){
+        tranToAccountName = item.name;
+      }
+      if(item.id == fundTransfer.transferFromAccount){
+        tranFromAccountName = item.name;
+      }
+
+    }
+
+    let transactionFrom = {
+      id: 0,
+      amount: fundTransfer.transferAmount,
+      description: 'Money transfer from '+tranFromAccountName+' to '+tranToAccountName,
+      creationDate: 0,
+      accountId: fundTransfer.transferFromAccount,
+      txTypeId: 1
+    }
+
+    let transactionTo = {
+      id: 0,
+      amount: fundTransfer.transferAmount,
+      description: 'Money transfer from '+tranFromAccountName+' to '+tranToAccountName,
+      creationDate: 0,
+      accountId: fundTransfer.transferToAccount,
+      txTypeId: 2
+    }
+    let bool: boolean = false;
+    this.sendTransactionData(transactionFrom).subscribe(
+      (data)=>{
+        console.log(data);
+        this.sendTransactionData(transactionTo).subscribe(
+          (data)=>{
+            console.log(data);
+            this.router.navigate(['/feed']);
+          },
+          (msg)=>{
+            console.log("An issue occured:",msg);
+            bool = true;
+          }
+        );
+      }
     );
+    return bool;
+
+    
+  }
+
+  /**
+   * Added headers to cope with CORS errors
+   * @author Cameron, Amir, Chandra
+   */
+   sendTransactionData(newTransaction) {
+
+    let httpHeaders = new HttpHeaders({
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": this.cookieServ.get("token")
+    });
+    let options = { headers: httpHeaders };
+
+    return this.myHttpClient.post(`${environment.apiURL}/transaction`, newTransaction, options);
+
   }
 
   setBankAccounts(data: BankAccount[]) {

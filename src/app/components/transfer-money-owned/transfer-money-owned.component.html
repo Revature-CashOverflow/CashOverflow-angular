@@ -6,15 +6,19 @@
                     <div class="card-body p-5">
                         <h3 class="text-center mb-5">Transfer Money Between Accounts</h3>
                         <form ngNativeValidate [formGroup]="transferForm" class="form-group" (ngSubmit)="onSubmit()">
-
+                            <div *ngIf="showErrorMessage">
+                                <p style="color: red;">Not enough funds. Check your balance.</p>
+                            </div>
                             <label for="account1">From: </label>
                             <select class="form-select" id="account1" formControlName="transferFromAccount" required>
-                                <option *ngFor="let account of bankAccounts" [value]="account.name">{{account.name}}</option>
+                                <option *ngFor="let account of bankAccounts" [value]="account.id">{{account.name}} {{"$" +
+                                    account.balance}}</option>
                             </select>
 
                             <label for="account2">To: </label>
                             <select class="form-select" id="account2" formControlName="transferToAccount" required>
-                                <option *ngFor="let account of bankAccounts" [value]="account.name">{{account.name}}</option>
+                                <option *ngFor="let account of bankAccounts" [value]="account.id">{{account.name}} {{"$" +
+                                    account.balance}}</option>
                             </select>
 
                             <label for="ammount">Amount: </label><br/>
