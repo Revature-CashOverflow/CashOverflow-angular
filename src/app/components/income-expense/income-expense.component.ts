@@ -1,4 +1,4 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
@@ -29,7 +29,7 @@ export class IncomeExpenseComponent implements OnInit {
     description: '',
     creationDate: 0,
     accountId: 0,
-    txType: 0
+    txTypeId: 0
     // transactionType: {
     //   id: 0,
     //   type: ''
@@ -61,7 +61,7 @@ export class IncomeExpenseComponent implements OnInit {
   transaction() {    
     
     this.newTransaction.accountId = this.formAccountId;
-    this.newTransaction.txType = this.formTransactionType;
+    this.newTransaction.txTypeId = this.formTransactionType;
     this.newTransaction.amount = this.formAmount;
     this.newTransaction.description = this.formDescription;
     console.log(this.newTransaction);
@@ -70,11 +70,17 @@ export class IncomeExpenseComponent implements OnInit {
     this.incomeExpenseServ.sendTransactionData(this.newTransaction).subscribe(
       (data) => {
         document.getElementById('amount')?.classList.remove('is-invalid');
-        this.transactionSuccess == 1;
+        this.transactionSuccess = 1;
         this.router.navigate(['/feed']);
       },
       (error: HttpErrorResponse) => {
-        document.getElementById('amount')?.classList.add('is-invalid');
+        if (error.status == 400) {
+          this.transactionSuccess = 2;
+        }
+        else if (error.status == 417 ) {
+          document.getElementById('amount')?.classList.add('is-invalid');
+          
+        }
         console.log("Sending transaction failed");
       }
     )

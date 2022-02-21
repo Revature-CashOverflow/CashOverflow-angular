@@ -4,6 +4,6 @@ export interface Transaction {
   name: string;
   description: string;
   creationDate: number;
-  txType: number;
+  txTypeId: number;
   accountId: number;
 }
