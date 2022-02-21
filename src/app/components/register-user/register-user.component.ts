@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
-import { FormControl, FormGroup } from '@angular/forms';
-import { RegisterService } from '../../service/register/register.service';
+import { Component, OnInit, ɵNOT_FOUND_CHECK_ONLY_ELEMENT_INJECTOR } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { RegisterService } from '../../service/register.service';
+import { Observable, ObservedValueOf } from 'rxjs';
+
 
 /**
  * This component currently contains a bootstrap section and multitude of divs to
@@ -13,6 +15,7 @@ import { RegisterService } from '../../service/register/register.service';
   templateUrl: './register-user.component.html',
   styleUrls: ['./register-user.component.css'],
 })
+
 export class RegisterUserComponent implements OnInit {
   regSuccess: number = 0;
   password: string = '';

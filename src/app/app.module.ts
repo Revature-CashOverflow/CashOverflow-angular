@@ -54,7 +54,7 @@ import { BankAccountMoneyTransferComponent } from './page-layouts/bank-account-m
     FormsModule,
     HttpClientModule,
     FormsModule,
-    JwtModule,
+    JwtModule
   ],
   providers: [
     RegisterService,
