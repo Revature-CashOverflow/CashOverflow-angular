@@ -11,7 +11,7 @@ import { BankAccountService } from '../../service/bankAccount/bank-account.servi
 export class FeedComponent implements OnInit {
   bankAccounts: BankAccount[] = [];
 
-  cardBackG= ['l-bg-blue-dark','l-bg-cherry ','l-bg-orange-dark','l-bg-cyan'];
+  cardBackG= ['l-bg-white-gray','l-bg-cherry ','l-bg-orange-dark','l-bg-cyan'];
   constructor(private bankAccountService: BankAccountService, private router: Router) {
     
   }
@@ -38,7 +38,7 @@ export class FeedComponent implements OnInit {
   }
 
   transferingToBankAccountPage(currentBankAccount: BankAccount){
-    this.bankAccountService.setCurrentBankAccount(currentBankAccount);
-    this.router.navigate(['/bankAccount']);
+    // this.bankAccountService.setCurrentBankAccount(currentBankAccount);
+    // this.router.navigate(['/bankAccount']);
   }
 }

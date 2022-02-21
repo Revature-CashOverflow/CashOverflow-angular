@@ -8,6 +8,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { RegisterPageComponent } from './page-layouts/register-page/register-page.component';
 import { BankAccountPageComponent } from './page-layouts/bank-account-page/bank-account-page.component';
 import { BankAccountMoneyTransferComponent } from './page-layouts/bank-account-money-transfer/bank-account-money-transfer.component';
+import { ManageAccountBalanceComponent } from './page-layouts/manage-account-balance/manage-account-balance.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'bankAccount', component: BankAccountPageComponent, canActivate: [CanActivateRouteGuard] },
   { path: 'createBankAccountForm', component: BankAccountRegisterPageComponent, canActivate: [CanActivateRouteGuard] },
   { path: 'transferMoneyBankAccount', component: BankAccountMoneyTransferComponent, canActivate: [CanActivateRouteGuard] },
+  { path: 'manageBankAccountBalance', component: ManageAccountBalanceComponent, canActivate: [CanActivateRouteGuard] },
   { path: 'register', component: RegisterPageComponent },
   { path: 'logout', component: LogoutComponent },
   { path: '**', redirectTo: '/feed' }

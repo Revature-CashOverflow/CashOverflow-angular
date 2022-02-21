@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { CookieService } from 'ngx-cookie-service';
+import { BankAccount } from '../../model/bank-account'
 
 @Injectable({
   providedIn: 'root'
@@ -7,22 +11,24 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class IncomeExpenseService {
 
   constructor(
-    private http: HttpClient
-
+    private http: HttpClient,
+    private cookieServ: CookieService
   ) { }
 
   /**
    * Added headers to cope with CORS errors
    * @author Cameron, Amir, Chandra
    */
-   sendTransactionData(transactionForm) {
-    
-    const headers= new HttpHeaders()
-    .set('content-type', 'application/json')
-    .set('Access-Control-Allow-Origin', 'http://localhost:4200/register');
-     let options = { headers: headers };
-  
-    return this.http.post('http://localhost:9001/register', transactionForm, options);
-    
+  sendTransactionData(newTransaction) {
+
+    let httpHeaders = new HttpHeaders({
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": this.cookieServ.get("token")
+    });
+    let options = { headers: httpHeaders };
+
+    return this.http.post(`${environment.apiURL}/transaction`, newTransaction, options);
+
   }
 }

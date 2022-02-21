@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+import { BankAccount } from 'src/app/model/bank-account';
+import { BankAccountService } from 'src/app/service/bankAccount/bank-account.service';
 import { IncomeExpenseService } from '../../service/incomeExpense/income-expense.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-income-expense',
@@ -9,36 +13,90 @@ import { IncomeExpenseService } from '../../service/incomeExpense/income-expense
   styleUrls: ['./income-expense.component.css'],
 })
 export class IncomeExpenseComponent implements OnInit {
+  accounts: BankAccount[] = [];
+  currentBalance: number = 0;
+
+
+  @Input() formAccountId: number = 0;
+  @Input() formTransactionType: number = 0;
+  @Input() formAmount: number = 0;
+  @Input() formName: string = '';
+  @Input() formDescription: string = '';
+
+  newTransaction = {
+    id: 0,
+    amount: 0,
+    description: '',
+    creationDate: 0,
+    accountId: 0,
+    txTypeId: 0
+    // transactionType: {
+    //   id: 0,
+    //   type: ''
+    // }
+  }
+
   transactionSuccess: number = 0;
 
-  transactionForm = new FormGroup({
-    type: new FormControl(''),
-    amount: new FormControl(''),
-    name: new FormControl(''),
-    description: new FormControl(''),
-  });
+  getCookie(key: string, value: string) {
+    this.cookieServ.set(key, value);
+  }
 
-  constructor(private incomeExpenseServ: IncomeExpenseService) {}
+  constructor(
+    private incomeExpenseServ: IncomeExpenseService,
+    private cookieServ: CookieService,
+    private bankServ: BankAccountService,
+    private router: Router
+  ) { }
 
-  ngOnInit(): void {}
+
+
+  ngOnInit(): void {
+    this.grabAccounts();
+  }
 
   /**
    * @author Cameron, Amir, Chandra
    */
-  transaction() {
-    this.transactionSuccess = 0;
-    document.getElementById('amount')?.classList.remove('is-invalid');
-
-    this.incomeExpenseServ
-      .sendTransactionData(this.transactionForm.value)
-      .subscribe(
-        (data) => {
-          console.log('Form submitted successfully');
-          this.transactionSuccess = 1;
-        },
-        (error: HttpErrorResponse) => {
-          document.getElementById('amount')?.classList.add('is-invalid');
+  transaction() {    
+    
+    this.newTransaction.accountId = this.formAccountId;
+    this.newTransaction.txTypeId = this.formTransactionType;
+    this.newTransaction.amount = this.formAmount;
+    this.newTransaction.description = this.formDescription;
+    console.log(this.newTransaction);
+    
+    
+    this.incomeExpenseServ.sendTransactionData(this.newTransaction).subscribe(
+      (data) => {
+        document.getElementById('amount')?.classList.remove('is-invalid');
+        this.transactionSuccess = 1;
+        this.router.navigate(['/feed']);
+      },
+      (error: HttpErrorResponse) => {
+        if (error.status == 400) {
+          this.transactionSuccess = 2;
         }
-      );
+        else if (error.status == 417 ) {
+          document.getElementById('amount')?.classList.add('is-invalid');
+          
+        }
+        console.log("Sending transaction failed");
+      }
+    )
+  }
+
+
+  grabAccounts() {
+    this.bankServ.getUserBankAccounts().subscribe(
+      (data: BankAccount[]) => {
+        this.accounts = data;
+        console.log("Successfully retrieved BankAccounts");
+
+      },
+      (error: HttpErrorResponse) => {
+        console.log("Failed to retrieve BankAccounts")
+      }
+    )
   }
 }
