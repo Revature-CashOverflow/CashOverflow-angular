@@ -1,7 +1,7 @@
 import { Component, OnInit, ɵNOT_FOUND_CHECK_ONLY_ELEMENT_INJECTOR } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { RegisterService } from '../../service/register.service';
+import { RegisterService } from '../../service/register/register.service';
 import { Observable, ObservedValueOf } from 'rxjs';
 
 

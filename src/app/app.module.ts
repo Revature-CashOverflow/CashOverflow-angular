@@ -26,6 +26,7 @@ import { BankAccountRegisterPageComponent } from './page-layouts/bank-account-re
 import { BankAccountPageComponent } from './page-layouts/bank-account-page/bank-account-page.component';
 import { BankAccountInfoComponent } from './components/bank-account-info/bank-account-info.component';
 import { BankAccountMoneyTransferComponent } from './page-layouts/bank-account-money-transfer/bank-account-money-transfer.component';
+import { ManageAccountBalanceComponent } from './page-layouts/manage-account-balance/manage-account-balance.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { BankAccountMoneyTransferComponent } from './page-layouts/bank-account-m
     BankAccountPageComponent,
     BankAccountInfoComponent,
     BankAccountMoneyTransferComponent,
+    ManageAccountBalanceComponent,
   ],
   imports: [
     BrowserModule,
