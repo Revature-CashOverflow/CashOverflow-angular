@@ -8,19 +8,21 @@
                         <form ngNativeValidate [formGroup]="transferForm" class="form-group" (ngSubmit)="onSubmit()">
 
                             <label for="account1">From: </label>
-                            <select class="form-control" id="account1" formControlName="transferFromAccount" required>
+                            <select class="form-select" id="account1" formControlName="transferFromAccount" required>
                                 <option *ngFor="let account of bankAccounts" [value]="account.name">{{account.name}}</option>
                             </select>
 
                             <label for="account2">To: </label>
-                            <select class="form-control" id="account2" formControlName="transferToAccount" required>
+                            <select class="form-select" id="account2" formControlName="transferToAccount" required>
                                 <option *ngFor="let account of bankAccounts" [value]="account.name">{{account.name}}</option>
                             </select>
-                            <br>
-                            <label for="ammount">Amount: </label>
-                            <input type="number" min="0" step="any" formControlName="transferAmount" required/>
 
-                            <button type="submit" class="btn btn-primary">submit</button>
+                            <label for="ammount">Amount: </label><br/>
+                            <input class="form-control" type="number" min="0" step="any" formControlName="transferAmount" required/>
+                            <br/>
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
 
                         </form>
                     </div>
