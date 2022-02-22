@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BankAccount } from '../../model/bank-account';
 import { FundTransfer } from 'src/app/model/fund-transfer';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
@@ -30,8 +30,7 @@ export class BankAccountService {
   };
   constructor(
     private myHttpClient: HttpClient,
-    private cookieServ: CookieService,
-    private router: Router
+    private cookieServ: CookieService
   ) {}
 
   /**
@@ -96,55 +95,16 @@ export class BankAccountService {
    * @params string,string,number
    */
    transferFundsOwned(fundTransfer:FundTransfer){
-    let tranToAccountName: string = "";
-    let tranFromAccountName: string = "";
+    let httpHeaders = new HttpHeaders({
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "Authorization": this.cookieServ.get("token")
+    });
+    let options = { headers: httpHeaders };
 
-    for(let item of this.bankAccounts){
-      if(item.id == fundTransfer.transferToAccount){
-        tranToAccountName = item.name;
-      }
-      if(item.id == fundTransfer.transferFromAccount){
-        tranFromAccountName = item.name;
-      }
+    return this.myHttpClient.post<HttpResponse<any>>(this.fundTransferUrl, fundTransfer, options);
 
-    }
-
-    let transactionFrom = {
-      id: 0,
-      amount: fundTransfer.transferAmount,
-      description: 'Money transfer from '+tranFromAccountName+' to '+tranToAccountName,
-      creationDate: 0,
-      accountId: fundTransfer.transferFromAccount,
-      txTypeId: 1
-    }
-
-    let transactionTo = {
-      id: 0,
-      amount: fundTransfer.transferAmount,
-      description: 'Money transfer from '+tranFromAccountName+' to '+tranToAccountName,
-      creationDate: 0,
-      accountId: fundTransfer.transferToAccount,
-      txTypeId: 2
-    }
-    let bool: boolean = false;
-    this.sendTransactionData(transactionFrom).subscribe(
-      (data)=>{
-        console.log(data);
-        this.sendTransactionData(transactionTo).subscribe(
-          (data)=>{
-            console.log(data);
-            this.router.navigate(['/feed']);
-          },
-          (msg)=>{
-            console.log("An issue occured:",msg);
-            bool = true;
-          }
-        );
-      }
-    );
-    return bool;
-
-    
+    //fundTransferUrl
   }
 
   /**

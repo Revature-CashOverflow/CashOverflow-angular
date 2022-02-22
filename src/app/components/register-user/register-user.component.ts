@@ -51,15 +51,12 @@ export class RegisterUserComponent implements OnInit {
 
     for(let item in this.registerForm){
       if(item){
-        console.log(item);
-        
       }
     }
 
     
     this.regServ.sendRegisterData(this.registerForm.value).subscribe(
       (data) => {
-        console.log('Form submitted successfully');
         this.regSuccess = 1;
       },
       (error: HttpErrorResponse) => {
