@@ -15,7 +15,6 @@ export class TransactionListComponent implements OnInit {
 
   ngOnInit(): void {
     this.populateTransactionArray();
-
   }
 
   populateTransactionArray(){

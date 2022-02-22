@@ -11,14 +11,14 @@
                             </div>
                             <label for="account1">From: </label>
                             <select class="form-select" id="account1" formControlName="transferFromAccount" required>
-                                <option *ngFor="let account of bankAccounts" [value]="account.id">{{account.name}} {{"$" +
-                                    account.balance}}</option>
+                                <option *ngFor="let account1 of bankAccounts" [value]="account1.name">{{account1.name}} {{"$" +
+                                    account1.balance}}</option>
                             </select>
 
                             <label for="account2">To: </label>
                             <select class="form-select" id="account2" formControlName="transferToAccount" required>
-                                <option *ngFor="let account of bankAccounts" [value]="account.id">{{account.name}} {{"$" +
-                                    account.balance}}</option>
+                                <option *ngFor="let account2 of bankAccounts" [value]="account2.name">{{account2.name}} {{"$" +
+                                    account2.balance}}</option>
                             </select>
 
                             <label for="ammount">Amount: </label><br/>

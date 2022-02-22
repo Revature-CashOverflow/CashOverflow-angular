@@ -1,4 +1,4 @@
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Revature-CashOverflow_CashOverflow-angular&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Revature-CashOverflow_CashOverflow-angular)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Revature-CashOverflow_CashOverflow-angular&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Revature-CashOverflow_CashOverflow-angular) [![Build Status](http://ec2-18-233-7-153.compute-1.amazonaws.com:8080/buildStatus/icon?job=cashoverflow-angular%2Fmain)](http://ec2-18-233-7-153.compute-1.amazonaws.com:8080/job/cashoverflow-angular/job/main/)
 
 # CashOverflow
 

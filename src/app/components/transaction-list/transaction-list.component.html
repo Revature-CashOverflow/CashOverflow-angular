@@ -8,6 +8,7 @@
                     <th scope="col">Description</th>
                     <th scope="col">Amount</th>
                     <th scope="col">Date</th>
+                    <th scope="col">Transaction Type</th>
                 </tr>
             </thead>
             <tbody>
@@ -16,6 +17,7 @@
                     <td>{{individualTransaction.description}}</td>
                     <td>{{individualTransaction.amount}}</td>
                     <td>{{individualTransaction.creationDate | date:'medium' }}</td>
+                    <td>{{individualTransaction.txTypeId == 1 ? 'Expense' : 'Income'}}</td>
                 </tr>
             </tbody>
         </table>
