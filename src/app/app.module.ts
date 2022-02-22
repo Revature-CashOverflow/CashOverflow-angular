@@ -12,7 +12,6 @@ import { CreateBankAccountFormComponent } from './components/create-bank-account
 import { RegisterUserComponent } from './components/register-user/register-user.component';
 import { RegisterService } from 'src/app/service/register/register.service';
 import { IncomeExpenseComponent } from './components/income-expense/income-expense.component';
-import { IncomeExpenseService } from './service/incomeExpense/income-expense.service';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AuthService } from './service/auth/auth-service.service';
@@ -27,6 +26,7 @@ import { BankAccountPageComponent } from './page-layouts/bank-account-page/bank-
 import { BankAccountInfoComponent } from './components/bank-account-info/bank-account-info.component';
 import { BankAccountMoneyTransferComponent } from './page-layouts/bank-account-money-transfer/bank-account-money-transfer.component';
 import { ManageAccountBalanceComponent } from './page-layouts/manage-account-balance/manage-account-balance.component';
+import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +48,7 @@ import { ManageAccountBalanceComponent } from './page-layouts/manage-account-bal
     BankAccountInfoComponent,
     BankAccountMoneyTransferComponent,
     ManageAccountBalanceComponent,
+    TransactionListComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +61,6 @@ import { ManageAccountBalanceComponent } from './page-layouts/manage-account-bal
   ],
   providers: [
     RegisterService,
-    IncomeExpenseService,
     AuthService,
     CanActivateRouteGuard,
   ],

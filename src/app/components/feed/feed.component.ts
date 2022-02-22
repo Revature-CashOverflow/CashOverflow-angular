@@ -20,14 +20,14 @@ export class FeedComponent implements OnInit {
    * This method executes populateBackAccountsArray when this component is loaded
    */
   ngOnInit(): void {
-    this.populateBackAccountsArray();
+    this.populateBankAccountsArray();
   }
 
   /**
    * This method updates the bankAccount array with the response from the endpoint
    * getBankAccounts in the server.
    */
-  populateBackAccountsArray() {
+  populateBankAccountsArray() {
     this.bankAccountService.getUserBankAccounts().subscribe((data) => {
       this.bankAccounts = data;
       console.log("This is what's in the feed BankAccountArray");
@@ -38,7 +38,7 @@ export class FeedComponent implements OnInit {
   }
 
   transferingToBankAccountPage(currentBankAccount: BankAccount){
-    // this.bankAccountService.setCurrentBankAccount(currentBankAccount);
-    // this.router.navigate(['/bankAccount']);
+    this.bankAccountService.setCurrentBankAccount(currentBankAccount);
+    this.router.navigate(['/bankAccount']);
   }
 }

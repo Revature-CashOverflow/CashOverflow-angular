@@ -4,6 +4,7 @@ import { FundTransfer } from '../../model/fund-transfer';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BankAccountService } from '../../service/bankAccount/bank-account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-transfer-money-owned',
@@ -13,6 +14,7 @@ import { BankAccountService } from '../../service/bankAccount/bank-account.servi
 export class TransferMoneyOwnedComponent implements OnInit {
   bankAccounts: BankAccount[] = [];
   currentBankAccount: BankAccount | undefined;
+  showErrorMessage: boolean = false;
 
   transferForm = new FormGroup({
     transferFromAccount:new FormControl(''),
@@ -21,13 +23,15 @@ export class TransferMoneyOwnedComponent implements OnInit {
   });
 
   constructor(
-    private bankAccountService: BankAccountService
+    private bankAccountService: BankAccountService,
+    private router: Router
   ) { }
   
   onSubmit(){
     console.log(this.transferForm.value);
-    this.bankAccountService.transferFundsOwned(this.transferForm.value)
-      .subscribe(resp =>{console.log(resp.toString)})
+    this.showErrorMessage = this.bankAccountService.transferFundsOwned(this.transferForm.value);
+    console.log("This is the result of everything we've done so far:",this.showErrorMessage);
+    
   }
 
   ngOnInit(): void {

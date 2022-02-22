@@ -4,7 +4,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { BankAccount } from 'src/app/model/bank-account';
 import { BankAccountService } from 'src/app/service/bankAccount/bank-account.service';
-import { IncomeExpenseService } from '../../service/incomeExpense/income-expense.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -43,7 +42,6 @@ export class IncomeExpenseComponent implements OnInit {
   }
 
   constructor(
-    private incomeExpenseServ: IncomeExpenseService,
     private cookieServ: CookieService,
     private bankServ: BankAccountService,
     private router: Router
@@ -67,7 +65,7 @@ export class IncomeExpenseComponent implements OnInit {
     console.log(this.newTransaction);
     
     
-    this.incomeExpenseServ.sendTransactionData(this.newTransaction).subscribe(
+    this.bankServ.sendTransactionData(this.newTransaction).subscribe(
       (data) => {
         document.getElementById('amount')?.classList.remove('is-invalid');
         this.transactionSuccess = 1;
