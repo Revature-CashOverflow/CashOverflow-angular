@@ -3,7 +3,7 @@
         <div class="col-xl-6 col-lg-6" *ngFor="let currentBankAccount of bankAccounts;index as i">
             <div class="card " [ngClass]="cardBackG[(0)]">
                 <div class="card-statistic-3 p-4" (click)="transferingToBankAccountPage(currentBankAccount)">
-                    <div class="card-icon card-icon-large"><i class="fas fa-shopping-cart">{{currentBankAccount.name}}</i></div>
+                    <div class="card-icon card-icon-large"><em class="fas fa-shopping-cart">{{currentBankAccount.name}}</em></div>
                     <div class="mb-4">
                         <h4 class="card-title mb-0">Bank Account Name: <span style="font-size: 20px;">{{currentBankAccount.name}}</span></h4>
                     </div>
