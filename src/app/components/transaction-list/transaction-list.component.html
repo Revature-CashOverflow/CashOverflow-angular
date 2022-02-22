@@ -1,0 +1,23 @@
+<div *ngIf="transactionArray.length > 0" class="col-md-10 ">
+    <div class="card ">
+        <table table class="table table-striped">
+            <caption>Bank account transaction history</caption>
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let individualTransaction of transactionArray;">
+                    <th scope="row">{{individualTransaction.id}}</th>
+                    <td>{{individualTransaction.description}}</td>
+                    <td>{{individualTransaction.amount}}</td>
+                    <td>{{individualTransaction.creationDate | date:'medium' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
