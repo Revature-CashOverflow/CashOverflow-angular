@@ -28,10 +28,26 @@ export class TransferMoneyOwnedComponent implements OnInit {
   ) { }
   
   onSubmit(){
+    
     console.log(this.transferForm.value);
-    this.showErrorMessage = this.bankAccountService.transferFundsOwned(this.transferForm.value);
+    this.bankAccountService.transferFundsOwned(this.transferForm.value).subscribe(
+      (resp)=>{
+        if(resp.ok){
+          console.log("Ok all of this works now.");
+          
+        }else{
+          console.log("Supposed issue in transferFundsOwned!");
+          
+          this.showErrorMessage = true;
+        }
+      },
+      (msg)=>{console.log("An issue has occured in transferFundsOwned!",msg);
+      this.showErrorMessage = true;
+      }
+    );
     console.log("This is the result of everything we've done so far:",this.showErrorMessage);
     
+    //.then((data)=>{this.showErrorMessage = data;})
   }
 
   ngOnInit(): void {
