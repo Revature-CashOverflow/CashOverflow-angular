@@ -1,6 +1,5 @@
-import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { BankAccount } from 'src/app/model/bank-account';
 import { BankAccountService } from 'src/app/service/bankAccount/bank-account.service';
@@ -29,10 +28,6 @@ export class IncomeExpenseComponent implements OnInit {
     creationDate: 0,
     accountId: 0,
     txTypeId: 0
-    // transactionType: {
-    //   id: 0,
-    //   type: ''
-    // }
   }
 
   transactionSuccess: number = 0;
@@ -62,7 +57,6 @@ export class IncomeExpenseComponent implements OnInit {
     this.newTransaction.txTypeId = this.formTransactionType;
     this.newTransaction.amount = this.formAmount;
     this.newTransaction.description = this.formDescription;
-    console.log(this.newTransaction);
     
     
     this.bankServ.sendTransactionData(this.newTransaction).subscribe(
@@ -77,9 +71,7 @@ export class IncomeExpenseComponent implements OnInit {
         }
         else if (error.status == 417 ) {
           document.getElementById('amount')?.classList.add('is-invalid');
-          
         }
-        console.log("Sending transaction failed");
       }
     )
   }
@@ -89,11 +81,8 @@ export class IncomeExpenseComponent implements OnInit {
     this.bankServ.getUserBankAccounts().subscribe(
       (data: BankAccount[]) => {
         this.accounts = data;
-        console.log("Successfully retrieved BankAccounts");
-
       },
       (error: HttpErrorResponse) => {
-        console.log("Failed to retrieve BankAccounts")
       }
     )
   }

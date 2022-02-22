@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BankAccount } from 'src/app/model/bank-account';
 import { BankAccountService } from 'src/app/service/bankAccount/bank-account.service';
-import { FeedComponent } from '../feed/feed.component';
 
 @Component({
   selector: 'app-bank-account-info',
@@ -10,7 +9,6 @@ import { FeedComponent } from '../feed/feed.component';
 })
 export class BankAccountInfoComponent implements OnInit {
 
-  
   currentBankAccount: BankAccount = {
     id: 0,
     name: 'Test Bank Account name',
@@ -22,22 +20,9 @@ export class BankAccountInfoComponent implements OnInit {
     transactionList: null
   }
 
-
   constructor(private bankAccountService: BankAccountService) { }
 
-  // ngOnInit(): void {
-  //   this.bankAccounts = this.feed.bankAccounts;
-  //   console.log("this.bankAccounts!!!");
-  //   console.log(this.bankAccounts);
-  // }
-
   ngOnInit(): void {
-    console.log("Here");
     this.currentBankAccount = this.bankAccountService.getCurrentBankAccount();
-
-
   }
-  
-
-
 }
