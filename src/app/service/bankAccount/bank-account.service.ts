@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BankAccount } from '../../model/bank-account';
 import { FundTransfer } from 'src/app/model/fund-transfer';
-import { HttpClient, HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
@@ -30,8 +30,7 @@ export class BankAccountService {
   };
   constructor(
     private myHttpClient: HttpClient,
-    private cookieServ: CookieService,
-    private router: Router
+    private cookieServ: CookieService
   ) {}
 
   /**

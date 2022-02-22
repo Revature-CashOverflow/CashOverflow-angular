@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BankAccount } from '../../model/bank-account';
 import { BankAccountService } from '../../service/bankAccount/bank-account.service';
@@ -30,8 +30,6 @@ export class FeedComponent implements OnInit {
   populateBankAccountsArray() {
     this.bankAccountService.getUserBankAccounts().subscribe((data) => {
       this.bankAccounts = data;
-      console.log("This is what's in the feed BankAccountArray");
-      console.log(this.bankAccounts);
       this.bankAccountService.setBankAccounts(data);
       if(this.bankAccounts.length == 0) this.router.navigate(['/createBankAccountForm']);
     });

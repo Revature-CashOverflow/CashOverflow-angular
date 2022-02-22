@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { BankAccount } from '../../model/bank-account';
-import { FundTransfer } from '../../model/fund-transfer';
-import { HttpErrorResponse } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BankAccountService } from '../../service/bankAccount/bank-account.service';
 import { Router } from '@angular/router';
@@ -33,28 +31,19 @@ export class TransferMoneyOwnedComponent implements OnInit {
     this.bankAccountService.transferFundsOwned(this.transferForm.value).subscribe(
       (resp)=>{
         if(resp.ok){
-          console.log("Ok all of this works now.");
-          
+          this.router.navigate(['/feed'])
         }else{
-          console.log("Supposed issue in transferFundsOwned!");
-          
           this.showErrorMessage = true;
         }
       },
-      (msg)=>{console.log("An issue has occured in transferFundsOwned!",msg);
+      (msg)=>{
       this.showErrorMessage = true;
       }
     );
-    console.log("This is the result of everything we've done so far:",this.showErrorMessage);
-    
-    //.then((data)=>{this.showErrorMessage = data;})
   }
 
   ngOnInit(): void {
     this.bankAccounts = this.bankAccountService.getBankAccounts();
-    console.log("This is the bankAccount array inside of transfermoneybetweenaccountsForm");
-    console.log(this.bankAccounts);
-    
   }
 
 }

@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-bank-account-money-transfer',
-  templateUrl: './bank-account-money-transfer.component.html',
-  styleUrls: ['./bank-account-money-transfer.component.css']
+  templateUrl: './bank-account-money-transfer.component.html'
 })
 export class BankAccountMoneyTransferComponent implements OnInit {
 

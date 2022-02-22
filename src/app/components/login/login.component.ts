@@ -44,11 +44,9 @@ export class LoginComponent implements OnInit {
       (data) => {
         this.jwt = data;
         this.setCookie('token', 'Bearer ' + this.jwt.jwt);
-        console.log(this.cookieServ.get('token'));
         this.router.navigate(['/feed']);
       },
       (msg) => {
-        console.log('Issue occured', msg);
         this.showErrorMessage = true;
       }
     );
