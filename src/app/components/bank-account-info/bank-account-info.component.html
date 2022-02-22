@@ -1,0 +1,28 @@
+<div>
+    <!-- <h4 style="font-size: 20px;">Name: {{currentBankAccount.name}}</h4>
+    <h4 style="font-size: 20px;">Description: {{currentBankAccount.description}}</h4>
+    <h4 style="font-size: 20px;">Balance: {{currentBankAccount.balance | currency}}</h4> -->
+    <div class="card ">
+        <div class="card-statistic-3 p-4">
+            <div class="mb-4">
+                <h4 class="card-title mb-0">Bank Account Name: <span style="font-size: 20px;">{{currentBankAccount.name}}</span></h4>
+            </div>
+            <div class="mb-4">
+                <h4 class="card-title mb-0" *ngIf='currentBankAccount.accountTypeId==2;else other_content'>Account Type: <span style="font-size: 20px;" class="card-title mb-0">Saving</span></h4>
+                <ng-template #other_content>
+                    <h4>Account Type: <span style="font-size: 20px;" class="card-title mb-0">Checking</span></h4>
+                </ng-template>
+            </div>
+            <div class="row align-items-center mb-2 d-flex">
+                <div class="col-4 text-right">
+                    <h4>Balance: </h4>
+                </div>
+                <div class="col-8">
+                    <h2 class="d-flex align-items-center mb-0">
+                        <span style="font-size: 20px;">{{currentBankAccount.balance | currency}}</span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
