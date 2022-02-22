@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-transfer-money-owned',
   templateUrl: './transfer-money-owned.component.html',
-  styleUrls: ['./transfer-money-owned.component.css']
+  styleUrls: ['./transfer-money-owned.component.css'],
 })
 export class TransferMoneyOwnedComponent implements OnInit {
   bankAccounts: BankAccount[] = [];
@@ -15,35 +15,31 @@ export class TransferMoneyOwnedComponent implements OnInit {
   showErrorMessage: boolean = false;
 
   transferForm = new FormGroup({
-    transferFromAccount:new FormControl(''),
-	  transferToAccount:new FormControl(''),
-	  transferAmount:new FormControl()
+    transferFromAccount: new FormControl(''),
+    transferToAccount: new FormControl(''),
+    transferAmount: new FormControl(),
   });
 
   constructor(
     private bankAccountService: BankAccountService,
     private router: Router
-  ) { }
-  
-  onSubmit(){
-    
+  ) {}
+
+  onSubmit() {
     console.log(this.transferForm.value);
-    this.bankAccountService.transferFundsOwned(this.transferForm.value).subscribe(
-      (resp)=>{
-        if(resp.ok){
-          this.router.navigate(['/feed'])
-        }else{
+    this.bankAccountService
+      .transferFundsOwned(this.transferForm.value)
+      .subscribe(
+        (resp) => {
+          this.router.navigate(['/feed']);
+        },
+        (msg) => {
           this.showErrorMessage = true;
         }
-      },
-      (msg)=>{
-      this.showErrorMessage = true;
-      }
-    );
+      );
   }
 
   ngOnInit(): void {
     this.bankAccounts = this.bankAccountService.getBankAccounts();
   }
-
 }

@@ -12,11 +12,10 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class BankAccountService {
-  
   private getBankAccountsUrl = `${environment.apiURL}/api/account/getBankAccounts`;
   private getTransactionsUrl = `${environment.apiURL}/getTransactions`;
   private setBankAccountsUrl = `${environment.apiURL}/api/account/createBankAccount`;
-  private fundTransferUrl = `${environment.apiURL}/api/account/transferFunds`
+  private fundTransferUrl = `${environment.apiURL}/api/account/transferFunds`;
   bankAccounts: BankAccount[] = [];
   currentBankAccounts: BankAccount = {
     id: 0,
@@ -26,7 +25,7 @@ export class BankAccountService {
     creationDate: '',
     accountTypeId: 0,
     user: null,
-    transactionList: null
+    transactionList: null,
   };
   constructor(
     private myHttpClient: HttpClient,
@@ -47,7 +46,7 @@ export class BankAccountService {
       Accept: 'application/json',
       Authorization: this.cookieServ.get('token'),
     });
-    // this.bankAccounts = 
+    // this.bankAccounts =
     return this.myHttpClient.get<BankAccount[]>(this.getBankAccountsUrl, {
       headers: httpHeaders,
     });
@@ -74,54 +73,59 @@ export class BankAccountService {
     );
   }
 
-  
-
-  getTransactionArray(): Observable<Transaction[]>{
+  getTransactionArray(): Observable<Transaction[]> {
     let httpHeaders = new HttpHeaders({
-      'Content-Type':'application/json',
+      'Content-Type': 'application/json',
       Accept: 'application/json',
-      Authorization: this.cookieServ.get('token')
+      Authorization: this.cookieServ.get('token'),
     });
 
-    return this.myHttpClient.get<Transaction[]>(this.getTransactionsUrl+`/${this.currentBankAccounts.id}`, {
-      headers: httpHeaders,
-    });
-
+    return this.myHttpClient.get<Transaction[]>(
+      this.getTransactionsUrl + `/${this.currentBankAccounts.id}`,
+      {
+        headers: httpHeaders,
+      }
+    );
   }
 
   /**
-   * This method accesses the endpoint of the server to 
+   * This method accesses the endpoint of the server to
    * transfer funds between accounts
    * @params string,string,number
    */
-   transferFundsOwned(fundTransfer:FundTransfer){
+  transferFundsOwned(fundTransfer: FundTransfer) {
+    console.log('fund transfer :', fundTransfer);
     let httpHeaders = new HttpHeaders({
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-      "Authorization": this.cookieServ.get("token")
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: this.cookieServ.get('token'),
     });
     let options = { headers: httpHeaders };
 
-    return this.myHttpClient.post<HttpResponse<any>>(this.fundTransferUrl, fundTransfer, options);
-
-    //fundTransferUrl
+    return this.myHttpClient.post<HttpResponse<any>>(
+      this.fundTransferUrl,
+      fundTransfer,
+      options
+    );
   }
 
   /**
    * Added headers to cope with CORS errors
    * @author Cameron, Amir, Chandra
    */
-   sendTransactionData(newTransaction) {
-
+  sendTransactionData(newTransaction) {
     let httpHeaders = new HttpHeaders({
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-      "Authorization": this.cookieServ.get("token")
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: this.cookieServ.get('token'),
     });
     let options = { headers: httpHeaders };
 
-    return this.myHttpClient.post(`${environment.apiURL}/transaction`, newTransaction, options);
-
+    return this.myHttpClient.post(
+      `${environment.apiURL}/transaction`,
+      newTransaction,
+      options
+    );
   }
 
   setBankAccounts(data: BankAccount[]) {
@@ -139,5 +143,4 @@ export class BankAccountService {
   getCurrentBankAccount() {
     return this.currentBankAccounts;
   }
-
 }
