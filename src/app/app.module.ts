@@ -27,6 +27,10 @@ import { BankAccountInfoComponent } from './components/bank-account-info/bank-ac
 import { BankAccountMoneyTransferComponent } from './page-layouts/bank-account-money-transfer/bank-account-money-transfer.component';
 import { ManageAccountBalanceComponent } from './page-layouts/manage-account-balance/manage-account-balance.component';
 import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
+import { AuthModule } from '@auth0/auth0-angular';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
 
 @NgModule({
   declarations: [
@@ -57,7 +61,11 @@ import { TransactionListComponent } from './components/transaction-list/transact
     FormsModule,
     HttpClientModule,
     FormsModule,
-    JwtModule
+    JwtModule,
+    AuthModule.forRoot({
+      domain: 'dev-8qh2j-zl.us.auth0.com',
+      clientId: 'BSbduxtx3CUlIc5uSRbQKID9EQrQXKWZ'
+    })
   ],
   providers: [
     RegisterService,

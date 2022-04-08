@@ -1,3 +1,8 @@
 .card {
     background-color: rgba(255, 255, 255, 0.781);
 }
+.btn {
+  margin: auto;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}

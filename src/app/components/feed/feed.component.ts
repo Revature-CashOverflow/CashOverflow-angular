@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
 import { BankAccount } from '../../model/bank-account';
 import { BankAccountService } from '../../service/bankAccount/bank-account.service';
 
@@ -13,7 +14,7 @@ export class FeedComponent implements OnInit {
 
   cardBackG= ['l-bg-white-gray','l-bg-cherry ','l-bg-orange-dark','l-bg-cyan'];
   constructor(private bankAccountService: BankAccountService, private router: Router) {
-    
+
   }
 
   /**

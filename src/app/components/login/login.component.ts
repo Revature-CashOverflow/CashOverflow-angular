@@ -4,6 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { JwtDto } from 'src/app/model/jwt';
 import { Router } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private loginServ: LoginService,
     private cookieServ: CookieService,
-    private router: Router
+    private router: Router,
+    public auth: AuthService
   ) {}
 
   ngOnInit(): void {}
@@ -36,6 +38,17 @@ export class LoginComponent implements OnInit {
     this.loginUsername = data.loginUsername;
     this.loginPassword = data.loginPassword;
     this.retreiveLoginUserButton(this.loginUsername, this.loginPassword);
+   //if(this.auth.user$ | async as user);
+    this.auth.user$.subscribe(
+        (data) => {
+        console.log( data);
+      },
+      (msg) => {
+        console.log( msg);
+      }
+    );
+
+
   }
 
   retreiveLoginUserButton(username: any, password: any) {
@@ -50,5 +63,21 @@ export class LoginComponent implements OnInit {
         this.showErrorMessage = true;
       }
     );
+
+    this.auth.idTokenClaims$.subscribe((claims) => console.log(claims));
+    this.auth.error$.subscribe((error) => console.log(error));
   }
+  loginWithAuth() {
+    this.auth.loginWithRedirect();
+    this.auth.idTokenClaims$.subscribe((claims) => console.log(claims));
+
+
+  }
+
+  /*
+  Error!Payload validation error:
+  'Object didn't pass validation for format absolute-https-uri-or-empty:
+   https://localhost:4200/login' on property initiate_login_uri (Initiate login uri, must be https).
+  */
+
 }

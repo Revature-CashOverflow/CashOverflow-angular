@@ -17,8 +17,14 @@
                                 <label for="exampleInputPassword1" class="form-label">Password</label>
                                 <input type="password" class="fortextbox" name="loginPassword" placeholder="Password" formControlName="loginPassword" class="form-control" id="exampleInputPassword1">
                             </div>
+                          <ul *ngIf="auth.user$ | async as user">
+                            <li>Auth User</li>
+                            <li>{{ user.name }}</li>
+                            <li>{{ user.email }}</li>
+                          </ul>
                             <div class="d-flex justify-content-center">
                                 <input type="submit" class="btn btn-primary" value="Log In">
+                                <input (click)="loginWithAuth()" class="btn btn-primary" value="Log In with Auth0">
                             </div>
                         </form>
                     </div>
