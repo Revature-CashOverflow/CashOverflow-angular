@@ -4,6 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { JwtDto } from 'src/app/model/jwt';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private loginServ: LoginService,
     private cookieServ: CookieService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {}
@@ -45,10 +47,20 @@ export class LoginComponent implements OnInit {
         this.jwt = data;
         this.setCookie('token', 'Bearer ' + this.jwt.jwt);
         this.router.navigate(['/feed']);
+        this.success();
       },
       (msg) => {
         this.showErrorMessage = true;
+        this.error();
       }
     );
+  }
+
+  success(): void {
+    this.toastr.success('Login Success!', `You have been successfully logged in as: ${this.loginUsername}`);
+  }
+
+  error(): void {
+    this.toastr.error('Login Error', 'Password/Username authentication error');
   }
 }
