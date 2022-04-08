@@ -19,7 +19,7 @@ export class RegisterService {
     .set('Access-Control-Allow-Origin', `${environment.apiURL}/register`);
      let options = { headers: headers };
 
-    return this.http.post(`${environment.apiURL}/register`, registerForm, options);
+    return this.http.post(`${environment.apiURL}/register`, registerForm, options)
 
   }
 }
