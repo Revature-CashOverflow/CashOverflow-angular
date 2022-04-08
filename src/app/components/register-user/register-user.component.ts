@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { RegisterService } from '../../service/register/register.service';
 import { Observable, ObservedValueOf } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 /**
@@ -30,7 +31,7 @@ export class RegisterUserComponent implements OnInit {
     email: new FormControl(''),
   });
 
-  constructor(private regServ: RegisterService, private toastr: ToastrService) {}
+  constructor(private regServ: RegisterService, private toastr: ToastrService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -61,6 +62,7 @@ export class RegisterUserComponent implements OnInit {
       (data) => {
         this.regSuccess = 1;
         this.success();
+        
       },
       (error: HttpErrorResponse) => {
         this.regSuccess = 2;
@@ -71,6 +73,8 @@ export class RegisterUserComponent implements OnInit {
 
   success(): void {
     this.toastr.success('Registration Success!', `You have been successfully registered`);
+    this.router.navigateByUrl('/login');
+
   }
 
   passwordMatchError(): void {
