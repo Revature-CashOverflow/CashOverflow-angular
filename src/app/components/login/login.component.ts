@@ -4,8 +4,9 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { JwtDto } from 'src/app/model/jwt';
 import { Router } from '@angular/router';
-import { AuthService } from '@auth0/auth0-angular';
+import { AuthClientConfig, AuthService } from '@auth0/auth0-angular';
 import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,11 @@ export class LoginComponent implements OnInit {
   loginPassword: any;
   jwt: JwtDto | null = null;
   showErrorMessage: boolean = false;
+
+  responseJson: string ="";
+  audience = this.configFactory.get()?.audience;
+  hasApiError = false;
+  profileJson: string = "";
 
   setCookie(key: string, value: string) {
     this.cookieServ.set(key, value, undefined, "/");
@@ -31,10 +37,42 @@ export class LoginComponent implements OnInit {
     private cookieServ: CookieService,
     private router: Router,
     public auth: AuthService,
-    private toastr: ToastrService
+    private api: ApiService,
+    private toastr: ToastrService,
+    private configFactory: AuthClientConfig
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    //if(this.auth.user$ | async as user);
+    this.auth.user$.subscribe(
+      (data) => {
+        console.log(data);
+      },
+      (msg) => {
+        console.log(msg);
+      }
+    );
+    this.auth.user$.subscribe(
+      (profile) => {
+        this.profileJson = JSON.stringify(profile, null, 2);
+        console.log("Get users");
+        console.log(this.profileJson);
+        console.log(profile);
+      }
+    );
+    this.api.ping$().subscribe({
+      next: (res) => {
+        this.hasApiError = false;
+        this.responseJson = JSON.stringify(res, null, 2).trim();
+      },
+      error: () => this.hasApiError = true,
+    });
+    console.log(this.profileJson);
+
+    this.auth.idTokenClaims$.subscribe((claims) => console.log(claims));
+    this.auth.error$.subscribe((error) => console.log(error));
+
+  }
 
   onClickSubmit(data: { loginUsername: any; loginPassword: any }) {
     this.loginUsername = data.loginUsername;
@@ -42,15 +80,6 @@ export class LoginComponent implements OnInit {
     sessionStorage.setItem('username', this.loginUsername)
     sessionStorage.setItem('password', this.loginPassword)
     this.retreiveLoginUserButton(this.loginUsername, this.loginPassword);
-   //if(this.auth.user$ | async as user);
-    this.auth.user$.subscribe(
-        (data) => {
-        console.log( data);
-      },
-      (msg) => {
-        console.log( msg);
-      }
-    );
 
 
   }
@@ -70,8 +99,8 @@ export class LoginComponent implements OnInit {
       }
     );
 
-    this.auth.idTokenClaims$.subscribe((claims) => console.log(claims));
-    this.auth.error$.subscribe((error) => console.log(error));
+
+
   }
 
   loginWithAuth() {
