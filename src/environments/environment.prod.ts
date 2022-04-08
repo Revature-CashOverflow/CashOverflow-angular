@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiURL: 'http://18.233.7.153:5000',
+  apiURL: 'http://cashoverflow2-env.eba-vs9b3n6r.us-east-1.elasticbeanstalk.com',
 };
