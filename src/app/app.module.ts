@@ -3,6 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,11 +30,16 @@ import { BankAccountInfoComponent } from './components/bank-account-info/bank-ac
 import { BankAccountMoneyTransferComponent } from './page-layouts/bank-account-money-transfer/bank-account-money-transfer.component';
 import { ManageAccountBalanceComponent } from './page-layouts/manage-account-balance/manage-account-balance.component';
 import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
+<<<<<<< HEAD
 import { AuthModule } from '@auth0/auth0-angular';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
+=======
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { SettingsComponent } from './page-layouts/settings/settings.component'
+>>>>>>> 51da8631e4ade7e0ae8514302f40a7205e468373
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,12 +55,14 @@ import { AuthModule } from '@auth0/auth0-angular';
     RegisterPageComponent,
     NavbarLoginComponent,
     NavbarGeneralComponent,
+    ChangePasswordComponent,
     BankAccountRegisterPageComponent,
     BankAccountPageComponent,
     BankAccountInfoComponent,
     BankAccountMoneyTransferComponent,
     ManageAccountBalanceComponent,
     TransactionListComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -62,10 +72,16 @@ import { AuthModule } from '@auth0/auth0-angular';
     HttpClientModule,
     FormsModule,
     JwtModule,
+<<<<<<< HEAD
     AuthModule.forRoot({
       domain: 'dev-8qh2j-zl.us.auth0.com',
       clientId: 'BSbduxtx3CUlIc5uSRbQKID9EQrQXKWZ'
     })
+=======
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
+
+>>>>>>> 51da8631e4ade7e0ae8514302f40a7205e468373
   ],
   providers: [
     RegisterService,
