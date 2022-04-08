@@ -31,7 +31,8 @@ import { BankAccountMoneyTransferComponent } from './page-layouts/bank-account-m
 import { ManageAccountBalanceComponent } from './page-layouts/manage-account-balance/manage-account-balance.component';
 import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
-import { SettingsComponent } from './page-layouts/settings/settings.component'
+import { SettingsComponent } from './page-layouts/settings/settings.component';
+import { TransferMoneyBetweenUsersComponent } from './components/transfer-money-between-users/transfer-money-between-users.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +55,8 @@ import { SettingsComponent } from './page-layouts/settings/settings.component'
     BankAccountMoneyTransferComponent,
     ManageAccountBalanceComponent,
     TransactionListComponent,
-    SettingsComponent
+    SettingsComponent,
+    TransferMoneyBetweenUsersComponent
   ],
   imports: [
     BrowserModule,
