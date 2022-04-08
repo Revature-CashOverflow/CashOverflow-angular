@@ -37,6 +37,8 @@ export class LoginComponent implements OnInit {
   onClickSubmit(data: { loginUsername: any; loginPassword: any }) {
     this.loginUsername = data.loginUsername;
     this.loginPassword = data.loginPassword;
+    sessionStorage.setItem('username', this.loginUsername)
+    sessionStorage.setItem('password', this.loginPassword)
     this.retreiveLoginUserButton(this.loginUsername, this.loginPassword);
   }
 

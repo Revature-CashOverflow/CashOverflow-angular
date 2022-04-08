@@ -30,7 +30,8 @@ import { BankAccountInfoComponent } from './components/bank-account-info/bank-ac
 import { BankAccountMoneyTransferComponent } from './page-layouts/bank-account-money-transfer/bank-account-money-transfer.component';
 import { ManageAccountBalanceComponent } from './page-layouts/manage-account-balance/manage-account-balance.component';
 import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
-
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { SettingsComponent } from './page-layouts/settings/settings.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,13 +47,14 @@ import { TransactionListComponent } from './components/transaction-list/transact
     RegisterPageComponent,
     NavbarLoginComponent,
     NavbarGeneralComponent,
+    ChangePasswordComponent,
     BankAccountRegisterPageComponent,
     BankAccountPageComponent,
     BankAccountInfoComponent,
     BankAccountMoneyTransferComponent,
     ManageAccountBalanceComponent,
     TransactionListComponent,
-
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
