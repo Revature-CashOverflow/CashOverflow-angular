@@ -32,7 +32,8 @@ import { ManageAccountBalanceComponent } from './page-layouts/manage-account-bal
 import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { SettingsComponent } from './page-layouts/settings/settings.component';
-import { TransferMoneyBetweenUsersComponent } from './components/transfer-money-between-users/transfer-money-between-users.component'
+import { TransferMoneyBetweenUsersComponent } from './components/transfer-money-between-users/transfer-money-between-users.component';
+
 @NgModule({
   declarations: [
     AppComponent,
