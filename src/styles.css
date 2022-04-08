@@ -12,10 +12,10 @@ body {
 }
 
 body.dark-theme {
---text-color: #eee;
---bkg-color: #252222;
---btn-txt-color: rgb(46, 43, 43);
---btn-bg-color: rgb(20, 211, 195);
+  --text-color: #eee;
+  --bkg-color: #252222;
+  --btn-txt-color: rgb(46, 43, 43);
+  --btn-bg-color: rgb(20, 211, 195);
 }
 
 button {
@@ -27,6 +27,11 @@ button {
 }
 
 nav {
+  background-color: var(--bkg-color);
+  color: var(--text-color);
+}
+
+.card {
   background-color: var(--bkg-color);
   color: var(--text-color);
 }
