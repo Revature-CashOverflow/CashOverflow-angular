@@ -22,6 +22,7 @@ export class ChangePasswordComponent implements OnInit {
   errorMessage:string = ''
 
   changePasswordForm = new FormGroup({
+    currentPassword: new FormControl(''),
     newPassword: new FormControl(''),
     retypePassword: new FormControl(''),
   })
@@ -33,62 +34,71 @@ export class ChangePasswordComponent implements OnInit {
 
   changePassword(){
 
-    if(this.changePasswordForm.controls['newPassword'].value == this.changePasswordForm.controls['retypePassword'].value){
+    let password = sessionStorage.getItem('password')
+    let username = sessionStorage.getItem('username')
 
-      let newPassword = this.changePasswordForm.controls['newPassword'].value
+    if(this.changePasswordForm.controls['currentPassword'].value == password){
 
-      if(newPassword.length > 7){
+      if(this.changePasswordForm.controls['newPassword'].value == this.changePasswordForm.controls['retypePassword'].value){
 
-        for(let i in newPassword){
+        let newPassword = this.changePasswordForm.controls['newPassword'].value
 
-          var specialCharactersPattern = /^[!@#\$%\^\&*\)\(+=._-]$/g
-          if(specialCharactersPattern.test(newPassword[i])){
-            this.numberOfSpecialCharacter++
-            if(this.numberOfSpecialCharacter >= 2){
-              this.specialValid = true
+        if(newPassword.length > 7){
+
+          for(let i in newPassword){
+
+            var specialCharactersPattern = /^[!@#\$%\^\&*\)\(+=._-]$/g
+            if(specialCharactersPattern.test(newPassword[i])){
+              this.numberOfSpecialCharacter++
+              if(this.numberOfSpecialCharacter >= 2){
+                this.specialValid = true
+              }
             }
+
+            var numberPattern = /^[0-9]$/g
+            if(numberPattern.test(newPassword[i])){
+              this.numberOfNumbers++
+              if(this.numberOfNumbers >= 2){
+                this.numberValid = true
+              }
+            }
+
+            var numberPattern = /^[A-Z]$/g
+            if(numberPattern.test(newPassword[i])){
+              this.numberOfCapitalCharacters++
+              if(this.numberOfCapitalCharacters >= 2){
+                this.capitalCharactersValid = true
+              }
+            }
+
           }
 
-          var numberPattern = /^[0-9]$/g
-          if(numberPattern.test(newPassword[i])){
-            this.numberOfNumbers++
-            if(this.numberOfNumbers >= 2){
-              this.numberValid = true
-            }
+          if(this.specialValid && this.numberValid && this.capitalCharactersValid){
+            this.errorMessage = ''
+            this.changePassServ.sendPasswordData(username, newPassword).subscribe(
+              (data) => {
+                this.changePasswordSuccess = 1
+              },
+              (error: HttpErrorResponse) => {
+                this.changePasswordSuccess = 2
+              }
+            )
+          }else{
+            this.errorMessage = 'The new password must contain at least two special characters, Two numbers and two capital characters.'
           }
 
-          var numberPattern = /^[A-Z]$/g
-          if(numberPattern.test(newPassword[i])){
-            this.numberOfCapitalCharacters++
-            if(this.numberOfCapitalCharacters >= 2){
-              this.capitalCharactersValid = true
-            }
-          }
-
-        }
-
-        if(this.specialValid && this.numberValid && this.capitalCharactersValid){
-          this.errorMessage = ''
-          this.changePassServ.sendPasswordData(this.changePasswordForm.value).subscribe(
-            (data) => {
-              this.changePasswordSuccess = 1
-            },
-            (error: HttpErrorResponse) => {
-              this.changePasswordSuccess = 2
-            }
-          )
         }else{
-          this.errorMessage = 'The new password must contain at least two special characters, Two numbers and two capital characters.'
+          this.errorMessage = 'The password must be at least 8 characters long.'
         }
+
 
       }else{
-        this.errorMessage = 'The password must be at least 8 characters long.'
+        this.errorMessage = 'The passwords do not match.'
       }
-
-
     }else{
-      this.errorMessage = 'The passwords do not match.'
+      this.errorMessage = 'The current password doesnt match'
     }
+
 
   }
 

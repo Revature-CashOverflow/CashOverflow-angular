@@ -9,18 +9,19 @@ import { environment } from 'src/environments/environment';
 export class ChangePasswordService {
   constructor(private http: HttpClient) {}
 
-  /**
-   * Added headers to cope with CORS errors
-   * @author Cameron, Amir, Chandra
-   */
-  sendPasswordData(changePasswordForm) {
+  sendPasswordData(username, newPassword){
 
     const headers= new HttpHeaders()
     .set('content-type', 'application/json')
     .set('Access-Control-Allow-Origin', `${environment.apiURL}/changePassword`);
-     let options = { headers: headers };
 
-    return this.http.post(`${environment.apiURL}/changePassword`, changePasswordForm, options);
+    let options = { headers: headers };
+
+    let payload = {
+      username:username,
+      newPassword:newPassword
+    }
+    return this.http.put<any>(`${environment.apiURL}/changePassword`, payload, options)
 
   }
 }
