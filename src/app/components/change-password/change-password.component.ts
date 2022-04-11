@@ -105,7 +105,7 @@ export class ChangePasswordComponent implements OnInit {
       }
     }else{
       if(this.numberOfAttempts != 0){
-        this.errorMessage = `The current password doesnt match ${this.numberOfAttempts} attenpts remaining.`
+        this.errorMessage = `The current password doesnt match ${this.numberOfAttempts} attempts remaining.`
         this.numberOfAttempts--;
       }else{
         this.cookieServ.delete('token', '/');
