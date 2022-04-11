@@ -81,7 +81,7 @@ export class ChangePasswordComponent implements OnInit {
             this.errorMessage = ''
             this.changePassServ.sendPasswordData(username, newPassword).subscribe(
               (data) => {
-                if(data == true){
+                if(data){
                   this.toastr.success('You have successfully changed your password. Please log back in with your new password.', `Password Changed!`);
                   this.cookieServ.delete('token', '/');
                   this.router.navigate(['/login']);
