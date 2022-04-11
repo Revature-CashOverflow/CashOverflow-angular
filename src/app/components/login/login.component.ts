@@ -43,34 +43,13 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    //if(this.auth.user$ | async as user);
-    this.auth.user$.subscribe(
-      (data) => {
-        console.log(data);
-      },
-      (msg) => {
-        console.log(msg);
-      }
-    );
     this.auth.user$.subscribe(
       (profile) => {
-        this.profileJson = JSON.stringify(profile, null, 2);
-        console.log("Get users");
+        (this.profileJson = JSON.stringify(profile, null, 2));
         console.log(this.profileJson);
-        console.log(profile);
-      }
-    );
-    this.api.ping$().subscribe({
-      next: (res) => {
-        this.hasApiError = false;
-        this.responseJson = JSON.stringify(res, null, 2).trim();
-      },
-      error: () => this.hasApiError = true,
-    });
-    console.log(this.profileJson);
 
-    this.auth.idTokenClaims$.subscribe((claims) => console.log(claims));
-    this.auth.error$.subscribe((error) => console.log(error));
+      }
+    )
 
   }
 
@@ -104,19 +83,8 @@ export class LoginComponent implements OnInit {
   }
 
   loginWithAuth() {
-    this.auth.loginWithRedirect();
-    this.auth.idTokenClaims$.subscribe((claims) => console.log(claims));
-
-
+    this.auth.loginWithPopup();
   }
-
-  /*
-  Error!Payload validation error:
-  'Object didn't pass validation for format absolute-https-uri-or-empty:
-   https://localhost:4200/login' on property initiate_login_uri (Initiate login uri, must be https).
-  */
-
-
 
   success(): void {
     this.toastr.success('Login Success!', `You have been successfully logged in as: ${this.loginUsername}`);

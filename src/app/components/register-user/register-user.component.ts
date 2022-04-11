@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { RegisterService } from '../../service/register/register.service';
 import { Observable, ObservedValueOf } from 'rxjs';
+import { AuthService } from '@auth0/auth0-angular';
 
 
 /**
@@ -21,6 +22,7 @@ export class RegisterUserComponent implements OnInit {
   regSuccess: number = 0;
   password: string = '';
   password2: string = '';
+  profileJson: string = "";
 
   registerForm = new FormGroup({
     username: new FormControl(''),
@@ -30,9 +32,19 @@ export class RegisterUserComponent implements OnInit {
     email: new FormControl(''),
   });
 
-  constructor(private regServ: RegisterService, private toastr: ToastrService) {}
+  constructor(private regServ: RegisterService, private toastr: ToastrService, private auth: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.auth.user$.subscribe(
+      (profile) => {
+        (this.profileJson = JSON.stringify(profile, null, 2));
+        console.log("Hi all");
+
+        console.log(this.profileJson);
+
+      }
+    )
+  }
 
   /**
    * Logic checks for password mismatch then calls the service method to send form data to the Java backend.
