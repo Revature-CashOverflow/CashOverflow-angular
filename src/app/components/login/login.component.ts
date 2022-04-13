@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { AuthClientConfig, AuthService } from '@auth0/auth0-angular';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/api.service';
+import { RegisterService } from 'src/app/service/register/register.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -16,13 +18,21 @@ import { ApiService } from 'src/app/api.service';
 export class LoginComponent implements OnInit {
   loginUsername: any;
   loginPassword: any;
+  data;//Used for logging in w/ auth0 purposes
   jwt: JwtDto | null = null;
   showErrorMessage: boolean = false;
+  registerForm = new FormGroup({
+    username: new FormControl(''),
+    password: new FormControl(''),
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    email: new FormControl(''),
+  });
 
-  responseJson: string ="";
   audience = this.configFactory.get()?.audience;
   hasApiError = false;
-  profileJson: string = "";
+  // profileJson: string = "";
+  loggedInWithAuth0: boolean = false;
 
   setCookie(key: string, value: string) {
     this.cookieServ.set(key, value, undefined, "/");
@@ -39,15 +49,42 @@ export class LoginComponent implements OnInit {
     public auth: AuthService,
     private api: ApiService,
     private toastr: ToastrService,
-    private configFactory: AuthClientConfig
+    private configFactory: AuthClientConfig,
+    private regServ: RegisterService,
   ) {}
 
   ngOnInit(): void {
     this.auth.user$.subscribe(
       (profile) => {
-        (this.profileJson = JSON.stringify(profile, null, 2));
-        console.log(this.profileJson);
 
+        //This isn't used anywhere, but it might be nice to save this
+        // (this.profileJson = JSON.stringify(profile, null, 2));
+        //These 2 should always exist
+        //If not, something about auth0 is weird and will need debugging
+        this.loginUsername = profile?.nickname;
+        //A security concern, should be fixed someother way
+        //Perhaps let the database register users without passwords?
+        this.loginPassword = profile?.sub;
+        //Login  for signing in
+        this.data = {
+          loginUsername: this.loginUsername+this.loginPassword,//This ensures all usernames are unique
+          loginPassword:this.loginPassword
+        };
+        this.data.loginUsername = this.data.loginUsername.substring(0, 19);//A username can only be 20 characters long
+        //regristration info, shouldn't be used unless actually regristering though
+        this.registerForm.setValue({
+          username: this.data.loginUsername,
+          password: this.loginPassword,
+          firstName: (profile?.given_name || "fName"),
+          lastName: profile?.family_name || "LName",
+          //This should always have an email, unless auth0 allows a service that doesn't have emails
+          //If so, the email will be default to that
+          email: profile?.email || "fake@mail.com"
+        })
+        this.loggedInWithAuth0 = true;
+        // console.log("Only works if there is a user?");
+        // console.log(this.profileJson);
+         this.onClickSubmit(this.data);
       }
     )
 
@@ -59,8 +96,6 @@ export class LoginComponent implements OnInit {
     sessionStorage.setItem('username', this.loginUsername)
     sessionStorage.setItem('password', this.loginPassword)
     this.retreiveLoginUserButton(this.loginUsername, this.loginPassword);
-
-
   }
 
   retreiveLoginUserButton(username: any, password: any) {
@@ -73,7 +108,9 @@ export class LoginComponent implements OnInit {
         this.success();
       },
       (msg) => {
+        if (!this.loggedInWithAuth0) {
         this.showErrorMessage = true;
+        }
         this.error();
       }
     );
@@ -83,6 +120,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginWithAuth() {
+    this.loggedInWithAuth0 = true;
     this.auth.loginWithPopup();
   }
 
@@ -91,7 +129,39 @@ export class LoginComponent implements OnInit {
   }
 
   error(): void {
-    this.toastr.error('Login Error', 'Password/Username authentication error');
+    if (!this.loggedInWithAuth0) {
+      this.toastr.error('Login Error', 'Password/Username authentication error');
+    }
+    else {
+
+      //This should only ever run if a user is not already registered
+      //In the database with Auth0
+
+      //Also, no idea why, but this needs to be here
+      //Don't remove unless you want to debug this
+      for(let item in this.registerForm){
+      if(item){
+      }
+      }
+
+      this.regServ.sendRegisterData(this.registerForm.value).subscribe(
+        (data) => {
+              //No reason to show a succesful regristration
+              //For when you are logging in through Auth0
+              // this.success(sl);
+              this.onClickSubmit(this.data);
+          },
+          (error: HttpErrorResponse) => {
+            this.auth0Error();
+            console.log("Can't register for some reason");
+
+          }
+        );
+    }
+
+  }
+  auth0Error(): void {
+    this.toastr.error('Register Error', 'Unable to register an account with Auth0. Please try again later or contact technical support.');
   }
 
 }

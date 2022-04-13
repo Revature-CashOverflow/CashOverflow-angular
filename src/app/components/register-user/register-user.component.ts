@@ -22,7 +22,7 @@ export class RegisterUserComponent implements OnInit {
   regSuccess: number = 0;
   password: string = '';
   password2: string = '';
-  profileJson: string = "";
+  // profileJson: string = "";
 
   registerForm = new FormGroup({
     username: new FormControl(''),
@@ -35,15 +35,7 @@ export class RegisterUserComponent implements OnInit {
   constructor(private regServ: RegisterService, private toastr: ToastrService, private auth: AuthService) {}
 
   ngOnInit(): void {
-    this.auth.user$.subscribe(
-      (profile) => {
-        (this.profileJson = JSON.stringify(profile, null, 2));
-        console.log("Hi all");
 
-        console.log(this.profileJson);
-
-      }
-    )
   }
 
   /**
@@ -63,10 +55,10 @@ export class RegisterUserComponent implements OnInit {
 
 
 
-    for(let item in this.registerForm){
-      if(item){
-      }
-    }
+    // for(let item in this.registerForm){
+    //   if(item){
+    //   }
+    // }
 
 
     this.regServ.sendRegisterData(this.registerForm.value).subscribe(
