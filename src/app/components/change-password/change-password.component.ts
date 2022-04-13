@@ -67,20 +67,14 @@ export class ChangePasswordComponent implements OnInit {
     var numberPattern = /^[0-9]$/g
     var upperPattern = /^[A-Z]$/g
     for (let i in newPassword) {
-      console.log(i);
-
       if(specialCharactersPattern.test(newPassword[i])){
         this.numberOfSpecialCharacter++
-        console.log(newPassword[i]);
-
       }
       else if(numberPattern.test(newPassword[i])){
         this.numberOfNumbers++
-        console.log(newPassword[i]);
       }
       else if(upperPattern.test(newPassword[i])){
         this.numberOfCapitalCharacters++
-        console.log(newPassword[i]);
       }
     }
 
@@ -96,13 +90,6 @@ export class ChangePasswordComponent implements OnInit {
 
     if (!this.specialValid || !this.numberValid || !this.capitalCharactersValid) {
       this.errorMessage = 'The new password must contain at least two special characters, Two numbers and two capital characters.'
-      console.log("Specials: "+this.specialValid);
-      console.log("Numbers: " + this.numberValid);
-      console.log("Capitals: " + this.capitalCharactersValid);
-      console.log("Specials: "+this.numberOfSpecialCharacter);
-      console.log("Numbers: " + this.numberOfNumbers);
-      console.log("Capitals: "+this.numberOfCapitalCharacters);
-
       return;
     }
 

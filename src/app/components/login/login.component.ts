@@ -136,10 +136,11 @@ export class LoginComponent implements OnInit {
       //This should only ever run if a user is not already registered
       //In the database with Auth0
 
-      //Also, no idea why, but this needs to be here
-      //Don't remove unless you want to debug this
+
       for(let item in this.registerForm){
-      if(item){
+        if (item) {
+        //Also, no idea why, but this needs to be here
+        //Don't remove unless you want to debug this
       }
       }
 

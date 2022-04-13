@@ -1,8 +1,9 @@
-// import {domain, clientId} from '../../auth_config.json';
-// import * as auth from '../../auth_config.json';
 import { default as auth } from '../../auth_config.json';
 
+//use below if throws error
 // import auth from '../../auth_config.json';
+// import {domain, clientId} from '../../auth_config.json';
+// import * as auth from '../../auth_config.json';
 
 //If this throws a error:
 
