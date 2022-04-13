@@ -1,3 +1,5 @@
+import { RequestsService } from './../../service/requests.service';
+import { UserTransfer } from './../../model/user-transfer';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -12,9 +14,17 @@ import { BankAccountService } from 'src/app/service/bankAccount/bank-account.ser
 })
 export class TransferMoneyBetweenUsersComponent implements OnInit {
   bankAccounts: BankAccount[] = [];
+  requests: UserTransfer[] = [];
+  currentRequest: UserTransfer | undefined;
   currentBankAccount: BankAccount | undefined;
   showErrorMessage: boolean = false;
 
+  requestForm = new FormGroup({
+    sendOrReceive: new FormControl(''),
+    user: new FormControl(''),
+    transferAccount: new FormControl(''),
+    transferAmount: new FormControl(),
+  });
 
   transferForm = new FormGroup({
     sendOrReceive: new FormControl(''),
@@ -26,7 +36,8 @@ export class TransferMoneyBetweenUsersComponent implements OnInit {
   constructor(
     private bankAccountService: BankAccountService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private requestService: RequestsService
   ) {}
 
   onSubmit() {
@@ -45,8 +56,31 @@ export class TransferMoneyBetweenUsersComponent implements OnInit {
       );
   }
 
+  userSubmit() {
+    console.log(this.transferForm.value);
+    this.bankAccountService
+      .transferFundsBetweenUsers(this.transferForm.value)
+      .subscribe(
+        (resp) => {
+          this.success();
+          this.router.navigate(['/feed']);
+        },
+        (msg) => {
+          this.error();
+          this.showErrorMessage = true;
+        }
+      );
+  }
+
   ngOnInit(): void {
     this.bankAccounts = this.bankAccountService.getBankAccounts();
+    this.populateRequestArray();
+  }
+
+  populateRequestArray() {
+    this.requestService.getUserTransfer().subscribe((data) => {
+      this.requests = data;
+    });
   }
 
   success(): void {
