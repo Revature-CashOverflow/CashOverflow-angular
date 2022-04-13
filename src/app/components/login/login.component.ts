@@ -51,7 +51,12 @@ export class LoginComponent implements OnInit {
     private toastr: ToastrService,
     private configFactory: AuthClientConfig,
     private regServ: RegisterService,
-  ) {}
+  ) {
+    this.formdata= new FormGroup({
+    loginUsername: new FormControl(),
+    loginPassword: new FormControl(),
+  });
+  }
 
   ngOnInit(): void {
     this.auth.user$.subscribe(
