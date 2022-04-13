@@ -33,6 +33,7 @@ import { TransactionListComponent } from './components/transaction-list/transact
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { SettingsComponent } from './page-layouts/settings/settings.component';
 import { TransferMoneyBetweenUsersComponent } from './components/transfer-money-between-users/transfer-money-between-users.component';
+import { BankAccountUserTransferComponent } from './page-layouts/bank-account-user-transfer/bank-account-user-transfer.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { TransferMoneyBetweenUsersComponent } from './components/transfer-money-
     ManageAccountBalanceComponent,
     TransactionListComponent,
     SettingsComponent,
-    TransferMoneyBetweenUsersComponent
+    TransferMoneyBetweenUsersComponent,
+    BankAccountUserTransferComponent
   ],
   imports: [
     BrowserModule,

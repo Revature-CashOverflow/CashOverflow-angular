@@ -11,6 +11,7 @@ import { BankAccountMoneyTransferComponent } from './page-layouts/bank-account-m
 import { ManageAccountBalanceComponent } from './page-layouts/manage-account-balance/manage-account-balance.component';
 import { SettingsComponent } from './page-layouts/settings/settings.component';
 import { TransferMoneyBetweenUsersComponent } from './components/transfer-money-between-users/transfer-money-between-users.component';
+import { BankAccountUserTransferComponent } from './page-layouts/bank-account-user-transfer/bank-account-user-transfer.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -23,7 +24,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterPageComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'settings', component: SettingsComponent},
-  { path: 'transferMoneyBetweenUsers', component: TransferMoneyBetweenUsersComponent},
+  { path: 'transferMoneyBetweenUsers', component: BankAccountUserTransferComponent, canActivate: [CanActivateRouteGuard]},
   { path: '**', redirectTo: '/feed' }
 ];
 

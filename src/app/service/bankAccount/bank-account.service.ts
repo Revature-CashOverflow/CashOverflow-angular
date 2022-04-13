@@ -1,3 +1,4 @@
+import { UserTransfer } from './../../model/user-transfer';
 import { Injectable } from '@angular/core';
 import { BankAccount } from '../../model/bank-account';
 import { FundTransfer } from 'src/app/model/fund-transfer';
@@ -16,6 +17,7 @@ export class BankAccountService {
   private getTransactionsUrl = `${environment.apiURL}/getTransactions`;
   private setBankAccountsUrl = `${environment.apiURL}/api/account/createBankAccount`;
   private fundTransferUrl = `${environment.apiURL}/api/account/transferFunds`;
+  private userTransferUrl = `${environment.apiURL}/api/account/betweenUsers`;
   bankAccounts: BankAccount[] = [];
   currentBankAccounts: BankAccount = {
     id: 0,
@@ -109,6 +111,21 @@ export class BankAccountService {
     );
   }
 
+  transferFundsBetweenUsers(fundTransfer: UserTransfer) {
+    console.log('fund transfer :', fundTransfer);
+    let httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: this.cookieServ.get('token'),
+    });
+    let options = { headers: httpHeaders };
+
+    return this.myHttpClient.post<HttpResponse<any>>(
+      this.userTransferUrl,
+      fundTransfer,
+      options
+    );
+  }
   /**
    * Added headers to cope with CORS errors
    * @author Cameron, Amir, Chandra
