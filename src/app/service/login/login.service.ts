@@ -22,7 +22,6 @@ export class LoginService {
       username: loginUsername,
       password: loginPassword,
     };
-
     return this.httpCli.post<JwtDto>(loginUrl, user, { headers: httpHeaders });
   }
 }

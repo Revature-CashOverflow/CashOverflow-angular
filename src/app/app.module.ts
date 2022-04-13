@@ -5,8 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FeedComponent } from './components/feed/feed.component';
@@ -30,8 +28,12 @@ import { BankAccountInfoComponent } from './components/bank-account-info/bank-ac
 import { BankAccountMoneyTransferComponent } from './page-layouts/bank-account-money-transfer/bank-account-money-transfer.component';
 import { ManageAccountBalanceComponent } from './page-layouts/manage-account-balance/manage-account-balance.component';
 import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
+import { AuthModule } from '@auth0/auth0-angular';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
-import { SettingsComponent } from './page-layouts/settings/settings.component'
+import { SettingsComponent } from './page-layouts/settings/settings.component';
+import { environment as env}  from 'src/environments/environment';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,6 +66,9 @@ import { SettingsComponent } from './page-layouts/settings/settings.component'
     HttpClientModule,
     FormsModule,
     JwtModule,
+    AuthModule.forRoot({
+      ...env.auth
+    }),
     BrowserAnimationsModule,
     ToastrModule.forRoot()
 
