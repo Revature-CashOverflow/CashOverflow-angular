@@ -11,6 +11,7 @@ export class NavbarGeneralComponent  {
     //Get rid of the constructor?
   }
 
-
-
+  toggleDarkTheme(): void {
+    document.body.classList.toggle('dark-theme');
+ }
 }

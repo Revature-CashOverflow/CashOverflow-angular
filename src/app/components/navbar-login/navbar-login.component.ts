@@ -12,4 +12,7 @@ export class NavbarLoginComponent{
 
 
 
+  toggleDarkTheme(): void {
+    document.body.classList.toggle('dark-theme');
+ }
 }
