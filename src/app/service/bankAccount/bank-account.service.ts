@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
 import { environment } from 'src/environments/environment';
 import { Transaction } from 'src/app/model/transaction';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',

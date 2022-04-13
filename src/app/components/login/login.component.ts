@@ -106,7 +106,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/feed']);
         this.success();
       },
-      (msg) => {
+      (_msg) => {
         if (!this.loggedInWithAuth0) {
         this.showErrorMessage = true;
         }

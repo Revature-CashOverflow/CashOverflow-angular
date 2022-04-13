@@ -52,17 +52,19 @@ export class RegisterUserComponent{
 
 
     for(let item in this.registerForm){
-      if(item){
+      if (item) {
+        //Needed for some reason?
+        //Breaks without this
       }
     }
 
 
     this.regServ.sendRegisterData(this.registerForm.value).subscribe(
-      (data) => {
+      (_data) => {
         this.regSuccess = 1;
         this.success();
       },
-      (error: HttpErrorResponse) => {
+      (_error: HttpErrorResponse) => {
         this.regSuccess = 2;
         this.error();
       }
