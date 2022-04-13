@@ -35,17 +35,4 @@ export class RequestsService {
       headers: httpHeaders,
     });
   }
-  setUserTransfer(userTransfer: object): Observable<UserTransfer> {
-    let httpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-      Authorization: this.cookieServ.get('token'),
-    });
-
-    return this.myHttpClient.post<UserTransfer>(
-      this.setBankAccountsUrl,
-      JSON.stringify(bankAccount),
-      { headers: httpHeaders }
-    );
-  }
 }
