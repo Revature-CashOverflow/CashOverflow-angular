@@ -12,6 +12,7 @@ body {
 }
 
 body.dark-theme {
+  background-image: url('https://graef-usa.com/wp-content/uploads/Projects/Milwaukee%20Art%20Museum/Milwaukee%20Art%20Museum%20Addition_Int.%20w%20People_01.jpg');
   --text-color: #eee;
   --bkg-color: #252222;
   --btn-txt-color: rgb(46, 43, 43);
