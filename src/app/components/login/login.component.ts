@@ -81,9 +81,8 @@ export class LoginComponent implements OnInit {
           //If so, the email will be default to that
           email: profile?.email || "fake@mail.com"
         })
+        //Only runs if there is a logged in user
         this.loggedInWithAuth0 = true;
-        // console.log("Only works if there is a user?");
-        // console.log(this.profileJson);
          this.onClickSubmit(this.data);
       }
     )
@@ -145,7 +144,7 @@ export class LoginComponent implements OnInit {
       }
 
       this.regServ.sendRegisterData(this.registerForm.value).subscribe(
-        (data) => {
+        (_data) => {
               //No reason to show a succesful regristration
               //For when you are logging in through Auth0
               // this.success(sl);
@@ -154,6 +153,8 @@ export class LoginComponent implements OnInit {
           (error: HttpErrorResponse) => {
             this.auth0Error();
             console.log("Can't register for some reason");
+            console.log(error);
+
 
           }
         );

@@ -29,8 +29,6 @@ import { BankAccountMoneyTransferComponent } from './page-layouts/bank-account-m
 import { ManageAccountBalanceComponent } from './page-layouts/manage-account-balance/manage-account-balance.component';
 import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
 import { AuthModule } from '@auth0/auth0-angular';
-
-// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { SettingsComponent } from './page-layouts/settings/settings.component';
 import { environment as env}  from 'src/environments/environment';
