@@ -33,11 +33,11 @@ export class TransferMoneyOwnedComponent implements OnInit {
     this.bankAccountService
       .transferFundsOwned(this.transferForm.value)
       .subscribe(
-        (resp) => {
+        (_resp) => {
           this.success();
           this.router.navigate(['/feed']);
         },
-        (msg) => {
+        (_msg) => {
           this.error();
           this.showErrorMessage = true;
         }

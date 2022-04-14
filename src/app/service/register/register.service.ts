@@ -13,6 +13,7 @@ export class RegisterService {
    * @author Cameron, Amir, Chandra
    */
   sendRegisterData(registerForm) {
+    console.log("Sending regristartion");
 
     const headers= new HttpHeaders()
     .set('content-type', 'application/json')
