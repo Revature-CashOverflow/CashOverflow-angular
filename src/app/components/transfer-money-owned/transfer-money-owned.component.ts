@@ -1,5 +1,5 @@
-import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { BankAccount } from '../../model/bank-account';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BankAccountService } from '../../service/bankAccount/bank-account.service';
