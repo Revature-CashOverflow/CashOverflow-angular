@@ -3,6 +3,7 @@ export interface UserTransfer {
     sendOrReceive: number,
     originUser: string,
     user: string,
+    receiveAccount: number,
     transferAccount: number,
     transferAmount: number,
 }

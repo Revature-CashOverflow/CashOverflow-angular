@@ -20,17 +20,14 @@ export class TransferMoneyBetweenUsersComponent implements OnInit {
   showErrorMessage: boolean = false;
 
   requestForm = new FormGroup({
-    sendOrReceive: new FormControl(''),
-    user: new FormControl(''),
-    transferAccount: new FormControl(''),
-    transferAmount: new FormControl(),
+    receiveAccount: new FormControl(''),
   });
 
   transferForm = new FormGroup({
     sendOrReceive: new FormControl(''),
     user: new FormControl(''),
     transferAccount: new FormControl(''),
-    transferAmount: new FormControl(),
+    transferAmount: new FormControl(''),
   });
 
   constructor(
@@ -56,10 +53,12 @@ export class TransferMoneyBetweenUsersComponent implements OnInit {
       );
   }
 
-  userSubmit() {
-    console.log(this.transferForm.value);
-    this.bankAccountService
-      .transferFundsBetweenUsers(this.transferForm.value)
+  userSubmit(request: UserTransfer) {
+
+    this.currentRequest = request;
+    console.log(this.currentRequest);
+    this.requestService
+      .sendUserTransfer(this.currentRequest, this.requestForm.value)
       .subscribe(
         (resp) => {
           this.success();
