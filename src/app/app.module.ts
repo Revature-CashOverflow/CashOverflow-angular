@@ -62,17 +62,12 @@ import { BankAccountUserTransferComponent } from './page-layouts/bank-account-us
     ManageAccountBalanceComponent,
     TransactionListComponent,
     SettingsComponent,
-<<<<<<< HEAD
     ChangeFirstNameComponent,
     ChangeLastNameComponent,
     ChangeEmailComponent,
-    LinkAccountComponent
-
-
-=======
+    LinkAccountComponent,
     TransferMoneyBetweenUsersComponent,
     BankAccountUserTransferComponent
->>>>>>> 450214d0fe24dd9a5a6f242dfb73d71c7edc5d79
   ],
   imports: [
     BrowserModule,

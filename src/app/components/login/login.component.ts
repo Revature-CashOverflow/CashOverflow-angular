@@ -72,24 +72,24 @@ export class LoginComponent implements OnInit {
 
         //A security concern, should be fixed someother way
         //Perhaps let the database register users without passwords?
-        this.loginPassword = "";
+        this.loginPassword = profile?.sub;
         //Login  for signing in
         this.data = {
-          loginUsername: this.loginUsername,//This ensures all usernames are unique
-          loginPassword:this.loginPassword
+          loginUsername: this.loginUsername, //This ensures all usernames are unique
+          loginPassword: this.loginPassword,
         };
-        this.data.loginUsername = this.data.loginUsername.substring(0, 19);//A username can only be 20 characters long
+        this.data.loginUsername = this.data.loginUsername.substring(0, 19); //A username can only be 20 characters long
         //regristration info, shouldn't be used unless actually regristering though
-        this.registerForm ={
+        this.registerForm = {
           username: this.data.loginUsername,
-          password: "",
-          firstName: (profile?.given_name || "fName"),
-          lastName: profile?.family_name || "LName",
+          password: this.loginPassword,
+          firstName: profile?.given_name || 'fName',
+          lastName: profile?.family_name || 'LName',
           //This should always have an email, unless auth0 allows a service that doesn't have emails
           //If so, the email will be default to that
-          email: profile?.email || "fake@mail.com",
-          auth0User: true
-        }
+          email: profile?.email || 'fake@mail.com',
+          auth0User: true,
+        };
 
         //Only runs if there is a logged in user
         this.loggedInWithAuth0 = true;
