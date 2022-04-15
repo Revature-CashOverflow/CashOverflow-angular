@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 import {  HttpErrorResponse } from '@angular/common/http';
 import {  FormControl, FormGroup } from '@angular/forms';
 import { RegisterService } from '../../service/register/register.service';
-import { AuthService } from '@auth0/auth0-angular';
+import { Observable, ObservedValueOf } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 /**
@@ -32,7 +33,7 @@ export class RegisterUserComponent{
     auth0User: new FormControl(false),
   });
 
-  constructor(private regServ: RegisterService, private toastr: ToastrService, private auth: AuthService) {}
+  constructor(private regServ: RegisterService, private toastr: ToastrService, private router: Router) {}
 
 
   /**
@@ -64,6 +65,7 @@ export class RegisterUserComponent{
       (_data) => {
         this.regSuccess = 1;
         this.success();
+
       },
       (_error: HttpErrorResponse) => {
         this.regSuccess = 2;
@@ -74,6 +76,8 @@ export class RegisterUserComponent{
 
   success(): void {
     this.toastr.success('Registration Success!', `You have been successfully registered`);
+    this.router.navigateByUrl('/login');
+
   }
 
   passwordMatchError(): void {

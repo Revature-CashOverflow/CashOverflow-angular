@@ -36,7 +36,8 @@ import { ChangeFirstNameComponent } from './components/change-first-name/change-
 import { ChangeLastNameComponent } from './components/change-last-name/change-last-name.component';
 import { ChangeEmailComponent } from './components/change-email/change-email.component';
 import { LinkAccountComponent } from './components/link-account/link-account.component';
-
+import { TransferMoneyBetweenUsersComponent } from './components/transfer-money-between-users/transfer-money-between-users.component';
+import { BankAccountUserTransferComponent } from './page-layouts/bank-account-user-transfer/bank-account-user-transfer.component';
 
 @NgModule({
   declarations: [
@@ -61,12 +62,17 @@ import { LinkAccountComponent } from './components/link-account/link-account.com
     ManageAccountBalanceComponent,
     TransactionListComponent,
     SettingsComponent,
+<<<<<<< HEAD
     ChangeFirstNameComponent,
     ChangeLastNameComponent,
     ChangeEmailComponent,
     LinkAccountComponent
 
 
+=======
+    TransferMoneyBetweenUsersComponent,
+    BankAccountUserTransferComponent
+>>>>>>> 450214d0fe24dd9a5a6f242dfb73d71c7edc5d79
   ],
   imports: [
     BrowserModule,
