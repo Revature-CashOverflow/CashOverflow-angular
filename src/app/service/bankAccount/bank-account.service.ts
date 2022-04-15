@@ -95,7 +95,7 @@ export class BankAccountService {
    * @params string,string,number
    */
   transferFundsOwned(fundTransfer: FundTransfer) {
-    console.log('fund transfer :', fundTransfer);
+    //console.log('fund transfer :', fundTransfer);
     let httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
       Accept: 'application/json',

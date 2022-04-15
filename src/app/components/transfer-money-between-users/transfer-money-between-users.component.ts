@@ -44,7 +44,8 @@ export class TransferMoneyBetweenUsersComponent implements OnInit {
       .subscribe(
         (resp) => {
           this.success();
-          this.router.navigate(['/feed']);
+          this.ngOnInit();
+          //this.router.navigate(['/feed']);
         },
         (msg) => {
           this.error();
@@ -62,7 +63,8 @@ export class TransferMoneyBetweenUsersComponent implements OnInit {
       .subscribe(
         (resp) => {
           this.success();
-          this.router.navigate(['/feed']);
+          this.ngOnInit();
+          //this.router.navigate(['/feed']);
         },
         (msg) => {
           this.error();
@@ -80,6 +82,25 @@ export class TransferMoneyBetweenUsersComponent implements OnInit {
     this.requestService.getUserTransfer().subscribe((data) => {
       this.requests = data;
     });
+  }
+
+  deny(request: UserTransfer) : void{
+    this.currentRequest = request;
+    console.log(this.currentRequest);
+    
+    this.requestService
+      .deleteUserTransfer(this.currentRequest, this.requestForm.value)
+      .subscribe(
+        (resp) => {
+          this.success();
+          this.ngOnInit();
+          //this.router.navigate(['/feed']);
+        },
+        (msg) => {
+          this.error();
+          this.showErrorMessage = true;
+        }
+      );
   }
 
   success(): void {
