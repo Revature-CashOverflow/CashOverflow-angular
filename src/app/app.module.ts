@@ -38,7 +38,6 @@ import { ChangeEmailComponent } from './components/change-email/change-email.com
 import { LinkAccountComponent } from './components/link-account/link-account.component';
 import { TransferMoneyBetweenUsersComponent } from './components/transfer-money-between-users/transfer-money-between-users.component';
 import { BankAccountUserTransferComponent } from './page-layouts/bank-account-user-transfer/bank-account-user-transfer.component';
-import { environment as env}  from 'src/environments/environment';
 
 
 @NgModule({
