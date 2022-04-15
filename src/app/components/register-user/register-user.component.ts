@@ -34,6 +34,7 @@ export class RegisterUserComponent{
   });
 
   constructor(private regServ: RegisterService, private toastr: ToastrService, private router: Router, private auth: AuthService) {}
+  
 
 
   /**
@@ -65,7 +66,7 @@ export class RegisterUserComponent{
       (_data) => {
         this.regSuccess = 1;
         this.success();
-        
+
       },
       (_error: HttpErrorResponse) => {
         this.regSuccess = 2;
