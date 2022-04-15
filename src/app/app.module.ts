@@ -32,6 +32,10 @@ import { AuthModule } from '@auth0/auth0-angular';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { SettingsComponent } from './page-layouts/settings/settings.component';
 import { environment as env}  from 'src/environments/environment';
+import { ChangeFirstNameComponent } from './components/change-first-name/change-first-name.component';
+import { ChangeLastNameComponent } from './components/change-last-name/change-last-name.component';
+import { ChangeEmailComponent } from './components/change-email/change-email.component';
+import { LinkAccountComponent } from './components/link-account/link-account.component';
 
 
 @NgModule({
@@ -56,7 +60,13 @@ import { environment as env}  from 'src/environments/environment';
     BankAccountMoneyTransferComponent,
     ManageAccountBalanceComponent,
     TransactionListComponent,
-    SettingsComponent
+    SettingsComponent,
+    ChangeFirstNameComponent,
+    ChangeLastNameComponent,
+    ChangeEmailComponent,
+    LinkAccountComponent
+
+
   ],
   imports: [
     BrowserModule,

@@ -9,7 +9,7 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   ping$(): Observable<any> {
-    console.log("http://localhost:3001");
-    return this.http.get(`http://localhost:3001/api/external`);
+    console.log("http://localhost:5000");
+    return this.http.get(`http://localhost:5000/api/external`);
   }
 }

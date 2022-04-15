@@ -21,17 +21,17 @@ export class LoginComponent implements OnInit {
   data;//Used for logging in w/ auth0 purposes
   jwt: JwtDto | null = null;
   showErrorMessage: boolean = false;
-  registerForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl(''),
-  });
+  registerForm = {
+    username: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    auth0User: false
+  };
 
   audience = this.configFactory.get()?.audience;
   hasApiError = false;
-  // profileJson: string = "";
   loggedInWithAuth0: boolean = false;
 
   setCookie(key: string, value: string) {
@@ -61,34 +61,39 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.auth.user$.subscribe(
       (profile) => {
-
-        //This isn't used anywhere, but it might be nice to save this
-        // (this.profileJson = JSON.stringify(profile, null, 2));
         //These 2 should always exist
         //If not, something about auth0 is weird and will need debugging
-        this.loginUsername = profile?.nickname;
+
+        //Checks to make sure sub and nickname exists.
+        //They can not exists, and without this will login users as a unknown user
+        if (profile?.sub && profile?.nickname) {
+          this.loginUsername = profile?.nickname + profile?.sub;
+        }
+
         //A security concern, should be fixed someother way
         //Perhaps let the database register users without passwords?
-        this.loginPassword = profile?.sub;
+        this.loginPassword = "";
         //Login  for signing in
         this.data = {
-          loginUsername: this.loginUsername+this.loginPassword,//This ensures all usernames are unique
+          loginUsername: this.loginUsername,//This ensures all usernames are unique
           loginPassword:this.loginPassword
         };
         this.data.loginUsername = this.data.loginUsername.substring(0, 19);//A username can only be 20 characters long
         //regristration info, shouldn't be used unless actually regristering though
-        this.registerForm.setValue({
+        this.registerForm ={
           username: this.data.loginUsername,
-          password: this.loginPassword,
+          password: "",
           firstName: (profile?.given_name || "fName"),
           lastName: profile?.family_name || "LName",
           //This should always have an email, unless auth0 allows a service that doesn't have emails
           //If so, the email will be default to that
-          email: profile?.email || "fake@mail.com"
-        })
+          email: profile?.email || "fake@mail.com",
+          auth0User: true
+        }
+
         //Only runs if there is a logged in user
         this.loggedInWithAuth0 = true;
-         this.onClickSubmit(this.data);
+        this.onClickSubmit(this.data);
       }
     )
 
@@ -103,7 +108,7 @@ export class LoginComponent implements OnInit {
   }
 
   retreiveLoginUserButton(username: any, password: any) {
-    this.loginServ.retreiveLoginUser(username, password).subscribe(
+    this.loginServ.retreiveLoginUser(username, password, this.loggedInWithAuth0).subscribe(
       //subscriber's callback function goes here
       (data) => {
         this.jwt = data;
@@ -149,26 +154,25 @@ export class LoginComponent implements OnInit {
       }
       }
 
-      this.regServ.sendRegisterData(this.registerForm.value).subscribe(
+      this.regServ.sendRegisterData(this.registerForm).subscribe(
         (_data) => {
-              //No reason to show a succesful regristration
-              //For when you are logging in through Auth0
-              // this.success(sl);
-              this.onClickSubmit(this.data);
-          },
-          (error: HttpErrorResponse) => {
-            this.auth0Error();
-            console.log("Can't register for some reason");
-            console.log(error);
-
-
-          }
-        );
+          //No reason to show a succesful regristration
+          //For when you are logging in through Auth0
+          // this.success(sl);
+          //If a succesful regristration, login the user
+          //No need for them to register and then sign in
+          this.onClickSubmit(this.data);
+        },
+        (error: HttpErrorResponse) => {
+          this.auth0Error();
+          console.log("Can't register for some reason");
+          console.log(error);
+        }
+      );
     }
-
   }
   auth0Error(): void {
-    this.toastr.error('Register Error', 'Unable to register an account with Auth0. Please try again later or contact technical support.');
+    this.toastr.error('Register Error', 'Unable to register an account or login with Auth0. Please try again later or contact technical support.');
   }
 
 }

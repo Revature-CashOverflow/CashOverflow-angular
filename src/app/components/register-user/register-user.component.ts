@@ -29,6 +29,7 @@ export class RegisterUserComponent{
     firstName: new FormControl(''),
     lastName: new FormControl(''),
     email: new FormControl(''),
+    auth0User: new FormControl(false),
   });
 
   constructor(private regServ: RegisterService, private toastr: ToastrService, private auth: AuthService) {}
