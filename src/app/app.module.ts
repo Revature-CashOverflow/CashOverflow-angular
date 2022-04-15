@@ -33,11 +33,8 @@ import { ChangePasswordComponent } from './components/change-password/change-pas
 import { SettingsComponent } from './page-layouts/settings/settings.component';
 import { TransferMoneyBetweenUsersComponent } from './components/transfer-money-between-users/transfer-money-between-users.component';
 import { BankAccountUserTransferComponent } from './page-layouts/bank-account-user-transfer/bank-account-user-transfer.component';
-<<<<<<< HEAD
 import { environment as env}  from 'src/environments/environment';
 
-=======
->>>>>>> 450214d0fe24dd9a5a6f242dfb73d71c7edc5d79
 
 @NgModule({
   declarations: [
