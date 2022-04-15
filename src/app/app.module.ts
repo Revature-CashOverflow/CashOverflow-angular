@@ -31,13 +31,10 @@ import { TransactionListComponent } from './components/transaction-list/transact
 import { AuthModule } from '@auth0/auth0-angular';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { SettingsComponent } from './page-layouts/settings/settings.component';
-<<<<<<< HEAD
 import { TransferMoneyBetweenUsersComponent } from './components/transfer-money-between-users/transfer-money-between-users.component';
 import { BankAccountUserTransferComponent } from './page-layouts/bank-account-user-transfer/bank-account-user-transfer.component';
-=======
 import { environment as env}  from 'src/environments/environment';
 
->>>>>>> 0851b6499d473e977821005e815acbd79c185ccf
 
 @NgModule({
   declarations: [
