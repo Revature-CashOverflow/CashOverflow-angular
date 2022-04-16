@@ -42,12 +42,11 @@ export class TransferMoneyBetweenUsersComponent implements OnInit {
     this.bankAccountService
       .transferFundsBetweenUsers(this.transferForm.value)
       .subscribe(
-        (resp) => {
+        (_resp) => {
           this.success();
           this.ngOnInit();
-          //this.router.navigate(['/feed']);
         },
-        (msg) => {
+        (_msg) => {
           this.error();
           this.showErrorMessage = true;
         }
@@ -61,12 +60,11 @@ export class TransferMoneyBetweenUsersComponent implements OnInit {
     this.requestService
       .sendUserTransfer(this.currentRequest, this.requestForm.value)
       .subscribe(
-        (resp) => {
+        (_resp) => {
           this.success();
           this.ngOnInit();
-          //this.router.navigate(['/feed']);
         },
-        (msg) => {
+        (_msg) => {
           this.error();
           this.showErrorMessage = true;
         }
@@ -87,16 +85,15 @@ export class TransferMoneyBetweenUsersComponent implements OnInit {
   deny(request: UserTransfer) : void{
     this.currentRequest = request;
     console.log(this.currentRequest);
-    
+
     this.requestService
-      .deleteUserTransfer(this.currentRequest, this.requestForm.value)
+      .deleteUserTransfer(this.currentRequest)
       .subscribe(
-        (resp) => {
+        (_resp) => {
           this.success();
           this.ngOnInit();
-          //this.router.navigate(['/feed']);
         },
-        (msg) => {
+        (_msg) => {
           this.error();
           this.showErrorMessage = true;
         }

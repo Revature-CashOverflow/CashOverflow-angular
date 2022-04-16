@@ -56,7 +56,7 @@ export class RequestsService {
       options
     );
   }
-  deleteUserTransfer(info: UserTransfer, other: UserTransfer) {
+  deleteUserTransfer(info: UserTransfer) {
     console.log('rs.deleteusertransfer')
     info.receiveAccount = 1;
 
