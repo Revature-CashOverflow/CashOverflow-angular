@@ -6,10 +6,4 @@ import { Component } from '@angular/core';
 })
 export class BankAccountMoneyTransferComponent {
 
-  constructor() {
-    //Maybe remove?
-   }
-
-
-
 }

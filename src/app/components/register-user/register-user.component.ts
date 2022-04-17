@@ -5,6 +5,7 @@ import {  FormControl, FormGroup } from '@angular/forms';
 import { RegisterService } from '../../service/register/register.service';
 import { Observable, ObservedValueOf } from 'rxjs';
 import { Router } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
 
 
 /**
@@ -33,7 +34,8 @@ export class RegisterUserComponent{
     auth0User: new FormControl(false),
   });
 
-  constructor(private regServ: RegisterService, private toastr: ToastrService, private router: Router) {}
+  constructor(private regServ: RegisterService, private toastr: ToastrService, private router: Router, private auth: AuthService) {}
+  
 
 
   /**

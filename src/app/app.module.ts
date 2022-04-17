@@ -39,6 +39,7 @@ import { LinkAccountComponent } from './components/link-account/link-account.com
 import { TransferMoneyBetweenUsersComponent } from './components/transfer-money-between-users/transfer-money-between-users.component';
 import { BankAccountUserTransferComponent } from './page-layouts/bank-account-user-transfer/bank-account-user-transfer.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
 export class RequestsService {
   private getTransferUrl = `${environment.apiURL}/api/account/retrieveRequest`;
   private completeTransferUrl = `${environment.apiURL}/api/account/completeTransfer`;
+  private deleteTransferUrl = `${environment.apiURL}/api/account/removeRequest`;
   requests: UserTransfer[] = [];
   currentRequest: UserTransfer = {
     id: 0,
@@ -39,6 +40,8 @@ export class RequestsService {
   }
 
   sendUserTransfer(info: UserTransfer, other: UserTransfer) {
+    console.log(info)
+    console.log(other)
     info.receiveAccount = other.receiveAccount;
     let httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -52,5 +55,23 @@ export class RequestsService {
       info,
       options
     );
+  }
+  deleteUserTransfer(info: UserTransfer) {
+    console.log('rs.deleteusertransfer')
+    info.receiveAccount = 1;
+
+    let httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: this.cookieServ.get('token'),
+    });
+    let options = { headers: httpHeaders };
+    let tmp = this.myHttpClient.post<HttpResponse<any>>(
+      this.deleteTransferUrl,
+      info,
+      options
+    );
+    console.log(tmp)
+    return tmp;
   }
 }
